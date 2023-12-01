@@ -16,7 +16,8 @@ public class Modele {
 		
 	}
 	
-	 public static String connexionBDD() {
+//	La connexion avec la BDD 
+	public static String connexionBDD() {
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
@@ -32,52 +33,52 @@ public class Modele {
 	 }
 	 
 	// Méthode pour vérifier l'existence de l'utilisateur dans la base de données
-	    public static Utilisateur existeUser(String identifiant, String mdp) {
-	        connexionBDD();
-	        Utilisateur utilisateur = null;
+	public static Utilisateur existeUser(String identifiant, String mdp) {
+		connexionBDD();
+		Utilisateur utilisateur = null;
 
-	        String req = "SELECT COUNT(*), idUser, nom, prenom, dateNais, email "
-	                + "FROM UTILISATEUR "
-	                + "WHERE loginU = ? "
-	                + "AND mdp = md5(?) ;";
+		String req = "SELECT COUNT(*),id,nom,prenom "
+				+ "FROM utilisateur "
+				+ "WHERE login = ? "
+				+ "AND mdp = ?;";
 
-	        try {
-	            preparedSt = conn.prepareStatement(req);
-	            preparedSt.setString(1, identifiant);
-	            preparedSt.setString(2, mdp);
+		try {
+			preparedSt = conn.prepareStatement(req);
+			preparedSt.setString(1, identifiant);
+			preparedSt.setString(2, mdp);
 	            
-//	            System.out.println(sha1(mdp));
 
-	            res = preparedSt.executeQuery();
+			res = preparedSt.executeQuery();
 
-	            if (res.next()) {
-	                int count = res.getInt(1);
-	                if (count == 1) {
-	                    int id = res.getInt("idUser");
-	                    String nom = res.getString("nom");
-	                    String prenom = res.getString("prenom");
-	                    String email = res.getString("email");
+			if (res.next()) {
+				int count = res.getInt(1);
+				if (count == 1) {
+					
+					int id = res.getInt("id");
+					String nom = res.getString("nom");
+					String prenom = res.getString("prenom");
 
-	                    utilisateur = new Utilisateur(id, nom, prenom, email);
-	                }
-	            }
+					utilisateur = new Utilisateur(id, nom, prenom);
+				}
+			}
 
-	            res.close();
+			res.close();
 
-	        } catch (SQLException erreur) {
-	            System.out.println("La requête a échoué " + erreur);
-	        }
-	        deconnexionBDD();
+		} catch (SQLException erreur) {
+			System.out.println("La requête a échoué " + erreur);
+		}
+		deconnexionBDD();
 
-	        return utilisateur;
-	    }
+		return utilisateur;
+	 }
 	 
 	// Méthode pour la déconnexion à la BDD
-	    public static void deconnexionBDD() {
-	        try {
-	            conn.close();
-	        } catch (SQLException erreur) {
-	            System.out.println("La déconnexion à la base de données a échoué" + erreur);
-	        }
-	    }
+	public static void deconnexionBDD() {
+		try {
+			conn.close();
+		} catch (SQLException erreur) {
+			System.out.println("La déconnexion à la base de données a échoué" + erreur);
+		}
+	}
+	    
 }

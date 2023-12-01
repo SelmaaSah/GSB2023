@@ -81,18 +81,14 @@ public class V_connexion {
     public JButton getButtonConnexion() {
         return this.buttonConnexion;
     }
-
+    
 	public JTextField getIdentifiantTextField() {
 		return identifiantTextField;
 	}
 
-
-
 	public JTextField getMdpTextField() {
 		return mdpTextField;
 	}
-
-
-    
+  
     
 }

@@ -7,6 +7,7 @@ public class Controleur implements  ActionListener{
 	private V_principale v_principal;
 	private V_connexion v_connexion;
 	private V_accueil v_accueil;
+	private V_erreurConnexion v_erreurConnexion;
 	
 //	Création d'un attribut static 
 	private static final String Action_connexion = "CONNEXION";
@@ -32,9 +33,29 @@ public class Controleur implements  ActionListener{
 		switch (actionCommand) {
 		
         case Action_connexion:
-        	this.v_accueil = new V_accueil();
-        	this.v_principal.getMainPanel().removeAll();
-    		this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
+        	
+        	String identifiant = this.v_connexion.getIdentifiantTextField().getText();
+        	String mdp = this.v_connexion.getMdpTextField().getText();
+        	
+        	
+        	if(Modele.existeUser(identifiant, mdp) != null) {
+        		this.v_accueil = new V_accueil();
+        		
+            	this.v_principal.getMainPanel().removeAll();
+        		this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
+        		
+        	}
+        	else {
+        		
+        		this.v_erreurConnexion = new V_erreurConnexion();
+        		
+        		this.v_principal.getMainPanel().removeAll();
+        		
+        		this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel());
+        		this.v_principal.getMainPanel().add(this.v_erreurConnexion.getErreurConnexionPanel());
+        		
+        	}
+        	
     		this.v_principal.getMainPanel().revalidate();
     		this.v_principal.getMainPanel().repaint();
             break;

@@ -51,11 +51,10 @@ public class Utilisateur {
      * @param unPrenom Prénom de l'utilisateur.
      * @param leMail Adresse e-mail de l'utilisateur.
      */
-    public Utilisateur(int id, String unNom, String unPrenom, String leMail) {
+    public Utilisateur(int id, String unNom, String unPrenom) {
         this.idUser = id;
         this.nom = unNom;
         this.prenom = unPrenom;
-        this.mail = leMail;
     }
 
     /**
