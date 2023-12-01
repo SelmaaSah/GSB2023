@@ -8,16 +8,20 @@ public class V_principale extends JFrame{
 	
     private JPanel mainPanel;
     private JLabel connexionBDD;
+    private JLabel bienvenue;
+
     
     public V_principale() {
     	
-    	this.setTitle("SIO +");
+    	this.setTitle("GSB2");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(500, 500);
         
         // Instanciation des �l�ments
         mainPanel = new JPanel();
+        bienvenue = new JLabel("Bienvenue, GSB est ravi de vous revoir !");
+
         
        
         // Connexion � la base de donn�es et affichage du r�sultat dans un JLabel
@@ -30,8 +34,9 @@ public class V_principale extends JFrame{
         // Ajout du JLabel � notre JPanel
         //connexionPanelmainPanel.add(connexionBDD);
 
-        
+        mainPanel.add(bienvenue);
         // Ajout du JPanel � la fen�tre principale
+        
         getContentPane().add(mainPanel);
         
         // Affichage de la fen�tre
