@@ -31,6 +31,47 @@ public class Modele {
 	        return resultat;
 	 }
 	 
+	// Méthode pour vérifier l'existence de l'utilisateur dans la base de données
+	    public static Utilisateur existeUser(String identifiant, String mdp) {
+	        connexionBDD();
+	        Utilisateur utilisateur = null;
+
+	        String req = "SELECT COUNT(*), idUser, nom, prenom, dateNais, email "
+	                + "FROM UTILISATEUR "
+	                + "WHERE loginU = ? "
+	                + "AND mdp = md5(?) ;";
+
+	        try {
+	            preparedSt = conn.prepareStatement(req);
+	            preparedSt.setString(1, identifiant);
+	            preparedSt.setString(2, mdp);
+	            
+//	            System.out.println(sha1(mdp));
+
+	            res = preparedSt.executeQuery();
+
+	            if (res.next()) {
+	                int count = res.getInt(1);
+	                if (count == 1) {
+	                    int id = res.getInt("idUser");
+	                    String nom = res.getString("nom");
+	                    String prenom = res.getString("prenom");
+	                    String email = res.getString("email");
+
+	                    utilisateur = new Utilisateur(id, nom, prenom, email);
+	                }
+	            }
+
+	            res.close();
+
+	        } catch (SQLException erreur) {
+	            System.out.println("La requête a échoué " + erreur);
+	        }
+	        deconnexionBDD();
+
+	        return utilisateur;
+	    }
+	 
 	// Méthode pour la déconnexion à la BDD
 	    public static void deconnexionBDD() {
 	        try {
