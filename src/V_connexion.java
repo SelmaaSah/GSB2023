@@ -18,6 +18,8 @@ public class V_connexion {
     private JTextField mdpTextField;
     
     private JLabel bienvenueLabel;
+    private JLabel imageLabel;
+
 
     private JButton buttonConnexion;
 
@@ -26,9 +28,17 @@ public class V_connexion {
     public V_connexion() {
         connexionPanel = new JPanel(new GridBagLayout()); // Utilisation de GridBagLayout
 
+        // Chargement de l'image depuis le fichier
+        ImageIcon logoGSB = new ImageIcon("image2/logogsb.png"); 
+
+        // Redimensionner l'image
+        Image image = logoGSB.getImage();
+        Image newImage = image.getScaledInstance(150, 100, Image.SCALE_SMOOTH); 
+
+        ImageIcon resizedIcon = new ImageIcon(newImage);
+        imageLabel = new JLabel(resizedIcon);
 
 
-        
         identifiantLabel = new JLabel("Identifiant : ");
         identifiantTextField = new JTextField("");
         identifiantTextField.setPreferredSize(new Dimension(120, 20));
@@ -43,6 +53,8 @@ public class V_connexion {
 
 		Font police = new Font("Courier New", Font.BOLD, 13);
 		bienvenueLabel.setFont(police);
+		
+
 		
 		
         // Chargement de l'image depuis le fichier
@@ -59,14 +71,26 @@ public class V_connexion {
         // Configuration pour le JLabel et le JTextField de l'identifiant
 
         
-        
+	     // Pour bienvenueLabel
+        GridBagConstraints gbclogo = new GridBagConstraints();
+        gbclogo.gridx = 0;
+        gbclogo.gridy = 0;
+        gbclogo.anchor = GridBagConstraints.CENTER;
+        gbclogo.gridwidth = 2;
+        gbclogo.insets = new Insets(0, 0, 0, 0); // Ajout d'un espace en HAUT ET EN bas
+        connexionPanel.add(imageLabel, gbclogo);
+
+		
+		
+		
+		
      // Pour bienvenueLabel
         GridBagConstraints gbcBienvenue = new GridBagConstraints();
         gbcBienvenue.gridx = 0;
-        gbcBienvenue.gridy = 0;
+        gbcBienvenue.gridy = 1;
         gbcBienvenue.anchor = GridBagConstraints.WEST;
         gbcBienvenue.gridwidth = 2;
-        gbcBienvenue.insets = new Insets(10, 0, 40, 0); // Ajout d'un espace en HAUT ET EN bas
+        gbcBienvenue.insets = new Insets(0, 0, 120, 0); // Ajout d'un espace en HAUT ET EN bas
 
         connexionPanel.add(bienvenueLabel, gbcBienvenue);
 
@@ -98,17 +122,6 @@ public class V_connexion {
         gbcMdpTextField.insets = new Insets(10, 0, 10, 0); // Ajout d'un espace en HAUT ET EN bas
         connexionPanel.add(mdpTextField, gbcMdpTextField);
         
-//        // Configuration pour le JLabel et le JTextField du mot de passe
-//        gbc.gridx = 0;
-//        gbc.gridy = 1;
-//        gbc.insets = new Insets(10, 0, 10, 0); // Ajout d'un espace en haut
-//        connexionPanel.add(mdpLabel, gbc);
-//
-//        gbc.gridx = 1;
-//        gbc.gridy = 1;
-//        gbc.insets = new Insets(10, 0, 0, 0); // Ajout d'un espace en haut
-//        connexionPanel.add(mdpTextField, gbc);
-//
 //        // Configuration pour le JLabel de la connexion et le bouton
         GridBagConstraints gbc = new GridBagConstraints();
 
