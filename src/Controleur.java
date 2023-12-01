@@ -7,7 +7,9 @@ public class Controleur implements  ActionListener{
 	private V_principale v_principal;
 	private V_connexion v_connexion;
 	private V_accueil v_accueil;
+	private Utilisateur utilisateur;
 	private V_erreurConnexion v_erreurConnexion;
+	
 	
 //	Création d'un attribut static 
 	private static final String Action_connexion = "CONNEXION";
@@ -40,6 +42,7 @@ public class Controleur implements  ActionListener{
         	
         	if(Modele.existeUser(identifiant, mdp) != null) {
         		this.v_accueil = new V_accueil();
+        		this.utilisateur = new Utilisateur();
         		
             	this.v_principal.getMainPanel().removeAll();
         		this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());

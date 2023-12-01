@@ -37,7 +37,7 @@ public class Modele {
 		connexionBDD();
 		Utilisateur utilisateur = null;
 
-		String req = "SELECT COUNT(*),id,nom,prenom "
+		String req = "SELECT COUNT(*),id,nom,prenom,typeVisiteur "
 				+ "FROM utilisateur "
 				+ "WHERE login = ? "
 				+ "AND mdp = ?;";
@@ -46,6 +46,7 @@ public class Modele {
 			preparedSt = conn.prepareStatement(req);
 			preparedSt.setString(1, identifiant);
 			preparedSt.setString(2, mdp);
+			
 	            
 
 			res = preparedSt.executeQuery();
@@ -57,8 +58,9 @@ public class Modele {
 					int id = res.getInt("id");
 					String nom = res.getString("nom");
 					String prenom = res.getString("prenom");
+					String typeVisiteur = res.getString("typeVisiteur");
 
-					utilisateur = new Utilisateur(id, nom, prenom);
+					utilisateur = new Utilisateur(id, nom, prenom,typeVisiteur);
 				}
 			}
 

@@ -9,7 +9,7 @@ public class V_accueil {
 	
 	public V_accueil() {
 		accueilPanel = new JPanel();
-		accueilLabel = new JLabel("Acccueil");
+		accueilLabel = new JLabel("Bienvenue : ");
 		
 		accueilPanel.add(accueilLabel);
 	}
