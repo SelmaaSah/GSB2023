@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.*;
 
-public class V_connexion {
+public class V_connexion extends JFrame{
     private JPanel connexionPanel;
     private JLabel connexionJLabel;
 

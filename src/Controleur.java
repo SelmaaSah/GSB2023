@@ -6,9 +6,12 @@ public class Controleur implements  ActionListener{
 //	Les Attributs 
 	private V_principale v_principal;
 	private V_connexion v_connexion;
+
 	private V_accueil v_accueil;
 	private Utilisateur utilisateur;
 	private V_erreurConnexion v_erreurConnexion;
+	private V_menuResp v_menuResp;
+//	private V_menuSecr v_menuSecr;
 	
 	
 //	Création d'un attribut static 
@@ -18,6 +21,9 @@ public class Controleur implements  ActionListener{
 		
 		this.v_principal = new V_principale();
 		this.v_connexion = new V_connexion();
+		
+		//this.v_accueil = new V_accueil();
+
 		
 		// Définir la commande d'action pour le bouton
         v_connexion.getButtonConnexion().setActionCommand(Action_connexion);
@@ -44,11 +50,18 @@ public class Controleur implements  ActionListener{
         	if(Modele.existeUser(identifiant, mdp) != null) {
         		this.utilisateur = Modele.existeUser(identifiant, mdp);
         		this.v_accueil = new V_accueil(this.utilisateur.getNom());
+        		
+//        		this.v_menuSecr = new V_menuSecr();
 
         		if ("Responsable".equals(this.utilisateur.getTypeVisiteur())) {
+        			
+        			this.v_menuResp = new V_menuResp();
         		    System.out.println("Resp");
+            		this.v_accueil.getAccueilPanel().add(this.v_menuResp.getMenu());
+
         		} else if ("Secretaire".equals(this.utilisateur.getTypeVisiteur())) {
         		    System.out.println("Sec");
+//        		    this.v_accueil.getAccueilPanel().add(this.v_menuSecr.getMenu());
         		}
         		
             	this.v_principal.getMainPanel().removeAll();
