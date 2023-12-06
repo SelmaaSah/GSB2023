@@ -23,7 +23,6 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    
 
     /**
      * Constructeur avec certains paramètres de la classe Utilisateur.
@@ -91,37 +90,11 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
-  
 
-    /**
-     * Obtient l'identifiant de connexion de l'utilisateur.
-     * @return L'identifiant de connexion de l'utilisateur.
-     */
-    public String getLogin() {
-        return login;
-    }
+	public String getTypeVisiteur() {
+		return typeVisiteur;
+	}
+ 
 
-    /**
-     * Modifie l'identifiant de connexion de l'utilisateur.
-     * @param login Le nouvel identifiant de connexion de l'utilisateur.
-     */
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    /**
-     * Obtient le mot de passe de l'utilisateur.
-     * @return Le mot de passe de l'utilisateur.
-     */
-    public String getMdp() {
-        return mdp;
-    }
-
-    /**
-     * Modifie le mot de passe de l'utilisateur.
-     * @param mdp Le nouveau mot de passe de l'utilisateur.
-     */
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
+    
 }

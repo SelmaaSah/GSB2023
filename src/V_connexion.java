@@ -44,14 +44,14 @@ public class V_connexion {
 
 
         identifiantLabel = new JLabel("Identifiant : ");
-        identifiantTextField = new JTextField("");
+        identifiantTextField = new JTextField("kayoub");
         identifiantTextField.setPreferredSize(new Dimension(120, 20));
 
         buttonConnexion = new JButton("Se Connecter");
         
         bienvenueLabel = new JLabel("Bienvenue, GSB est ravi de vous revoir !");
         mdpLabel = new JLabel("Mot de Passe :  ");
-        mdpTextField = new JTextField("");
+        mdpTextField = new JTextField("123");
         mdpTextField.setPreferredSize(new Dimension(120, 20));
 
 

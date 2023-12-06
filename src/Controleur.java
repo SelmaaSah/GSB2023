@@ -34,6 +34,7 @@ public class Controleur implements  ActionListener{
 		
 		switch (actionCommand) {
 		
+//		Notre Vue de connexion
         case Action_connexion:
         	
         	String identifiant = this.v_connexion.getIdentifiantTextField().getText();
@@ -41,8 +42,14 @@ public class Controleur implements  ActionListener{
         	
         	
         	if(Modele.existeUser(identifiant, mdp) != null) {
-        		this.v_accueil = new V_accueil();
-        		this.utilisateur = new Utilisateur();
+        		this.utilisateur = Modele.existeUser(identifiant, mdp);
+        		this.v_accueil = new V_accueil(this.utilisateur.getNom());
+
+        		if ("Responsable".equals(this.utilisateur.getTypeVisiteur())) {
+        		    System.out.println("Resp");
+        		} else if ("Secretaire".equals(this.utilisateur.getTypeVisiteur())) {
+        		    System.out.println("Sec");
+        		}
         		
             	this.v_principal.getMainPanel().removeAll();
         		this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
