@@ -26,8 +26,12 @@ public class V_connexion {
     
     
     public V_connexion() {
-        connexionPanel = new JPanel(new GridBagLayout()); // Utilisation de GridBagLayout
+    	connexionPanel = new RoundedPanel(20); // Ajustez le rayon des coins ici
+        connexionPanel.setLayout(new GridBagLayout()); // Utilisation de GridBagLayout
+        
+        connexionPanel.setBackground(Color.white);
 
+        
         // Chargement de l'image depuis le fichier
         ImageIcon logoGSB = new ImageIcon("image2/logogsb.png"); 
 
@@ -53,6 +57,9 @@ public class V_connexion {
 
 		Font police = new Font("Courier New", Font.BOLD, 13);
 		bienvenueLabel.setFont(police);
+		identifiantLabel.setFont(police);
+		mdpLabel.setFont(police);
+		buttonConnexion.setFont(police);
 		
 
 		
