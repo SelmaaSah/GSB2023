@@ -70,6 +70,9 @@ public class V_menuSecr extends JMenuBar {
         gerer2.add(afficher);
         gerer2.add(modifier);
         gerer2.add(annuler);
+        
+        menu.setVisible(true);
+
     }
 
     
