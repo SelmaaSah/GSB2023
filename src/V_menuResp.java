@@ -2,11 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * La classe V_menu représente la barre de menus de l'application.
+ * La classe V_menu reprï¿½sente la barre de menus de l'application.
  */
 public class V_menuResp extends JMenuBar {
 
-    // Les éléments de la barre de menus
+    // Les ï¿½lï¿½ments de la barre de menus
     private JMenuBar menu;
 
     private JMenu stats;
@@ -15,7 +15,7 @@ public class V_menuResp extends JMenuBar {
 
     /**
      * Constructeur de la classe V_menu.
-     * Initialise la barre de menus avec ses éléments.
+     * Initialise la barre de menus avec ses ï¿½lï¿½ments.
      */
     public V_menuResp() {
         // Instanciation de la barre de menus
@@ -26,16 +26,14 @@ public class V_menuResp extends JMenuBar {
         consulterStats = new JMenuItem("Consulter les statistiques");
 
 
-        // Ajout des menus à la barre de menus
-        setLayout(new BorderLayout());
+        // Ajout des menus ï¿½ la barre de menus
         add(menu);
         menu.add(stats);
         stats.add(consulterStats);
         menu.setVisible(true);
-
     }
 
-    // Méthodes pour obtenir les éléments de la barre de menus
+    // Mï¿½thodes pour obtenir les ï¿½lï¿½ments de la barre de menus
 
     public JMenuBar getMenu() {
         return menu;

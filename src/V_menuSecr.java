@@ -2,11 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * La classe V_menu représente la barre de menus de l'application.
+ * La classe V_menu reprï¿½sente la barre de menus de l'application.
  */
 public class V_menuSecr extends JMenuBar {
 
-    // Les éléments de la barre de menus
+    // Les ï¿½lï¿½ments de la barre de menus
     private JMenuBar menu;
 
     private JMenu catalogue;
@@ -29,7 +29,7 @@ public class V_menuSecr extends JMenuBar {
 
     /**
      * Constructeur de la classe V_menu.
-     * Initialise la barre de menus avec ses éléments.
+     * Initialise la barre de menus avec ses ï¿½lï¿½ments.
      */
     public V_menuSecr() {
         // Instanciation de la barre de menus
@@ -37,21 +37,21 @@ public class V_menuSecr extends JMenuBar {
 
         // Instanciation des menus et sous-menus
         catalogue = new JMenu("Catalogue");
-        creercatalogue = new JMenuItem("Créer un catalogue");
+        creercatalogue = new JMenuItem("Crï¿½er un catalogue");
 
 
-        gerer = new JMenu("Gérer");
-        gererconferences = new JMenuItem("Gérer les conférences");
-        gererintervenant = new JMenuItem("Gérer les intervenants");
-        gereranimateur = new JMenuItem("Gérer les animateurs");
+        gerer = new JMenu("Gï¿½rer");
+        gererconferences = new JMenuItem("Gï¿½rer les confï¿½rences");
+        gererintervenant = new JMenuItem("Gï¿½rer les intervenants");
+        gereranimateur = new JMenuItem("Gï¿½rer les animateurs");
 
 
-        ajouter = new JMenu("Ajouter une conférence");
-        afficher = new JMenuItem("Afficher une conférence");
-        annuler = new JMenuItem("Annuler une conférence");
-        modifier = new JMenuItem("Modifier une conférence");
+        ajouter = new JMenu("Ajouter une confï¿½rence");
+        afficher = new JMenuItem("Afficher une confï¿½rence");
+        annuler = new JMenuItem("Annuler une confï¿½rence");
+        modifier = new JMenuItem("Modifier une confï¿½rence");
 
-        // Ajout des menus à la barre de menus
+        // Ajout des menus ï¿½ la barre de menus
         setLayout(new BorderLayout());
         add(menu);
         menu.add(catalogue);
@@ -77,9 +77,9 @@ public class V_menuSecr extends JMenuBar {
 
     
     
-    // Méthodes pour obtenir les éléments de la barre de menus
+    // Mï¿½thodes pour obtenir les ï¿½lï¿½ments de la barre de menus
    
-	public JMenuBar getMenu() {
+	public JMenuBar getMenuBar() {
 		return menu;
 	}
 
