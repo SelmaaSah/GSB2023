@@ -12,7 +12,6 @@ public class Controleur implements  ActionListener{
 	private Utilisateur utilisateur;
 	private V_erreurConnexion v_erreurConnexion;
 	private V_menuResp v_menuResp;
-	private V_menuSecr v_menuSecre;
 	private V_menuSecretaire v_menuSecretaire;
 	
 	
@@ -47,10 +46,11 @@ public class Controleur implements  ActionListener{
 		    String mdp = this.v_connexion.getMdpTextField().getText();
 
 		    if (Modele.existeUser(identifiant, mdp) != null) {
+//		    	On ajoute la fonction dans un attributs pour ensuite recupere le nom, typeVisiteur etc..action 
 		        this.utilisateur = Modele.existeUser(identifiant, mdp);
 		        this.v_accueil = new V_accueil(this.utilisateur.getNom());
 
-		        // Vérifiez si v_principal et MainPanel sont correctement initialisés
+//		        	Si le Visiteur est un resposable 
 		            if ("Responsable".equals(this.utilisateur.getTypeVisiteur())) {
 		            	
 		                this.v_menuResp = new V_menuResp();
@@ -64,7 +64,8 @@ public class Controleur implements  ActionListener{
 		                this.v_principal.getMainPanel().revalidate();
 		                this.v_principal.getMainPanel().repaint();
 		                
-		            } else if ("Secretaire".equals(this.utilisateur.getTypeVisiteur())) {
+		            } 
+		            else if ("Secretaire".equals(this.utilisateur.getTypeVisiteur())) {
 		            	
 		                
 		                this.v_menuSecretaire = new  V_menuSecretaire();
@@ -85,8 +86,10 @@ public class Controleur implements  ActionListener{
 		        // Vérifiez si v_principal et MainPanel sont correctement initialisés
 		        if (this.v_principal != null && this.v_principal.getMainPanel() != null) {
 		            this.v_principal.getMainPanel().removeAll();
+		            
 		            this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel());
 		            this.v_principal.getMainPanel().add(this.v_erreurConnexion.getErreurConnexionPanel());
+		            
 		            this.v_principal.getMainPanel().revalidate();
 		            this.v_principal.getMainPanel().repaint();
 		        }
