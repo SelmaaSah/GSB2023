@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -65,20 +66,23 @@ public class Controleur implements  ActionListener{
 //		        	Si le Visiteur est un resposable 
 		            if ("Responsable".equals(this.utilisateur.getTypeVisiteur())) {
 		            	
-		                this.v_menuResp = new V_menuResp();
+		            	this.v_menuResp = new V_menuResp();
 
-		                // Ajoutez le menu à v_principal.getMainPanel()
-		                this.v_principal.getMainPanel().removeAll();
-		                
-		                this.v_principal.getMainPanel().add(this.v_menuResp.getMenu());
-		                
-		                this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
-		                this.v_menuResp.getConsulterStats().addActionListener(this);
-		                
-		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
-		                
-		                this.v_principal.getMainPanel().revalidate();
-		                this.v_principal.getMainPanel().repaint();
+		            	// Ajout du menu au nord de v_principal.getMainPanel() avec BorderLayout
+		            	this.v_principal.getMainPanel().removeAll();
+		            	this.v_principal.getMainPanel().setLayout(new BorderLayout());
+		            	this.v_principal.getMainPanel().add(this.v_menuResp.getMenu(), BorderLayout.NORTH);
+
+		            	this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
+		            	this.v_menuResp.getConsulterStats().addActionListener(this);
+
+		            	// Ajout de la vue d'accueil au centre de v_principal.getMainPanel() avec GridBagLayout
+		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.CENTER);
+
+		            	// Forcez la mise en page
+		            	this.v_principal.getMainPanel().revalidate();
+		            	this.v_principal.getMainPanel().repaint();
+
 		                
 		            } 
 		            else if ("Secretaire".equals(this.utilisateur.getTypeVisiteur())) {

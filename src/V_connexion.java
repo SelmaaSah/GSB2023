@@ -44,7 +44,7 @@ public class V_connexion extends JFrame{
 
 
         identifiantLabel = new JLabel("Identifiant : ");
-        identifiantTextField = new JTextField("selma");
+        identifiantTextField = new JTextField("kayoub");
         identifiantTextField.setPreferredSize(new Dimension(120, 20));
 
         buttonConnexion = new JButton("Se Connecter");
