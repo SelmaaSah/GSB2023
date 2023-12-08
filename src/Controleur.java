@@ -32,6 +32,7 @@ public class Controleur implements  ActionListener{
 	public Controleur() {
 		
 		this.v_principal = new V_principale();
+		
 		this.v_connexion = new V_connexion();
 		
 		
@@ -57,7 +58,7 @@ public class Controleur implements  ActionListener{
 		case "CONNEXION" :
 		    String identifiant = this.v_connexion.getIdentifiantTextField().getText();
 		    String mdp = this.v_connexion.getMdpTextField().getText();
-
+		    this.v_principal.getMainPanel().setLayout(new BorderLayout());
 		    if (Modele.existeUser(identifiant, mdp) != null) {
 //		    	On ajoute la fonction dans un attributs pour ensuite recupere le nom, typeVisiteur etc..action 
 		        this.utilisateur = Modele.existeUser(identifiant, mdp);
@@ -70,14 +71,14 @@ public class Controleur implements  ActionListener{
 
 		            	// Ajout du menu au nord de v_principal.getMainPanel() avec BorderLayout
 		            	this.v_principal.getMainPanel().removeAll();
-		            	this.v_principal.getMainPanel().setLayout(new BorderLayout());
+		            	
 		            	this.v_principal.getMainPanel().add(this.v_menuResp.getMenu(), BorderLayout.NORTH);
 
 		            	this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
 		            	this.v_menuResp.getConsulterStats().addActionListener(this);
 
 		            	// Ajout de la vue d'accueil au centre de v_principal.getMainPanel() avec GridBagLayout
-		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.CENTER);
+		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
 
 		            	// Forcez la mise en page
 		            	this.v_principal.getMainPanel().revalidate();
@@ -93,7 +94,7 @@ public class Controleur implements  ActionListener{
 		                // Ajoutez le menu à v_principal.getMainPanel()
 		                this.v_principal.getMainPanel().removeAll();
 
-		                this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire());
+		                this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
 		                
 //		                Lire notre ActionListenner
 		                this.v_menuSecretaire.getCreerCatalogue().setActionCommand(creerCatalogue);
@@ -121,7 +122,7 @@ public class Controleur implements  ActionListener{
 		                this.v_menuSecretaire.getModifier().addActionListener(this);
 		                
 		                
-		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
+		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
 		                
 		                this.v_principal.getMainPanel().revalidate();
 		                this.v_principal.getMainPanel().repaint();
