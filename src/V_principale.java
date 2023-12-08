@@ -8,11 +8,7 @@ import javax.swing.JPanel;
 public class V_principale extends JFrame{
 	
     private JPanel mainPanel;
-    private JPanel monPanelH;
-
-    private JLabel connexionBDD;
-    private JLabel bienvenue;
-
+   
     
     public V_principale() {
     	
@@ -23,13 +19,8 @@ public class V_principale extends JFrame{
         
         // Instanciation des �l�ments
         mainPanel = new JPanel();
-
-        //mainPanel.setLayout(new BorderLayout());
-
-
-        
        
-        // Connexion � la base de donn�es et affichage du r�sultat dans un JLabel
+
         //connexionBDD = new JLabel(Modele.connexionBDD());
         V_connexion connexionPanel = new V_connexion();
        
@@ -43,12 +34,6 @@ public class V_principale extends JFrame{
         
         mainPanel.setBackground(customColor);
         
-        // Ajout du JLabel � notre JPanel
-        //connexionPanelmainPanel.add(connexionBDD);
-
-        
-
-
         // Ajout du JPanel � la fen�tre principale
         
         getContentPane().add(mainPanel);

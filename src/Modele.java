@@ -21,18 +21,19 @@ public class Modele {
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
+//	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
 	            st = conn.createStatement();
 	         
-	            resultat = "Connexion réussie à la BDD";
+	            resultat = "Connexion rï¿½ussie ï¿½ la BDD";
 	        } catch (ClassNotFoundException erreur) {
-	            resultat = "Driver non chargé !" + erreur;
+	            resultat = "Driver non chargï¿½ !" + erreur;
 	        } catch (SQLException erreur) {
-	            resultat = "La connexion à la base de données a échoué" + erreur + "<br>";
+	            resultat = "La connexion ï¿½ la base de donnï¿½es a ï¿½chouï¿½" + erreur + "<br>";
 	        }
 	        return resultat;
 	 }
 	 
-	// Méthode pour vérifier l'existence de l'utilisateur dans la base de données
+	// Mï¿½thode pour vï¿½rifier l'existence de l'utilisateur dans la base de donnï¿½es
 	public static Utilisateur existeUser(String identifiant, String mdp) {
 		connexionBDD();
 		Utilisateur utilisateur = null;
@@ -67,19 +68,19 @@ public class Modele {
 			res.close();
 
 		} catch (SQLException erreur) {
-			System.out.println("La requête a échoué " + erreur);
+			System.out.println("La requï¿½te a ï¿½chouï¿½ " + erreur);
 		}
 		deconnexionBDD();
 
 		return utilisateur;
 	 }
 	 
-	// Méthode pour la déconnexion à la BDD
+	// Mï¿½thode pour la dï¿½connexion ï¿½ la BDD
 	public static void deconnexionBDD() {
 		try {
 			conn.close();
 		} catch (SQLException erreur) {
-			System.out.println("La déconnexion à la base de données a échoué" + erreur);
+			System.out.println("La dï¿½connexion ï¿½ la base de donnï¿½es a ï¿½chouï¿½" + erreur);
 		}
 	}
 	    
