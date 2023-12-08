@@ -12,6 +12,7 @@ public class Controleur implements  ActionListener{
 	private V_erreurConnexion v_erreurConnexion;
 	private V_menuResp v_menuResp;
 	private V_menuSecretaire v_menuSecretaire;
+	private V_creercatalogue v_creercatalogue;
 	
 	
 //	On l'utilise pour nos case
@@ -144,7 +145,11 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "SecretaireCreerCatalogue":
-			System.out.println("Creer une catalogue");
+			System.out.println("Creer un catalogue");
+			this.v_creercatalogue = new V_creercatalogue();
+            this.v_principal.getMainPanel().add(this.v_creercatalogue.getPanelCatalogue());
+            this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();		
 			break;
 		
 		case "SecretaireGererConference":
