@@ -14,20 +14,29 @@ public class Controleur implements  ActionListener{
 	private V_menuSecretaire v_menuSecretaire;
 	
 	
-//	Cr�ation d'un attribut static 
-	private static final String Action_connexion = "CONNEXION";
+//	Creation d'un attribut static 
+	private String action_connexion = "CONNEXION";
+	private String consulterStat = "ResponsableStat";
+	
+	private String creerCatalogue = "SecretaireCreerCatalogue";
+	private String gererConferences = "SecretaireGererConference";
+	private String gererIntervenant = "SecretaireGererIntervenant";
+	private String gererAnimateur = "SecretaireGererAnimateur";
+	private String ajouterConferences = "AjouterConferences";
 	
 	public Controleur() {
 		
 		this.v_principal = new V_principale();
 		this.v_connexion = new V_connexion();
 		
+		
 		// D�finir la commande d'action pour le bouton
-        v_connexion.getButtonConnexion().setActionCommand(Action_connexion);
+        v_connexion.getButtonConnexion().setActionCommand(action_connexion);
         v_connexion.getButtonConnexion().addActionListener(this);
 
 		
 		this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel());
+		
 		this.v_principal.getMainPanel().revalidate();
 		this.v_principal.getMainPanel().repaint();
 	}
@@ -40,7 +49,7 @@ public class Controleur implements  ActionListener{
 		switch (actionCommand) {
 		
 //		Notre Vue de connexion
-		case Action_connexion:
+		case "CONNEXION" :
 		    String identifiant = this.v_connexion.getIdentifiantTextField().getText();
 		    String mdp = this.v_connexion.getMdpTextField().getText();
 
@@ -58,6 +67,10 @@ public class Controleur implements  ActionListener{
 		                this.v_principal.getMainPanel().removeAll();
 		                
 		                this.v_principal.getMainPanel().add(this.v_menuResp.getMenu());
+		                
+		                this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
+		                this.v_menuResp.getConsulterStats().addActionListener(this);
+		                
 		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
 		                
 		                this.v_principal.getMainPanel().revalidate();
@@ -66,13 +79,29 @@ public class Controleur implements  ActionListener{
 		            } 
 		            else if ("Secretaire".equals(this.utilisateur.getTypeVisiteur())) {
 		            	
+		            	this.v_menuSecretaire = new  V_menuSecretaire();
 		                
-		                this.v_menuSecretaire = new  V_menuSecretaire();
 		                
 		                // Ajoutez le menu à v_principal.getMainPanel()
 		                this.v_principal.getMainPanel().removeAll();
 
 		                this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire());
+		                
+		                this.v_menuSecretaire.getCreerCatalogue().setActionCommand(creerCatalogue);
+		                this.v_menuSecretaire.getCreerCatalogue().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getGererConferences().setActionCommand(gererConferences);
+		                this.v_menuSecretaire.getGererConferences().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getGererintervenant().setActionCommand(gererIntervenant);
+		                this.v_menuSecretaire.getGererintervenant().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getGererAnimateur().setActionCommand(gererAnimateur);
+		                this.v_menuSecretaire.getGererAnimateur().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getAjouter().setActionCommand(ajouterConferences);
+		                this.v_menuSecretaire.getAjouter().addActionListener(this);
+		                
 		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
 		                
 		                this.v_principal.getMainPanel().revalidate();
@@ -93,8 +122,32 @@ public class Controleur implements  ActionListener{
 		            this.v_principal.getMainPanel().repaint();
 		        }
 		    }
+		    
 		    break;
-
+		
+		case "ResponsableStat":
+			System.out.println("Consulter les Stat");
+			break;
+			
+		case "SecretaireCreerCatalogue":
+			System.out.println("Creer une catalogue");
+			break;
+		
+		case "SecretaireGererConference":
+			System.out.println("Gerer La congérences");
+			break;
+			
+		case "SecretaireGererIntervenant":
+			System.out.println("Gerer les interventant");
+			break;
+			
+		case "SecretaireGererAnimateur":
+			System.out.println("Gerer les Animateur");
+			break;
+		
+		case "AjouterConferences":
+			System.out.println("Gerer les Animateur");
+			break;
 		}
 		
 	}

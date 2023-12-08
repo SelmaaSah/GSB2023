@@ -39,7 +39,7 @@ public class V_menuResp extends JMenuBar {
         return menu;
     }
 
-    public JMenuItem getStats() {
+    public JMenuItem getConsulterStats() {
         return consulterStats;
     }
 

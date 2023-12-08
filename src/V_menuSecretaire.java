@@ -55,4 +55,24 @@ public class V_menuSecretaire extends JMenuBar {
     public JMenuBar getMenuSecretaire() {
         return this;  // Retourne directement l'instance de la barre de menus
     }
+    
+    public JMenuItem getCreerCatalogue() {
+    	return this.creercatalogue;
+    }
+    
+    public JMenuItem getGererConferences() {
+    	return this.gererconferences;
+    }
+    
+    public JMenuItem getGererintervenant() {
+    	return this.gererintervenant;
+    }
+    
+    public JMenuItem getGererAnimateur() {
+    	return this.gereranimateur;
+    }
+    
+    public JMenuItem getAjouter() {
+    	return this.ajouter;
+    }
 }
