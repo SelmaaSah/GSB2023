@@ -14,7 +14,7 @@ public class Controleur implements  ActionListener{
 	private V_menuSecretaire v_menuSecretaire;
 	
 	
-//	Creation d'un attribut static 
+//	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
 	private String consulterStat = "ResponsableStat";
 	
@@ -23,7 +23,9 @@ public class Controleur implements  ActionListener{
 	private String gererIntervenant = "SecretaireGererIntervenant";
 	private String gererAnimateur = "SecretaireGererAnimateur";
 	private String ajouterConferences = "AjouterConferences";
-	
+	private String afficherConferences = "AfficherConferences";
+	private String annulerConferences = "AnnulerConferences";
+	private String modifierConferences = "ModifierConferences";
 	
 	public Controleur() {
 		
@@ -88,6 +90,7 @@ public class Controleur implements  ActionListener{
 
 		                this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire());
 		                
+//		                Lire notre ActionListenner
 		                this.v_menuSecretaire.getCreerCatalogue().setActionCommand(creerCatalogue);
 		                this.v_menuSecretaire.getCreerCatalogue().addActionListener(this);
 		                
@@ -102,6 +105,16 @@ public class Controleur implements  ActionListener{
 		                
 		                this.v_menuSecretaire.getAjouter().setActionCommand(ajouterConferences);
 		                this.v_menuSecretaire.getAjouter().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getAfficher().setActionCommand(afficherConferences);
+		                this.v_menuSecretaire.getAfficher().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getAnnuler().setActionCommand(annulerConferences);
+		                this.v_menuSecretaire.getAnnuler().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getModifier().setActionCommand(modifierConferences);
+		                this.v_menuSecretaire.getModifier().addActionListener(this);
+		                
 		                
 		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel());
 		                
@@ -147,8 +160,21 @@ public class Controleur implements  ActionListener{
 			break;
 		
 		case "AjouterConferences":
-			System.out.println("Gerer les Animateur");
+			System.out.println("Ajouter une Conferences");
 			break;
+			
+		case "AfficherConferences":
+			System.out.println("Afficher les Conferences");
+			break;
+			
+		case "AnnulerConferences":
+			System.out.println("Annuler une Conferences");
+			break;
+			
+		case "ModifierConferences":
+			System.out.println("Modifier une Conferences");
+			break;
+			
 		}
 		
 	}
