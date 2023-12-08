@@ -1,14 +1,13 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 public class V_principale extends JFrame{
 	
     private JPanel mainPanel;
-   
     
     public V_principale() {
     	
@@ -19,7 +18,6 @@ public class V_principale extends JFrame{
         
         // Instanciation des �l�ments
         mainPanel = new JPanel();
-       
 
         //connexionBDD = new JLabel(Modele.connexionBDD());
         V_connexion connexionPanel = new V_connexion();
@@ -32,6 +30,7 @@ public class V_principale extends JFrame{
 
         Color customColor = new Color(redValue, greenValue, blueValue);
         
+     
         mainPanel.setBackground(customColor);
         
         // Ajout du JPanel � la fen�tre principale
