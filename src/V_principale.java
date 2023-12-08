@@ -19,7 +19,7 @@ public class V_principale extends JFrame{
     	this.setTitle("GSB2");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(500, 500);
+        this.setSize(600, 600);
         
         // Instanciation des �l�ments
         mainPanel = new JPanel();
