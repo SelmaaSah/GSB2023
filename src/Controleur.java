@@ -14,6 +14,7 @@ public class Controleur implements  ActionListener{
 	private V_menuResp v_menuResp;
 	private V_menuSecretaire v_menuSecretaire;
 	private V_creercatalogue v_creercatalogue;
+	private V_ajouterConferences v_ajouterConferences;
 	
 	
 //	On l'utilise pour nos case
@@ -73,12 +74,14 @@ public class Controleur implements  ActionListener{
 		            	this.v_principal.getMainPanel().removeAll();
 		            	
 		            	this.v_principal.getMainPanel().add(this.v_menuResp.getMenu(), BorderLayout.NORTH);
+		            	this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
+		            	this.v_principal.getSecondPanel().add(this.v_accueil.getAccueilPanel());
 
 		            	this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
 		            	this.v_menuResp.getConsulterStats().addActionListener(this);
 
 		            	// Ajout de la vue d'accueil au centre de v_principal.getMainPanel() avec GridBagLayout
-		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
+//		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
 
 		            	// Forcez la mise en page
 		            	this.v_principal.getMainPanel().revalidate();
@@ -95,6 +98,8 @@ public class Controleur implements  ActionListener{
 		                this.v_principal.getMainPanel().removeAll();
 
 		                this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
+		                this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
+		                this.v_principal.getSecondPanel().add(this.v_accueil.getAccueilPanel());
 		                
 //		                Lire notre ActionListenner
 		                this.v_menuSecretaire.getCreerCatalogue().setActionCommand(creerCatalogue);
@@ -120,9 +125,7 @@ public class Controleur implements  ActionListener{
 		                
 		                this.v_menuSecretaire.getModifier().setActionCommand(modifierConferences);
 		                this.v_menuSecretaire.getModifier().addActionListener(this);
-		                
-		                
-		                this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
+		                		                
 		                
 		                this.v_principal.getMainPanel().revalidate();
 		                this.v_principal.getMainPanel().repaint();
@@ -150,9 +153,14 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "SecretaireCreerCatalogue":
-			System.out.println("Creer un catalogue");
 			this.v_creercatalogue = new V_creercatalogue();
-            this.v_principal.getMainPanel().add(this.v_creercatalogue.getPanelCatalogue());
+			
+			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
+            this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
+            this.v_principal.getSecondPanel().removeAll();
+            this.v_principal.getSecondPanel().add(this.v_creercatalogue.getPanelCatalogue());
+            
+			
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();		
 			break;
@@ -170,7 +178,16 @@ public class Controleur implements  ActionListener{
 			break;
 		
 		case "AjouterConferences":
-			System.out.println("Ajouter une Conferences");
+			this.v_ajouterConferences = new V_ajouterConferences();
+			
+			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
+            this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
+            this.v_principal.getSecondPanel().removeAll();
+            this.v_principal.getSecondPanel().add(this.v_ajouterConferences.getAjouterConferencePanel());
+            
+			
+            this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();		
 			break;
 			
 		case "AfficherConferences":

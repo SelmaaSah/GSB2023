@@ -28,6 +28,7 @@ public class V_creercatalogue extends JFrame {
 
         panelcatalogue = new JPanel();
         labelcatalogue = new JLabel("CATALOGUE DES CONFERENCES : ");
+        panelcatalogue.setPreferredSize(new Dimension (500,500));
 
         datelbl = new JLabel("Date : ");
         datetf = new JTextField("");
