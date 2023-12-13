@@ -37,7 +37,7 @@ public class V_creercatalogue extends JFrame {
 
     	// Redimensionner l'image
     	Image image = logoGSB.getImage();
-    	Image newImage = image.getScaledInstance(100, 50, Image.SCALE_SMOOTH); 
+    	Image newImage = image.getScaledInstance(120, 55, Image.SCALE_SMOOTH); 
 
     	ImageIcon resizedIcon = new ImageIcon(newImage);
     	img = new JLabel(resizedIcon);

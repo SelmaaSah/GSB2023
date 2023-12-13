@@ -8,7 +8,8 @@ public class V_ajouterConferences {
     private JTextField themeTextField;
     private JLabel dateDeroulementLabel;
     private JTextField dateDeroulementTextField;
-    private JComboBox<String> votreComboBox; // Remplacez String par le type d'éléments que vous voulez dans votre JComboBox
+    private JComboBox<String> votreComboBox;
+    private JButton btnvld2;
 
     public V_ajouterConferences() {
         ajouterConferencePanel = new JPanel();
@@ -27,6 +28,9 @@ public class V_ajouterConferences {
         titreLabel = new JLabel("Gerer les Conférences");
         
         votreComboBox = new JComboBox<>();
+        
+        btnvld2 = new JButton("Valider");
+
         
 //      Faire une For pour recuperer le nom de l'animateur Requete SQL
         votreComboBox.addItem("chien");
@@ -50,10 +54,21 @@ public class V_ajouterConferences {
         gbc.gridy++;
         ajouterConferencePanel.add(dateDeroulementTextField, gbc);
         gbc.gridy++;
-        ajouterConferencePanel.add(votreComboBox, gbc);
+        ajouterConferencePanel.add(votreComboBox, gbc);  
+        gbc.gridy++;
+        ajouterConferencePanel.add(btnvld2, gbc);
     }
 
     public JPanel getAjouterConferencePanel() {
         return ajouterConferencePanel;
     }
+    
+    public JButton getButtonVld() {
+        return this.btnvld2;
+    }
+    
+    
+    
+    
 }
+

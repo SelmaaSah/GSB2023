@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Modele {
 	private static Connection conn;
@@ -75,6 +76,9 @@ public class Modele {
 		return utilisateur;
 	 }
 	 
+	
+	
+	
 	// M�thode pour la d�connexion � la BDD
 	public static void deconnexionBDD() {
 		try {
@@ -83,5 +87,81 @@ public class Modele {
 			System.out.println("La d�connexion � la base de donn�es a �chou�" + erreur);
 		}
 	}
+	
+	
+    public void insererNvConference(int idC, String theme, String nomAnimateur, String dateDeroulement) {
+        try {
+            // Requête d'insertion
+            String req = "INSERT INTO conference (idC, theme, nomAnimateur, dateDeroulement) VALUES (?, ?, ?, ?)";
+            PreparedStatement preparedStatement = Modele.conn.prepareStatement(req);
+            preparedStatement.setInt(1, idC);
+            preparedStatement.setString(2, theme);
+            preparedStatement.setString(3, nomAnimateur);
+            preparedStatement.setString(4, dateDeroulement);
+
+            // Exécuter la requête d'insertion
+            preparedStatement.executeUpdate();
+
+            // Fermer le statement
+            preparedStatement.close();
+
+        } catch (SQLException erreur) {
+            System.out.println("L'insertion a échoué " + erreur);
+        }
+    }
+	
+	
+	
+	/**
+     * Récupère la liste des films depuis la base de données
+     * @return Une liste de programmes représentant les films
+     */
+    public static ArrayList<Conference> getLesConferences() {
+        connexionBDD();
+
+        ArrayList<Conference> lesConferences = new ArrayList<Conference>();
+        int idC;
+        String theme, nomAnimateur, dateDeroulement;
+
+        Conference conference;
+
+        String req = "SELECT *"
+                + "FROM conference";
+
+        try {
+            res = st.executeQuery(req);
+            while (res.next()) {
+
+            	idC = res.getInt(1);
+            	theme = res.getString(2);
+            	nomAnimateur = res.getString(3);
+            	dateDeroulement = res.getString(4);
+
+            	conference = new Conference(idC, theme, nomAnimateur, dateDeroulement);
+                lesConferences.add(conference);
+
+            }
+        } catch (SQLException erreur) {
+            System.out.println("La requête getLesFilms échoue" + erreur);
+        }
+        return lesConferences;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	    
 }

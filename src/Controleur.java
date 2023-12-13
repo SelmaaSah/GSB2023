@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Controleur implements  ActionListener{
 
@@ -15,10 +16,14 @@ public class Controleur implements  ActionListener{
 	private V_menuSecretaire v_menuSecretaire;
 	private V_creercatalogue v_creercatalogue;
 	private V_ajouterConferences v_ajouterConferences;
+	private V_afficherConference v_afficherConference;
+
 	
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
+	private String action_valider = "VALIDER";
+
 	private String consulterStat = "ResponsableStat";
 	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
@@ -26,7 +31,7 @@ public class Controleur implements  ActionListener{
 	private String gererIntervenant = "SecretaireGererIntervenant";
 	private String gererAnimateur = "SecretaireGererAnimateur";
 	private String ajouterConferences = "AjouterConferences";
-	private String afficherConferences = "AfficherConferences";
+	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
 	private String modifierConferences = "ModifierConferences";
 	
@@ -40,6 +45,11 @@ public class Controleur implements  ActionListener{
 		// D�finir la commande d'action pour le bouton
         v_connexion.getButtonConnexion().setActionCommand(action_connexion);
         v_connexion.getButtonConnexion().addActionListener(this);
+        
+//
+//		
+//        v_ajouterConferences.getButtonVld().setActionCommand(action_valider);
+//        v_ajouterConferences.getButtonVld().addActionListener(this);
 
 		
 		this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel());
@@ -117,7 +127,7 @@ public class Controleur implements  ActionListener{
 		                this.v_menuSecretaire.getAjouter().setActionCommand(ajouterConferences);
 		                this.v_menuSecretaire.getAjouter().addActionListener(this);
 		                
-		                this.v_menuSecretaire.getAfficher().setActionCommand(afficherConferences);
+		                this.v_menuSecretaire.getAfficher().setActionCommand(afficherConference);
 		                this.v_menuSecretaire.getAfficher().addActionListener(this);
 		                
 		                this.v_menuSecretaire.getAnnuler().setActionCommand(annulerConferences);
@@ -180,6 +190,7 @@ public class Controleur implements  ActionListener{
 		case "AjouterConferences":
 			this.v_ajouterConferences = new V_ajouterConferences();
 			
+
 			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
             this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
             this.v_principal.getSecondPanel().removeAll();
@@ -191,8 +202,19 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "AfficherConferences":
-			System.out.println("Afficher les Conferences");
+			//System.out.println("Afficher les Conferences");
+			this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
+			
+			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
+            this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
+            this.v_principal.getSecondPanel().removeAll();
+            this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
+            
+			
+            this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();		
 			break;
+			
 			
 		case "AnnulerConferences":
 			System.out.println("Annuler une Conferences");
