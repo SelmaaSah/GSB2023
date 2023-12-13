@@ -25,6 +25,9 @@ public class V_creercatalogue extends JFrame {
     private JTextField nbPlacetf;
     
     private JLabel img;
+    
+    private JButton btnvld;
+
 
 
     public V_creercatalogue() {
@@ -72,6 +75,9 @@ public class V_creercatalogue extends JFrame {
         nbPlacetf = new JTextField("");
         nbPlacetf.setPreferredSize(new Dimension(120, 20));
 
+        btnvld = new JButton(" Valider ");
+
+        
         panelcatalogue.setLayout(new GridBagLayout());
         
         
@@ -83,6 +89,8 @@ public class V_creercatalogue extends JFrame {
 		labelcatalogue.setFont(police);
 		animateurlbl.setFont(police);
 		nbPlaceslbl.setFont(police);
+		btnvld.setFont(police);
+
         
         
 	      GridBagConstraints gbclogo = new GridBagConstraints();
@@ -134,6 +142,11 @@ public class V_creercatalogue extends JFrame {
         panelcatalogue.add(nbPlaceslbl, gbc);
         gbc.gridy++;
         panelcatalogue.add(nbPlacetf, gbc);
+        
+        gbc.gridy++;
+        panelcatalogue.add(btnvld, gbc);
+        gbc.gridy++;
+        panelcatalogue.add(btnvld, gbc);
         
     }
 

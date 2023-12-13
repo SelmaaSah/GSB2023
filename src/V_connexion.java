@@ -113,7 +113,7 @@ public class V_connexion extends JFrame{
         gbcIdentifiantTextField.gridx = 1;
         gbcIdentifiantTextField.gridy = 1;
         gbcIdentifiantTextField.insets = new Insets(10, 0, 10, 0); // Ajout d'un espace en bas
-        connexionPanel.add(identifiantTextField, gbcIdentifiantTextField);
+        connexionPanel.add(identifiantTextField, gbcIdentifiantTextField); 
 
 
         GridBagConstraints gbcMdpLabel = new GridBagConstraints();
