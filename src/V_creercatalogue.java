@@ -23,12 +23,30 @@ public class V_creercatalogue extends JFrame {
 
     private JLabel nbPlaceslbl;
     private JTextField nbPlacetf;
+    
+    private JLabel img;
+
 
     public V_creercatalogue() {
+    	
+    	// Chargement de l'image depuis le fichier
+    	ImageIcon logoGSB = new ImageIcon("image2/logogsb.png"); 
+
+    	// Redimensionner l'image
+    	Image image = logoGSB.getImage();
+    	Image newImage = image.getScaledInstance(100, 50, Image.SCALE_SMOOTH); 
+
+    	ImageIcon resizedIcon = new ImageIcon(newImage);
+    	img = new JLabel(resizedIcon);
 
         panelcatalogue = new JPanel();
         labelcatalogue = new JLabel("CATALOGUE DES CONFERENCES : ");
         panelcatalogue.setPreferredSize(new Dimension (500,500));
+        labelcatalogue.setForeground(new Color(128,162,205));
+
+
+
+
 
         datelbl = new JLabel("Date : ");
         datetf = new JTextField("");
@@ -55,6 +73,29 @@ public class V_creercatalogue extends JFrame {
         nbPlacetf.setPreferredSize(new Dimension(120, 20));
 
         panelcatalogue.setLayout(new GridBagLayout());
+        
+        
+		Font police = new Font("Courier New", Font.BOLD, 13);
+		datelbl.setFont(police);
+		horrairelbl.setFont(police);
+		dureelbl.setFont(police);
+		sallelbl.setFont(police);
+		labelcatalogue.setFont(police);
+		animateurlbl.setFont(police);
+		nbPlaceslbl.setFont(police);
+        
+        
+	      GridBagConstraints gbclogo = new GridBagConstraints();
+	      gbclogo.gridx = 0;
+	      gbclogo.gridy = 0;
+	      gbclogo.anchor = GridBagConstraints.CENTER;
+	      gbclogo.gridwidth = 2;
+	      gbclogo.insets = new Insets(0, 0, 80, 0); // Ajout d'un espace en HAUT ET EN bas
+	      panelcatalogue.add(img, gbclogo); 
+	        
+       
+        
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -93,6 +134,7 @@ public class V_creercatalogue extends JFrame {
         panelcatalogue.add(nbPlaceslbl, gbc);
         gbc.gridy++;
         panelcatalogue.add(nbPlacetf, gbc);
+        
     }
 
     public JPanel getPanelCatalogue() {
