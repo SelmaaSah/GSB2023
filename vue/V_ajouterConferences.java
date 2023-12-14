@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 public class V_ajouterConferences {
@@ -11,7 +13,8 @@ public class V_ajouterConferences {
     private JComboBox<String> votreComboBox;
     private JButton btnvld2;
 
-    public V_ajouterConferences() {
+    public V_ajouterConferences(ArrayList<Animateur>lesAnimateurs) {
+    	
         ajouterConferencePanel = new JPanel();
         ajouterConferencePanel.setPreferredSize(new Dimension(500, 500));
 
@@ -33,10 +36,12 @@ public class V_ajouterConferences {
 
         
 //      Faire une For pour recuperer le nom de l'animateur Requete SQL
-        votreComboBox.addItem("chien");
-        votreComboBox.addItem("chat");
-        votreComboBox.addItem("lyon");
-
+        for (int i = 0; i < lesAnimateurs.size(); i++) {
+            Animateur animateur = lesAnimateurs.get(i);
+            String representation = animateur.getIdAnimateur() + " - " + animateur.getNomAnimateur();
+            votreComboBox.addItem(representation);
+        }
+        
         ajouterConferencePanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -67,6 +72,17 @@ public class V_ajouterConferences {
         return this.btnvld2;
     }
     
+    public JTextField getThemeTextField() {
+    	return this.themeTextField;
+    }
+    
+    public JTextField getDateDeroulementTextField() {
+    	return this.dateDeroulementTextField;
+    }
+    
+    public JComboBox<String> getComboBox(){
+    	return this.votreComboBox;
+    }
     
     
     

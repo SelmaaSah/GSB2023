@@ -25,11 +25,11 @@ public class Modele {
 //	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
 	            st = conn.createStatement();
 	         
-	            resultat = "Connexion r�ussie � la BDD";
+	            resultat = "Connexion reussie � la BDD";
 	        } catch (ClassNotFoundException erreur) {
-	            resultat = "Driver non charg� !" + erreur;
+	            resultat = "Driver non charge !" + erreur;
 	        } catch (SQLException erreur) {
-	            resultat = "La connexion � la base de donn�es a �chou�" + erreur + "<br>";
+	            resultat = "La connexion a la base de donnees a echoue" + erreur + "<br>";
 	        }
 	        return resultat;
 	 }
@@ -89,23 +89,25 @@ public class Modele {
 	}
 	
 	
-    public void insererNvConference(int idC, String theme, String nomAnimateur, String dateDeroulement) {
+    public static void insererNvConference(String theme, String dateDeroulement, int idAnimateur ) {
+    	connexionBDD();
+    	
         try {
             // Requête d'insertion
-            String req = "INSERT INTO conference (id, theme, daterouler, animateurid) VALUES (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = Modele.conn.prepareStatement(req);
-            preparedStatement.setInt(1, idC);
-            preparedStatement.setString(2, theme);
-            preparedStatement.setString(3, nomAnimateur);
-            preparedStatement.setString(4, dateDeroulement);
+            String req = "INSERT INTO conference (theme, daterouler, animateurid) VALUES (?, ?, ?)";
+            preparedSt = Modele.conn.prepareStatement(req);
+            preparedSt.setString(1, theme);
+            preparedSt.setString(2, dateDeroulement);
+            preparedSt.setInt(3, idAnimateur);
 
             // Exécuter la requête d'insertion
-            preparedStatement.executeUpdate();
+            preparedSt.executeUpdate();
 
             // Fermer le statement
-            preparedStatement.close();
-
-        } catch (SQLException erreur) {
+            preparedSt.close();
+            deconnexionBDD();
+        } 
+        catch (SQLException erreur) {
             System.out.println("L'insertion a échoué " + erreur);
         }
     }
@@ -113,8 +115,8 @@ public class Modele {
 	
 	
 	/**
-     * Récupère la liste des films depuis la base de données
-     * @return Une liste de programmes représentant les films
+     * Récupère la liste 
+     * @return Une liste
      */
     public static ArrayList<Conference> getLesConferences() {
         connexionBDD();
@@ -125,9 +127,11 @@ public class Modele {
 
         Conference conference;
 
-        String req = "SELECT C.id, theme, daterouler, animateurid "
-        		+ "FROM conference C, animateur A "
-        		+ "WHERE A.id = C.id ";
+        String req = "SELECT C.id, theme, daterouler, U.nom "
+        		+ "FROM conference C,animateur A,utilisateur U "
+        		+ "WHERE A.id = C.animateurid "
+        		+ "AND U.id = A.userid "
+        		+ "ORDER BY C.id ;";
 
         try {
             res = st.executeQuery(req);
@@ -143,14 +147,50 @@ public class Modele {
                 
             }
             res.close();
+            deconnexionBDD();
         } catch (SQLException erreur) {
             System.out.println("La requête getLesFilms échoue" + erreur);
         }
         return lesConferences;
     }
 	
+    /**
+     * Récupere les Animateurs
+     * @return une liste des Animateurs
+     */
+    public static ArrayList<Animateur> getLesAnimateur(){
+    	connexionBDD();
+    	
+    	ArrayList<Animateur> lesAnimateurs = new ArrayList<Animateur>();
+    	
+    	Animateur animateur;
+    	
+    	String id;
+		String nom,req = "SELECT animateur.id,nom "
+				+ "FROM utilisateur, animateur "
+				+ "WHERE utilisateur.id = animateur.userid "
+				+ "AND typeVisiteur = 'Animateur'; ";
+    	
+    	try {
+    		res = st.executeQuery(req);
+    		while (res.next()) {
+    			id = res.getString(1);
+    			nom = res.getString(2);
+    			
+    			animateur = new Animateur(id, nom);
+    			lesAnimateurs.add(animateur);
+    		}
+    		res.close();
+            deconnexionBDD();
+    	}
+    	catch (SQLException erreur) {
+    		System.out.println("La requête getLesFilms échoue" + erreur);
+    	}
+    	
+    	return lesAnimateurs;
+    }
 	
-	
+ 
 	
 	
 	

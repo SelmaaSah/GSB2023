@@ -11,13 +11,6 @@ public class Conference {
 	
 	public Conference() {
 	}
-	
-	
-
-
-
-
-	
 
 	public Conference(int idC, String theme, String nomAnimateur, String dateDeroulement) {
 		super();
@@ -27,20 +20,13 @@ public class Conference {
 		this.dateDeroulement = dateDeroulement;
 	}
 
-
-
-
 	public int getIdC() {
 		return idC;
 	}
 
-
-
 	public void setIdC(int idC) {
 		this.idC = idC;
 	}
-
-
 
 	public String getTheme() {
 		return theme;
@@ -64,8 +50,6 @@ public class Conference {
 	
 	public void setDateDeroulement(String dateDeroulement) {
 		this.dateDeroulement = dateDeroulement;
-		
-		
 	}
 	
 	

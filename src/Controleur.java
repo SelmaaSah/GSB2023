@@ -22,7 +22,7 @@ public class Controleur implements  ActionListener{
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
-	private String action_valider = "VALIDER";
+	private String action_valider = "AjouterUneConference";
 
 	private String consulterStat = "ResponsableStat";
 	
@@ -33,7 +33,6 @@ public class Controleur implements  ActionListener{
 	private String ajouterConferences = "AjouterConferences";
 	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
-	private String modifierConferences = "ModifierConferences";
 	
 	public Controleur() {
 		
@@ -46,11 +45,6 @@ public class Controleur implements  ActionListener{
         v_connexion.getButtonConnexion().setActionCommand(action_connexion);
         v_connexion.getButtonConnexion().addActionListener(this);
         
-//
-//		
-//        v_ajouterConferences.getButtonVld().setActionCommand(action_valider);
-//        v_ajouterConferences.getButtonVld().addActionListener(this);
-
 		
 		this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel());
 		
@@ -132,10 +126,7 @@ public class Controleur implements  ActionListener{
 		                
 		                this.v_menuSecretaire.getAnnuler().setActionCommand(annulerConferences);
 		                this.v_menuSecretaire.getAnnuler().addActionListener(this);
-		                
-		                this.v_menuSecretaire.getModifier().setActionCommand(modifierConferences);
-		                this.v_menuSecretaire.getModifier().addActionListener(this);
-		                		                
+		                	                		                
 		                
 		                this.v_principal.getMainPanel().revalidate();
 		                this.v_principal.getMainPanel().repaint();
@@ -165,8 +156,6 @@ public class Controleur implements  ActionListener{
 		case "SecretaireCreerCatalogue":
 			this.v_creercatalogue = new V_creercatalogue();
 			
-			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
-            this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
             this.v_principal.getSecondPanel().removeAll();
             this.v_principal.getSecondPanel().add(this.v_creercatalogue.getPanelCatalogue());
             
@@ -188,42 +177,57 @@ public class Controleur implements  ActionListener{
 			break;
 		
 		case "AjouterConferences":
-			this.v_ajouterConferences = new V_ajouterConferences();
+			
+			this.v_ajouterConferences = new V_ajouterConferences(Modele.getLesAnimateur());
 			
 
-			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
-            this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
             this.v_principal.getSecondPanel().removeAll();
             this.v_principal.getSecondPanel().add(this.v_ajouterConferences.getAjouterConferencePanel());
             
+            this.v_ajouterConferences.getButtonVld().setActionCommand(action_valider);
+            this.v_ajouterConferences.getButtonVld().addActionListener(this);
 			
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();		
 			break;
 			
+		case "AjouterUneConference":
+			
+                int idAnimateur = Integer.parseInt(((String) v_ajouterConferences.getComboBox().getSelectedItem()).split(" - ")[0]);
+                
+                String theme = this.v_ajouterConferences.getThemeTextField().getText();
+                String dateDeroulement = this.v_ajouterConferences.getDateDeroulementTextField().getText();
+                
+                
+                Modele.insererNvConference(theme, dateDeroulement, idAnimateur);
+                
+                this.v_principal.getSecondPanel().removeAll();
+                
+                this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
+    			
+                this.v_principal.getSecondPanel().removeAll();
+                this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
+                
+    			
+                this.v_principal.getMainPanel().revalidate();
+                this.v_principal.getMainPanel().repaint();		
+            break;
+			
 		case "AfficherConferences":
-			//System.out.println("Afficher les Conferences");
 			this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
 			
-			this.v_principal.getMainPanel().add(this.v_menuSecretaire.getMenuSecretaire(), BorderLayout.NORTH);
-            this.v_principal.getMainPanel().add(this.v_principal.getSecondPanel(),BorderLayout.CENTER);
             this.v_principal.getSecondPanel().removeAll();
             this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
             
-			
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();		
 			break;
-			
 			
 		case "AnnulerConferences":
 			System.out.println("Annuler une Conferences");
 			break;
 			
-		case "ModifierConferences":
-			System.out.println("Modifier une Conferences");
-			break;
-			
+		
 		}
 		
 	}

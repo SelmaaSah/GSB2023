@@ -14,7 +14,6 @@ public class V_menuSecretaire extends JMenuBar {
     
     private JMenu gerer2;
     private JMenuItem annuler;
-    private JMenuItem modifier;
     private JMenuItem ajouter;
     private JMenuItem afficher;
     
@@ -39,7 +38,6 @@ public class V_menuSecretaire extends JMenuBar {
         ajouter = new JMenuItem("Ajouter une conference");
         afficher = new JMenuItem("Afficher les conferences");
         annuler = new JMenuItem("Annuler une conference");
-        modifier = new JMenuItem("Modifier une conference");
         
         gererInterventant = new JMenu("Intervenant");
         ajouterInterventant = new JMenuItem("Ajouter un Interventant");
@@ -63,7 +61,6 @@ public class V_menuSecretaire extends JMenuBar {
         
         gerer2.add(ajouter);
         gerer2.add(afficher);
-        gerer2.add(modifier);
         gerer2.add(annuler);
         
         gererInterventant.add(ajouterInterventant);
@@ -105,7 +102,4 @@ public class V_menuSecretaire extends JMenuBar {
     	return this.annuler;
     }
     
-    public JMenuItem getModifier() {
-    	return this.modifier;
-    }
 }

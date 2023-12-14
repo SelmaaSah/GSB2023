@@ -47,10 +47,6 @@ public class V_creercatalogue extends JFrame {
         panelcatalogue.setPreferredSize(new Dimension (500,500));
         labelcatalogue.setForeground(new Color(128,162,205));
 
-
-
-
-
         datelbl = new JLabel("Date : ");
         datetf = new JTextField("");
         datetf.setPreferredSize(new Dimension(120, 20));
