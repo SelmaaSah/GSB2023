@@ -92,7 +92,7 @@ public class Modele {
     public void insererNvConference(int idC, String theme, String nomAnimateur, String dateDeroulement) {
         try {
             // Requête d'insertion
-            String req = "INSERT INTO conference (idC, theme, nomAnimateur, dateDeroulement) VALUES (?, ?, ?, ?)";
+            String req = "INSERT INTO conference (id, theme, daterouler, animateurid) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = Modele.conn.prepareStatement(req);
             preparedStatement.setInt(1, idC);
             preparedStatement.setString(2, theme);
@@ -125,8 +125,9 @@ public class Modele {
 
         Conference conference;
 
-        String req = "SELECT *"
-                + "FROM conference";
+        String req = "SELECT C.id, theme, daterouler, animateurid "
+        		+ "FROM conference C, animateur A "
+        		+ "WHERE A.id = C.id ";
 
         try {
             res = st.executeQuery(req);
@@ -139,8 +140,9 @@ public class Modele {
 
             	conference = new Conference(idC, theme, nomAnimateur, dateDeroulement);
                 lesConferences.add(conference);
-
+                
             }
+            res.close();
         } catch (SQLException erreur) {
             System.out.println("La requête getLesFilms échoue" + erreur);
         }
