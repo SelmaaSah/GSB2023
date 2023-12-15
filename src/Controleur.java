@@ -18,6 +18,9 @@ public class Controleur implements  ActionListener{
 	private V_ajouterConferences v_ajouterConferences;
 	private V_afficherConference v_afficherConference;
 	private V_annulerConference v_annulerConference;
+	private V_afficherCatalogue v_afficherCatalogue;
+
+	
 
 	
 	
@@ -34,6 +37,9 @@ public class Controleur implements  ActionListener{
 	private String ajouterConferences = "AjouterConferences";
 	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
+	private String afficherCatalogue = "AfficherCatalogue";
+
+	
 	
 //	Pour notre Button
 	private String action_valider = "AjouterUneConference";
@@ -160,6 +166,8 @@ public class Controleur implements  ActionListener{
 			
 		case "SecretaireCreerCatalogue":
 			this.v_creercatalogue = new V_creercatalogue();
+			//this.v_afficherCatalogue = new V_afficherCatalogue();
+
 			
 			String dateP = this.v_creercatalogue.getDate().getText();
             int dureePrevue = Integer.parseInt( this.v_creercatalogue.getDuree().getText());
@@ -176,10 +184,10 @@ public class Controleur implements  ActionListener{
             
             this.v_principal.getSecondPanel().removeAll();
             
-            this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
+            //this.v_afficherCatalogue = new V_afficherCatalogue(Modele.getLesConferences());
 			
             this.v_principal.getSecondPanel().removeAll();
-            this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
+            this.v_principal.getSecondPanel().add(this.v_afficherCatalogue.getPanelconference());
             
             
 			
@@ -248,11 +256,9 @@ public class Controleur implements  ActionListener{
 			
 		case "AnnulerConferences":
 			this.v_annulerConference = new V_annulerConference();
-			this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
 		
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_annulerConference.getAnnulerConferencePanel());
-			this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
 			
 			this.v_annulerConference.getAnnulerButton().setActionCommand(action_annulerConferences);
 			this.v_annulerConference.getAnnulerButton().addActionListener(this);
@@ -264,10 +270,7 @@ public class Controleur implements  ActionListener{
 			
 		case "AnnulerUneConference":
 			
-			String id = this.v_annulerConference.getAnnulerTextField().getText();
-			int valeurId = Integer.parseInt(id);
-			
-			Modele.getSupprimerUneConference(valeurId);
+			System.out.println(this.v_annulerConference.getAnnulerTextField().getText());
 			
 		}
 		
