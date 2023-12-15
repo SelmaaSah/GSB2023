@@ -1,11 +1,13 @@
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class annulerConference extends JFrame{
+public class V_annulerConference extends JFrame{
 
 	private JPanel annulerConferencePanel;
 	private JLabel titreLabel;
 	
-	public annulerConference() {
+	public V_annulerConference() {
 		
 		annulerConferencePanel = new JPanel();
 		titreLabel = new JLabel("Annuler une Conference");
