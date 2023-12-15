@@ -89,13 +89,13 @@ public class V_creercatalogue extends JFrame {
 
         
         
-	      GridBagConstraints gbclogo = new GridBagConstraints();
-	      gbclogo.gridx = 0;
-	      gbclogo.gridy = 0;
-	      gbclogo.anchor = GridBagConstraints.CENTER;
-	      gbclogo.gridwidth = 2;
-	      gbclogo.insets = new Insets(0, 0, 80, 0); // Ajout d'un espace en HAUT ET EN bas
-	      panelcatalogue.add(img, gbclogo); 
+	    GridBagConstraints gbclogo = new GridBagConstraints();
+	    gbclogo.gridx = 0;
+	    gbclogo.gridy = 0;
+	    gbclogo.anchor = GridBagConstraints.CENTER;
+	    gbclogo.gridwidth = 2;
+	    gbclogo.insets = new Insets(0, 0, 80, 0); // Ajout d'un espace en HAUT ET EN bas
+	    panelcatalogue.add(img, gbclogo); 
 	        
        
         
