@@ -255,10 +255,12 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "AnnulerConferences":
+			this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
 			this.v_annulerConference = new V_annulerConference();
 		
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_annulerConference.getAnnulerConferencePanel());
+			this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
 			
 			this.v_annulerConference.getAnnulerButton().setActionCommand(action_annulerConferences);
 			this.v_annulerConference.getAnnulerButton().addActionListener(this);
@@ -269,9 +271,18 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "AnnulerUneConference":
+			this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
 			
-			System.out.println(this.v_annulerConference.getAnnulerTextField().getText());
+			String idString = this.v_annulerConference.getAnnulerTextField().getText();
+			int id = Integer.parseInt(idString);
+			Modele.getSupprimerUneConference(id);
+				        
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
 			
+			this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();	
+	        
 		}
 		
 		
