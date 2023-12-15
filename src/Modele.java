@@ -198,7 +198,7 @@ public class Modele {
     	
         try {
             // Requête d'insertion
-            String req = "INSERT INTO conference (dateP, horraire dureePrevue, sallenum, animateurid) VALUES (?, ?, ?, ?, ?)";
+            String req = "INSERT INTO conference (dateP, dureePrevue, sallenum, heure, animateurid) VALUES (?, ?, ?, ?, ?)";
             preparedSt = Modele.conn.prepareStatement(req);
             preparedSt.setString(1, dateP);
             preparedSt.setInt(2, dureePrevue);

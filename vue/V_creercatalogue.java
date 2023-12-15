@@ -21,8 +21,7 @@ public class V_creercatalogue extends JFrame {
     private JLabel animateurlbl;
     private JTextField animateurtf;
 
-    private JLabel nbPlaceslbl;
-    private JTextField nbPlacetf;
+
     
     private JLabel img;
     
@@ -67,9 +66,6 @@ public class V_creercatalogue extends JFrame {
         animateurtf = new JTextField("");
         animateurtf.setPreferredSize(new Dimension(120, 20));
 
-        nbPlaceslbl = new JLabel("Nombre de places Dispo : ");
-        nbPlacetf = new JTextField("");
-        nbPlacetf.setPreferredSize(new Dimension(120, 20));
 
         btnvld = new JButton(" Valider ");
 
@@ -84,7 +80,6 @@ public class V_creercatalogue extends JFrame {
 		sallelbl.setFont(police);
 		labelcatalogue.setFont(police);
 		animateurlbl.setFont(police);
-		nbPlaceslbl.setFont(police);
 		btnvld.setFont(police);
 
         
@@ -134,10 +129,7 @@ public class V_creercatalogue extends JFrame {
         gbc.gridy++;
         panelcatalogue.add(animateurtf, gbc);
 
-        gbc.gridy++;
-        panelcatalogue.add(nbPlaceslbl, gbc);
-        gbc.gridy++;
-        panelcatalogue.add(nbPlacetf, gbc);
+
         
         gbc.gridy++;
         panelcatalogue.add(btnvld, gbc);
@@ -149,4 +141,34 @@ public class V_creercatalogue extends JFrame {
     public JPanel getPanelCatalogue() {
         return this.panelcatalogue;
     }
+    
+    public JTextField getDate() {
+        return this.datetf;
+    }
+    
+    public JTextField getHorraire() {
+        return this.horrairetf;
+    }
+    
+    public JTextField getDuree() {
+        return this.dureetf;
+    }
+    
+    public JTextField getSalle() {
+        return this.salletf;
+    }
+    
+    public JTextField getAnimateur() {
+        return this.animateurtf;
+    }
+    
+    public JButton getBtnVld() {
+        return this.btnvld;
+    }
+    
+    
+    
+    
+    
+   
 }

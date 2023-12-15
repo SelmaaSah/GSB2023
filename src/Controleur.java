@@ -161,8 +161,26 @@ public class Controleur implements  ActionListener{
 		case "SecretaireCreerCatalogue":
 			this.v_creercatalogue = new V_creercatalogue();
 			
+			String dateP = this.v_creercatalogue.getDate().getText();
+            int dureePrevue = Integer.parseInt( this.v_creercatalogue.getDuree().getText());
+            int sallenum = Integer.parseInt( this.v_creercatalogue.getSalle().getText());
+            int heure = Integer.parseInt( this.v_creercatalogue.getHorraire().getText());
+            int animateurid = Integer.parseInt( this.v_creercatalogue.getAnimateur().getText());
+            
+
+            Modele.insertnvCatalogue(dateP, dureePrevue, sallenum, heure, animateurid);
+
+			
             this.v_principal.getSecondPanel().removeAll();
             this.v_principal.getSecondPanel().add(this.v_creercatalogue.getPanelCatalogue());
+            
+            this.v_principal.getSecondPanel().removeAll();
+            
+            this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
+			
+            this.v_principal.getSecondPanel().removeAll();
+            this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
+            
             
 			
             this.v_principal.getMainPanel().revalidate();
