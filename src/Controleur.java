@@ -31,9 +31,7 @@ public class Controleur implements  ActionListener{
 //	Pour notre Menu 
 	private String consulterStat = "ResponsableStat";
 	private String creerCatalogue = "SecretaireCreerCatalogue";
-	private String gererConferences = "SecretaireGererConference";
-	private String gererIntervenant = "SecretaireGererIntervenant";
-	private String gererAnimateur = "SecretaireGererAnimateur";
+
 	private String ajouterConferences = "AjouterConferences";
 	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
@@ -119,15 +117,7 @@ public class Controleur implements  ActionListener{
 //		                Lire notre ActionListenner
 		                this.v_menuSecretaire.getCreerCatalogue().setActionCommand(creerCatalogue);
 		                this.v_menuSecretaire.getCreerCatalogue().addActionListener(this);
-		                
-		                this.v_menuSecretaire.getGererConferences().setActionCommand(gererConferences);
-		                this.v_menuSecretaire.getGererConferences().addActionListener(this);
-		                
-		                this.v_menuSecretaire.getGererintervenant().setActionCommand(gererIntervenant);
-		                this.v_menuSecretaire.getGererintervenant().addActionListener(this);
-		                
-		                this.v_menuSecretaire.getGererAnimateur().setActionCommand(gererAnimateur);
-		                this.v_menuSecretaire.getGererAnimateur().addActionListener(this);
+
 		                
 		                this.v_menuSecretaire.getAjouter().setActionCommand(ajouterConferences);
 		                this.v_menuSecretaire.getAjouter().addActionListener(this);
