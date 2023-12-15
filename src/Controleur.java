@@ -17,15 +17,16 @@ public class Controleur implements  ActionListener{
 	private V_creercatalogue v_creercatalogue;
 	private V_ajouterConferences v_ajouterConferences;
 	private V_afficherConference v_afficherConference;
+	private V_annulerConference v_annulerConference;
 
 	
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
-	private String action_valider = "AjouterUneConference";
 
-	private String consulterStat = "ResponsableStat";
 	
+//	Pour notre Menu 
+	private String consulterStat = "ResponsableStat";
 	private String creerCatalogue = "SecretaireCreerCatalogue";
 	private String gererConferences = "SecretaireGererConference";
 	private String gererIntervenant = "SecretaireGererIntervenant";
@@ -33,6 +34,10 @@ public class Controleur implements  ActionListener{
 	private String ajouterConferences = "AjouterConferences";
 	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
+	
+//	Pour notre Button
+	private String action_valider = "AjouterUneConference";
+	private String action_annulerConferences = "AnnulerUneConference";
 	
 	public Controleur() {
 		
@@ -224,11 +229,25 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "AnnulerConferences":
-			System.out.println("Annuler une Conferences");
+			this.v_annulerConference = new V_annulerConference();
+		
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_annulerConference.getAnnulerConferencePanel());
+			
+			this.v_annulerConference.getAnnulerButton().setActionCommand(action_annulerConferences);
+			this.v_annulerConference.getAnnulerButton().addActionListener(this);
+			
+			this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();	
+	        
 			break;
 			
-		
+		case "AnnulerUneConference":
+			
+			System.out.println(this.v_annulerConference.getAnnulerTextField().getText());
+			
 		}
+		
 		
 	}
 }
