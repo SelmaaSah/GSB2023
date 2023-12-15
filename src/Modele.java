@@ -115,6 +115,7 @@ public class Modele {
 	
 	
 	/**
+
      * Récupère la liste 
      * @return Une liste
      */
@@ -184,12 +185,39 @@ public class Modele {
             deconnexionBDD();
     	}
     	catch (SQLException erreur) {
-    		System.out.println("La requête getLesFilms échoue" + erreur);
+    		System.out.println("La requête à échoue" + erreur);
     	}
     	
     	return lesAnimateurs;
     }
 	
+    
+    
+    public static void insertnvCatalogue(String dateP, int dureePrevue, int sallenum, int heure, int animateurid ) {
+    	connexionBDD();
+    	
+        try {
+            // Requête d'insertion
+            String req = "INSERT INTO conference (dateP, horraire dureePrevue, sallenum, animateurid) VALUES (?, ?, ?, ?, ?)";
+            preparedSt = Modele.conn.prepareStatement(req);
+            preparedSt.setString(1, dateP);
+            preparedSt.setInt(2, dureePrevue);
+            preparedSt.setInt(3, sallenum);
+            preparedSt.setInt(4, heure);
+            preparedSt.setInt(5, animateurid);
+
+            // Exécuter la requête d'insertion
+            preparedSt.executeUpdate();
+
+            // Fermer le statement
+            preparedSt.close();
+            deconnexionBDD();
+        } 
+        catch (SQLException erreur) {
+            System.out.println("L'insertion a échoué " + erreur);
+        }
+        
+    }
  
 	
 	
