@@ -229,12 +229,9 @@ public class Modele {
     		preparedSt = conn.prepareStatement(req);
 			preparedSt.setInt(1, id);
 			
-			res = preparedSt.executeQuery();
+			preparedSt.executeUpdate();
 			
-			if(res != null) {
 				rep = true;
-			}
-						
     		
     	} catch (SQLException erreur) {
 			System.out.println("La requete a echoue " + erreur);

@@ -248,9 +248,11 @@ public class Controleur implements  ActionListener{
 			
 		case "AnnulerConferences":
 			this.v_annulerConference = new V_annulerConference();
+			this.v_afficherConference = new V_afficherConference(Modele.getLesConferences());
 		
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_annulerConference.getAnnulerConferencePanel());
+			this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
 			
 			this.v_annulerConference.getAnnulerButton().setActionCommand(action_annulerConferences);
 			this.v_annulerConference.getAnnulerButton().addActionListener(this);
@@ -262,7 +264,10 @@ public class Controleur implements  ActionListener{
 			
 		case "AnnulerUneConference":
 			
-			System.out.println(this.v_annulerConference.getAnnulerTextField().getText());
+			String id = this.v_annulerConference.getAnnulerTextField().getText();
+			int valeurId = Integer.parseInt(id);
+			
+			Modele.getSupprimerUneConference(valeurId);
 			
 		}
 		
