@@ -219,11 +219,28 @@ public class Modele {
         
     }
  
-	
-	
-	
-	
-	
+    public static boolean getSupprimerUneConference(int id) {
+    	connexionBDD();
+    	boolean rep = false;
+    	String req = "DELETE FROM conference "
+    			+ "WHERE id = ?";
+    	
+    	try {
+    		preparedSt = conn.prepareStatement(req);
+			preparedSt.setInt(1, id);
+			
+			res = preparedSt.executeQuery();
+			
+			if(res != null) {
+				rep = true;
+			}
+						
+    		
+    	} catch (SQLException erreur) {
+			System.out.println("La requete a echoue " + erreur);
+		}
+    	return rep;
+    }
 	
 	
 	
