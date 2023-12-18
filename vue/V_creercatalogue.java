@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class V_creercatalogue extends JFrame {
 
@@ -19,17 +20,16 @@ public class V_creercatalogue extends JFrame {
     private JTextField salletf;
 
     private JLabel animateurlbl;
-    private JTextField animateurtf;
 
-
-    
     private JLabel img;
     
     private JButton btnvld;
 
 
+    private JComboBox<String> votreComboBoxCatalogue;
 
-    public V_creercatalogue() {
+
+    public V_creercatalogue(ArrayList<Animateur>lesAnimateurs) {
     	
     	// Chargement de l'image depuis le fichier
     	ImageIcon logoGSB = new ImageIcon("image2/logogsb.png"); 
@@ -63,8 +63,12 @@ public class V_creercatalogue extends JFrame {
         salletf.setPreferredSize(new Dimension(120, 20));
 
         animateurlbl = new JLabel("Animateur : ");
-        animateurtf = new JTextField("");
-        animateurtf.setPreferredSize(new Dimension(120, 20));
+        votreComboBoxCatalogue = new JComboBox<>();
+        for (int i = 0; i < lesAnimateurs.size(); i++) {
+            Animateur animateur = lesAnimateurs.get(i);
+            String representation = animateur.getIdAnimateur() + " - " + animateur.getNomAnimateur();
+            votreComboBoxCatalogue.addItem(representation);
+        }
 
 
         btnvld = new JButton(" Valider ");
@@ -127,7 +131,7 @@ public class V_creercatalogue extends JFrame {
         gbc.gridy++;
         panelcatalogue.add(animateurlbl, gbc);
         gbc.gridy++;
-        panelcatalogue.add(animateurtf, gbc);
+        panelcatalogue.add(votreComboBoxCatalogue, gbc);
 
 
         
@@ -142,7 +146,7 @@ public class V_creercatalogue extends JFrame {
         return this.panelcatalogue;
     }
     
-    public JTextField getDate() {
+    public JTextField getDateF() {
         return this.datetf;
     }
     
@@ -158,8 +162,9 @@ public class V_creercatalogue extends JFrame {
         return this.salletf;
     }
     
-    public JTextField getAnimateur() {
-        return this.animateurtf;
+    
+    public JComboBox<String> getComboBoxCatalogue(){
+    	return this.votreComboBoxCatalogue;
     }
     
     public JButton getBtnVld() {
