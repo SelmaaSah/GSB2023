@@ -88,7 +88,12 @@ public class Modele {
 		}
 	}
 	
-	
+	/**
+	 * Notre focntion d'insertion de conference
+	 * @param theme
+	 * @param dateDeroulement
+	 * @param idAnimateur
+	 */
     public static void insererNvConference(String theme, String dateDeroulement, int idAnimateur ) {
     	connexionBDD();
     	
@@ -113,7 +118,39 @@ public class Modele {
     }
 	
 	
-	
+	/**
+	 * Cette fonction nous permet d'inserer une nouvelle presentation
+	 * @param datePrevue
+	 * @param dureePrevue
+	 * @param salleid
+	 * @param heure
+	 * @param animateurId
+	 */
+    public static void insererNvPresentation(String datePrevue,int dureePrevue, int salleid, int heure,int animateurId) {
+    	connexionBDD();
+    	
+        try {
+            // Requête d'insertion
+            String req = "INSERT INTO presentation (dateP, dureePrevue, sallenum,heure,animateurid) VALUES (?, ?, ?, ?, ?)";
+            preparedSt = Modele.conn.prepareStatement(req);
+            preparedSt.setString(1, datePrevue);
+            preparedSt.setInt(2, dureePrevue);
+            preparedSt.setInt(3, salleid);
+            preparedSt.setInt(4, heure);
+            preparedSt.setInt(5, animateurId);
+
+            // Exécuter la requête d'insertion
+            preparedSt.executeUpdate();
+
+            // Fermer le statement
+            preparedSt.close();
+            deconnexionBDD();
+        } 
+        catch (SQLException erreur) {
+            System.out.println("L'insertion a échoué " + erreur);
+        }
+    }
+    
 	/**
 
      * Récupère la liste 
@@ -239,8 +276,39 @@ public class Modele {
     	return rep;
     }
 	
-	
-	
+	/**
+	 * Cette finction nous permet de recuperer les Salles
+	 * @return la liste des Salles avec le nom et l'id
+	 */
+	public static ArrayList<Salle> getLesSalles() {
+		connexionBDD();
+    	
+    	ArrayList<Salle> lesSalles = new ArrayList<Salle>();
+    	
+    	Salle salle;
+    	
+    	int id;
+		String nom,req = "SELECT * "
+				+ "FROM salle";
+    	
+    	try {
+    		res = st.executeQuery(req);
+    		while (res.next()) {
+    			id = res.getInt(1);
+    			nom = res.getString(2);
+    			
+    			salle = new Salle(id, nom);
+    			lesSalles.add(salle);
+    		}
+    		res.close();
+            deconnexionBDD();
+    	}
+    	catch (SQLException erreur) {
+    		System.out.println("La requête à échoue" + erreur);
+    	}
+    	
+    	return lesSalles;
+	}
 	
 	
 	

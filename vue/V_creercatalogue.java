@@ -17,7 +17,6 @@ public class V_creercatalogue extends JFrame {
     private JTextField dureetf;
 
     private JLabel sallelbl;
-    private JTextField salletf;
 
     private JLabel animateurlbl;
 
@@ -27,9 +26,10 @@ public class V_creercatalogue extends JFrame {
 
 
     private JComboBox<String> votreComboBoxCatalogue;
+    private JComboBox<String> comboBoxLesSalles;
 
 
-    public V_creercatalogue(ArrayList<Animateur>lesAnimateurs) {
+    public V_creercatalogue(ArrayList<Animateur>lesAnimateurs,ArrayList<Salle>lesSalles) {
     	
     	// Chargement de l'image depuis le fichier
     	ImageIcon logoGSB = new ImageIcon("image2/logogsb.png"); 
@@ -50,7 +50,7 @@ public class V_creercatalogue extends JFrame {
         datetf = new JTextField("");
         datetf.setPreferredSize(new Dimension(120, 20));
 
-        horrairelbl = new JLabel("Horraire : ");
+        horrairelbl = new JLabel("Heure : ");
         horrairetf = new JTextField("");
         horrairetf.setPreferredSize(new Dimension(120, 20));
 
@@ -59,8 +59,12 @@ public class V_creercatalogue extends JFrame {
         dureetf.setPreferredSize(new Dimension(120, 20));
 
         sallelbl = new JLabel("Salle : ");
-        salletf = new JTextField("");
-        salletf.setPreferredSize(new Dimension(120, 20));
+        comboBoxLesSalles= new JComboBox<>();
+        for (int i = 0; i < lesSalles.size(); i++) {
+            Salle salle = lesSalles.get(i);
+            String representation = salle.getIdSalle() + " - " + salle.getNomSalle();
+            comboBoxLesSalles.addItem(representation);
+        }
 
         animateurlbl = new JLabel("Animateur : ");
         votreComboBoxCatalogue = new JComboBox<>();
@@ -126,7 +130,7 @@ public class V_creercatalogue extends JFrame {
         gbc.gridy++;
         panelcatalogue.add(sallelbl, gbc);
         gbc.gridy++;
-        panelcatalogue.add(salletf, gbc);
+        panelcatalogue.add(comboBoxLesSalles, gbc);
 
         gbc.gridy++;
         panelcatalogue.add(animateurlbl, gbc);
@@ -158,10 +162,9 @@ public class V_creercatalogue extends JFrame {
         return this.dureetf;
     }
     
-    public JTextField getSalle() {
-        return this.salletf;
+    public JComboBox<String> getComboBoxLesSalles(){
+    	return this.comboBoxLesSalles;
     }
-    
     
     public JComboBox<String> getComboBoxCatalogue(){
     	return this.votreComboBoxCatalogue;

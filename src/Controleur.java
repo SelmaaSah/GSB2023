@@ -156,7 +156,7 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "SecretaireCreerCatalogue":
-			this.v_creercatalogue = new V_creercatalogue(Modele.getLesAnimateur());
+			this.v_creercatalogue = new V_creercatalogue(Modele.getLesAnimateur(),Modele.getLesSalles());
 
             this.v_principal.getSecondPanel().removeAll();
             this.v_principal.getSecondPanel().add(this.v_creercatalogue.getPanelCatalogue());
@@ -173,10 +173,10 @@ public class Controleur implements  ActionListener{
 			String dateC = this.v_creercatalogue.getDateF().getText();
 			int horraire = Integer.parseInt(this.v_creercatalogue.getHorraire().getText());
 			int duree = Integer.parseInt(this.v_creercatalogue.getDuree().getText());
-			String salle = this.v_creercatalogue.getSalle().getText();
+			int salle = Integer.parseInt(((String) v_creercatalogue.getComboBoxLesSalles().getSelectedItem()).split(" - ")[0]);
 			int animateur = Integer.parseInt(((String) v_creercatalogue.getComboBoxCatalogue().getSelectedItem()).split(" - ")[0]);
 			
-			
+			Modele.insererNvPresentation(dateC, duree, salle, horraire, animateur);
 			
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();	
