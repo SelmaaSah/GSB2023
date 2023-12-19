@@ -159,7 +159,7 @@ public class Controleur implements  ActionListener{
 		        if (this.v_principal != null && this.v_principal.getMainPanel() != null) {
 		            this.v_principal.getMainPanel().removeAll();
 		            
-		            this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel());
+		            this.v_principal.getMainPanel().add(this.v_connexion.getConnexionPanel(), BorderLayout.NORTH);
 		            this.v_principal.getMainPanel().add(this.v_erreurConnexion.getErreurConnexionPanel());
 		            
 		            this.v_principal.getMainPanel().revalidate();
