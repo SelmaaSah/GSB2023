@@ -3,7 +3,7 @@ public class Catalogue {
 
 	//Les attributs 
 	
-	private String dateP;
+	private int dateP;
 	private int dureePrevue;
 	private int sallenum;
 	private int heure;
@@ -13,11 +13,11 @@ public class Catalogue {
 		
 	}
 
-	public String getDateP() {
+	public int getDateP() {
 		return dateP;
 	}
 
-	public void setDateP(String dateP) {
+	public void setDateP(int dateP) {
 		this.dateP = dateP;
 	}
 
@@ -53,7 +53,7 @@ public class Catalogue {
 		this.animateurid = animateurid;
 	}
 
-	public Catalogue(String dateP, int dureePrevue, int sallenum, int heure, int animateurid) {
+	public Catalogue(int dateP, int dureePrevue, int sallenum, int heure, int animateurid) {
 		super();
 		this.dateP = dateP;
 		this.dureePrevue = dureePrevue;

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class V_creercatalogue extends JFrame {
 
@@ -16,20 +17,19 @@ public class V_creercatalogue extends JFrame {
     private JTextField dureetf;
 
     private JLabel sallelbl;
-    private JTextField salletf;
 
     private JLabel animateurlbl;
-    private JTextField animateurtf;
 
-
-    
     private JLabel img;
     
     private JButton btnvld;
 
 
+    private JComboBox<String> votreComboBoxCatalogue;
+    private JComboBox<String> comboBoxLesSalles;
 
-    public V_creercatalogue() {
+
+    public V_creercatalogue(ArrayList<Animateur>lesAnimateurs,ArrayList<Salle>lesSalles) {
     	
     	// Chargement de l'image depuis le fichier
     	ImageIcon logoGSB = new ImageIcon("image2/logogsb.png"); 
@@ -50,7 +50,7 @@ public class V_creercatalogue extends JFrame {
         datetf = new JTextField("");
         datetf.setPreferredSize(new Dimension(120, 20));
 
-        horrairelbl = new JLabel("Horraire : ");
+        horrairelbl = new JLabel("Heure : ");
         horrairetf = new JTextField("");
         horrairetf.setPreferredSize(new Dimension(120, 20));
 
@@ -59,12 +59,20 @@ public class V_creercatalogue extends JFrame {
         dureetf.setPreferredSize(new Dimension(120, 20));
 
         sallelbl = new JLabel("Salle : ");
-        salletf = new JTextField("");
-        salletf.setPreferredSize(new Dimension(120, 20));
+        comboBoxLesSalles= new JComboBox<>();
+        for (int i = 0; i < lesSalles.size(); i++) {
+            Salle salle = lesSalles.get(i);
+            String representation = salle.getIdSalle() + " - " + salle.getNomSalle();
+            comboBoxLesSalles.addItem(representation);
+        }
 
         animateurlbl = new JLabel("Animateur : ");
-        animateurtf = new JTextField("");
-        animateurtf.setPreferredSize(new Dimension(120, 20));
+        votreComboBoxCatalogue = new JComboBox<>();
+        for (int i = 0; i < lesAnimateurs.size(); i++) {
+            Animateur animateur = lesAnimateurs.get(i);
+            String representation = animateur.getIdAnimateur() + " - " + animateur.getNomAnimateur();
+            votreComboBoxCatalogue.addItem(representation);
+        }
 
 
         btnvld = new JButton(" Valider ");
@@ -122,12 +130,12 @@ public class V_creercatalogue extends JFrame {
         gbc.gridy++;
         panelcatalogue.add(sallelbl, gbc);
         gbc.gridy++;
-        panelcatalogue.add(salletf, gbc);
+        panelcatalogue.add(comboBoxLesSalles, gbc);
 
         gbc.gridy++;
         panelcatalogue.add(animateurlbl, gbc);
         gbc.gridy++;
-        panelcatalogue.add(animateurtf, gbc);
+        panelcatalogue.add(votreComboBoxCatalogue, gbc);
 
 
         
@@ -142,7 +150,7 @@ public class V_creercatalogue extends JFrame {
         return this.panelcatalogue;
     }
     
-    public JTextField getDate() {
+    public JTextField getDateF() {
         return this.datetf;
     }
     
@@ -154,12 +162,12 @@ public class V_creercatalogue extends JFrame {
         return this.dureetf;
     }
     
-    public JTextField getSalle() {
-        return this.salletf;
+    public JComboBox<String> getComboBoxLesSalles(){
+    	return this.comboBoxLesSalles;
     }
     
-    public JTextField getAnimateur() {
-        return this.animateurtf;
+    public JComboBox<String> getComboBoxCatalogue(){
+    	return this.votreComboBoxCatalogue;
     }
     
     public JButton getBtnVld() {

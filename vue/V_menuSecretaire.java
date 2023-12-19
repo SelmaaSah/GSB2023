@@ -6,6 +6,8 @@ public class V_menuSecretaire extends JMenuBar {
 	
     private JMenu catalogue;
     private JMenuItem creercatalogue;
+    private JMenuItem ajtcatalogue;
+
     
 
     
@@ -25,6 +27,8 @@ public class V_menuSecretaire extends JMenuBar {
         // Instanciation des menus et sous-menus
         catalogue = new JMenu("Catalogue");
         creercatalogue = new JMenuItem("Créer un catalogue");
+        ajtcatalogue = new JMenuItem("Afficher un catalogue");
+
         
 
         
@@ -34,10 +38,9 @@ public class V_menuSecretaire extends JMenuBar {
         annuler = new JMenuItem("Annuler une conference");
         
         gererInterventant = new JMenu("Intervenant");
-        ajouterInterventant = new JMenuItem("Ajouter un Interventant");
-        modifierInterventant = new JMenuItem("Modifier un Interventant");
-        afficherInterventant = new JMenuItem("Afficher un Interventant");
-        supprimerInterventant = new JMenuItem("Supprimer un Interventant");
+        ajouterInterventant = new JMenuItem("Inscrire un utilisateur");
+        afficherInterventant = new JMenuItem("Afficher un utilisateur");
+        supprimerInterventant = new JMenuItem("Supprimer un utilisateur");
         
 
         // Ajout des menus à la barre de menus
@@ -47,6 +50,8 @@ public class V_menuSecretaire extends JMenuBar {
 
         // Ajout des sous-menus aux menus
         catalogue.add(creercatalogue);
+        catalogue.add(ajtcatalogue);
+
         
 
         
@@ -55,7 +60,6 @@ public class V_menuSecretaire extends JMenuBar {
         gerer2.add(annuler);
         
         gererInterventant.add(ajouterInterventant);
-        gererInterventant.add(modifierInterventant);
         gererInterventant.add(afficherInterventant);
         gererInterventant.add(supprimerInterventant);
         

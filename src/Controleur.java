@@ -42,6 +42,7 @@ public class Controleur implements  ActionListener{
 //	Pour notre Button
 	private String action_valider = "AjouterUneConference";
 	private String action_annulerConferences = "AnnulerUneConference";
+	private String action_ajouterCatalogue = "AjouterUnCatalogue";
 	
 	public Controleur() {
 		
@@ -155,48 +156,45 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "SecretaireCreerCatalogue":
-			this.v_creercatalogue = new V_creercatalogue();
-			//this.v_afficherCatalogue = new V_afficherCatalogue();
+			this.v_creercatalogue = new V_creercatalogue(Modele.getLesAnimateur(),Modele.getLesSalles());
 
-			
-			String dateP = this.v_creercatalogue.getDate().getText();
-            int dureePrevue = Integer.parseInt( this.v_creercatalogue.getDuree().getText());
-            int sallenum = Integer.parseInt( this.v_creercatalogue.getSalle().getText());
-            int heure = Integer.parseInt( this.v_creercatalogue.getHorraire().getText());
-            int animateurid = Integer.parseInt( this.v_creercatalogue.getAnimateur().getText());
-            
-
-            Modele.insertnvCatalogue(dateP, dureePrevue, sallenum, heure, animateurid);
-
-			
             this.v_principal.getSecondPanel().removeAll();
             this.v_principal.getSecondPanel().add(this.v_creercatalogue.getPanelCatalogue());
-            
-            this.v_principal.getSecondPanel().removeAll();
-            
-            //this.v_afficherCatalogue = new V_afficherCatalogue(Modele.getLesConferences());
-			
-            this.v_principal.getSecondPanel().removeAll();
-            this.v_principal.getSecondPanel().add(this.v_afficherCatalogue.getPanelconference());
-            
-            
+            this.v_creercatalogue.getBtnVld().setActionCommand(action_ajouterCatalogue);
+            this.v_creercatalogue.getBtnVld().addActionListener(this);
+       
 			
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();		
 			break;
-		
-		case "SecretaireGererConference":
-			System.out.println("Gerer La congérences");
-			break;
 			
-		case "SecretaireGererIntervenant":
-			System.out.println("Gerer les interventant");
-			break;
+		case "AjouterUnCatalogue":
 			
-		case "SecretaireGererAnimateur":
-			System.out.println("Gerer les Animateur");
+			String dateC = this.v_creercatalogue.getDateF().getText();
+			int horraire = Integer.parseInt(this.v_creercatalogue.getHorraire().getText());
+			int duree = Integer.parseInt(this.v_creercatalogue.getDuree().getText());
+			int salle = Integer.parseInt(((String) v_creercatalogue.getComboBoxLesSalles().getSelectedItem()).split(" - ")[0]);
+			int animateur = Integer.parseInt(((String) v_creercatalogue.getComboBoxCatalogue().getSelectedItem()).split(" - ")[0]);
+			
+			Modele.insererNvPresentation(dateC, duree, salle, horraire, animateur);
+			
+            this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();	
 			break;
-		
+				
+			
+		case "AfficherCatalogue":
+			this.v_afficherCatalogue = new V_afficherCatalogue(Modele.getLesCatalogues());
+			
+            this.v_principal.getSecondPanel().removeAll();
+            this.v_principal.getSecondPanel().add(this.v_afficherCatalogue.getPanelconference());
+            
+            this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();		
+			break;
+				
+			
+			
 		case "AjouterConferences":
 			
 			this.v_ajouterConferences = new V_ajouterConferences(Modele.getLesAnimateur());

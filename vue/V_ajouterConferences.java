@@ -22,7 +22,7 @@ public class V_ajouterConferences {
         themeTextField = new JTextField();
         themeTextField.setPreferredSize(new Dimension(150, 20));
 
-        dateDeroulementLabel = new JLabel("La date du conférence :");
+        dateDeroulementLabel = new JLabel("La date de la conférence :");
         dateDeroulementTextField = new JTextField();
         dateDeroulementTextField.setPreferredSize(new Dimension(150, 20));
 
