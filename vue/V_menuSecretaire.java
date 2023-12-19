@@ -18,6 +18,7 @@ public class V_menuSecretaire extends JMenuBar {
     private JMenuItem ajouterUtilisateur;
     private JMenuItem afficherUtilisateur;
     private JMenuItem supprimerUtilisateur;  
+    private JMenuItem deconnexion; 
 
 
     public V_menuSecretaire() {
@@ -39,11 +40,14 @@ public class V_menuSecretaire extends JMenuBar {
         afficherUtilisateur = new JMenuItem("Afficher un utilisateur");
         supprimerUtilisateur = new JMenuItem("Supprimer un utilisateur");
         
+        deconnexion = new JMenuItem("Deconnexion");
+        
 
         // Ajout des menus à la barre de menus
         add(catalogue);
         add(gerer2);
         add(gererInterventant);
+        add(deconnexion);
 
         // Ajout des sous-menus aux menus
         catalogue.add(creercatalogue);
@@ -62,6 +66,10 @@ public class V_menuSecretaire extends JMenuBar {
 
     public JMenuBar getMenuSecretaire() {
         return this;  
+    }
+    
+    public JMenuItem getMenuDeconnexion() {
+    	return this.deconnexion;
     }
     
     public JMenuItem getAfficherCatalogue() {

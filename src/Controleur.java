@@ -33,6 +33,8 @@ public class Controleur implements  ActionListener{
 	
 //	Pour notre Menu 
 	private String consulterStat = "StatPresentation";
+	private String deco = "Deconnexion";
+	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
 	private String afficherCatalogue = "AfficherCatalogue";
 
@@ -103,6 +105,8 @@ public class Controleur implements  ActionListener{
 
 		            	this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
 		            	this.v_menuResp.getConsulterStats().addActionListener(this);
+		            	this.v_menuResp.getMenuDeconnexion().setActionCommand(deco);
+		            	this.v_menuResp.getMenuDeconnexion().addActionListener(this);
 
 		            	// Ajout de la vue d'accueil au centre de v_principal.getMainPanel() avec GridBagLayout
 //		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
@@ -151,6 +155,10 @@ public class Controleur implements  ActionListener{
 		                this.v_menuSecretaire.getSupprimerUtilisateur().setActionCommand(supprimerUtilisateur);
 		                this.v_menuSecretaire.getSupprimerUtilisateur().addActionListener(this);
 		                
+
+		            	this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(deco);
+		            	this.v_menuSecretaire.getMenuDeconnexion().addActionListener(this);
+		                
 		                this.v_principal.getMainPanel().revalidate();
 		                this.v_principal.getMainPanel().repaint();
 		            }
@@ -184,6 +192,9 @@ public class Controleur implements  ActionListener{
             this.v_principal.getMainPanel().repaint();
 			break;
 			
+		case "Deconnexion":
+			System.out.println("Deconnecion");
+			break;
 //=====================Secretaire======================================
 		case "SecretaireCreerCatalogue":
 			this.v_creercatalogue = new V_creercatalogue(Modele.getLesAnimateur(),Modele.getLesSalles());
