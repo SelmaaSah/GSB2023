@@ -24,7 +24,8 @@ public class V_ajouterUser {
 
     public V_ajouterUser() {
     	
-    	ajoutUserPanel = new JPanel();
+    	ajoutUserPanel = new RoundedPanel(20);
+    	ajoutUserPanel.setBackground(Color.white);
     	ajoutUserPanel.setPreferredSize(new Dimension(500, 500));
     	
         ajoutUserlbl = new JLabel("Ajouter un utilisateur");
@@ -46,7 +47,15 @@ public class V_ajouterUser {
     	mdptf.setPreferredSize(new Dimension(150, 20)); 
     	
     	addUserBtn = new JButton("Valider");
-
+    	
+    	
+		Font police = new Font("Courier New", Font.BOLD, 13);
+		ajoutUserlbl.setFont(police);
+		nomlbl.setFont(police);
+		prenomlbl.setFont(police);
+		loginlbl.setFont(police);
+		mdplbl.setFont(police);
+		addUserBtn.setFont(police);
     	
     	
         votreComboBox = new JComboBox<>(); // Vous pouvez ajouter des éléments à votre JComboBox ici
