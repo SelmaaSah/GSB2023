@@ -1,6 +1,7 @@
 
 public class User {
 
+	private int idUser;
 	private String nom;
 	private String prenom;
 	private String login;
@@ -12,8 +13,8 @@ public class User {
 	}
 	
 	
-	public User(String nom, String prenom, String login, String mdp, String typeVisiteur) {
-		super();
+	public User(int lIdUser, String nom, String prenom, String login, String mdp, String typeVisiteur) {
+		this.idUser = lIdUser;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.login = login;
@@ -21,14 +22,12 @@ public class User {
 		this.typeVisiteur = typeVisiteur;
 	}
 
+	public int getIdUser() {
+		return idUser;
+	}
 
 	public String getNom() {
 		return nom;
-	}
-
-
-	public void setNom(String nom) {
-		this.nom = nom;
 	}
 
 
@@ -36,19 +35,9 @@ public class User {
 		return prenom;
 	}
 
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-
+	
 	public String getLogin() {
 		return login;
-	}
-
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 
@@ -57,21 +46,9 @@ public class User {
 	}
 
 
-	public void setMdp(String mdp) {
-		this.mdp = mdp;
-	}
-
-
 	public String getTypeVisiteur() {
 		return typeVisiteur;
 	}
 
-
-	public void setTypeVisiteur(String typeVisiteur) {
-		this.typeVisiteur = typeVisiteur;
-	}
-	
-	
-	
 	
 }

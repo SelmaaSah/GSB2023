@@ -15,9 +15,9 @@ public class V_menuSecretaire extends JMenuBar {
     private JMenuItem afficher;
     
     private JMenu gererInterventant;
-    private JMenuItem ajouterInterventant;
-    private JMenuItem afficherInterventant;
-    private JMenuItem supprimerInterventant;  
+    private JMenuItem ajouterUtilisateur;
+    private JMenuItem afficherUtilisateur;
+    private JMenuItem supprimerUtilisateur;  
 
 
     public V_menuSecretaire() {
@@ -35,9 +35,9 @@ public class V_menuSecretaire extends JMenuBar {
         annuler = new JMenuItem("Annuler une conference");
         
         gererInterventant = new JMenu("Utilisateur");
-        ajouterInterventant = new JMenuItem("Inscrire un utilisateur");
-        afficherInterventant = new JMenuItem("Afficher un utilisateur");
-        supprimerInterventant = new JMenuItem("Supprimer un utilisateur");
+        ajouterUtilisateur = new JMenuItem("Inscrire un utilisateur");
+        afficherUtilisateur = new JMenuItem("Afficher un utilisateur");
+        supprimerUtilisateur = new JMenuItem("Supprimer un utilisateur");
         
 
         // Ajout des menus à la barre de menus
@@ -54,9 +54,9 @@ public class V_menuSecretaire extends JMenuBar {
         gerer2.add(afficher);
         gerer2.add(annuler);
         
-        gererInterventant.add(ajouterInterventant);
-        gererInterventant.add(afficherInterventant);
-        gererInterventant.add(supprimerInterventant);
+        gererInterventant.add(ajouterUtilisateur);
+        gererInterventant.add(afficherUtilisateur);
+        gererInterventant.add(supprimerUtilisateur);
         
     }
 
@@ -85,4 +85,15 @@ public class V_menuSecretaire extends JMenuBar {
     	return this.annuler;
     }
     
+    public JMenuItem getAfficherUtilisateur() {
+    	return this.afficherUtilisateur;
+    }
+    
+    public JMenuItem getAjouterUtilisateur() {
+    	return this.ajouterUtilisateur;
+    }
+    
+    public JMenuItem getSupprimerUtilisateur() {
+    	return this.supprimerUtilisateur;
+    }
 }

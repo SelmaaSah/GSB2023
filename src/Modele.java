@@ -258,6 +258,34 @@ public class Modele {
         }
         
     }
+    
+    public static void insertNvUtilisateur(String nom, String prenom, String login, String mdp, String typeUtilisateur ) {
+    	connexionBDD();
+    	
+        try {
+            // Requête d'insertion
+            String req = "INSERT INTO utilisateur (nom, prenom, login, mdp, typeVisiteur) VALUES (?, ?, ?, ?, ?)";
+            preparedSt = Modele.conn.prepareStatement(req);
+            preparedSt.setString(1, nom);
+            preparedSt.setString(2, prenom);
+            preparedSt.setString(3, login);
+            preparedSt.setString(4, mdp);
+            preparedSt.setString(5, typeUtilisateur);
+
+            // Exécuter la requête d'insertion
+            preparedSt.executeUpdate();
+
+            // Fermer le statement
+            preparedSt.close();
+            deconnexionBDD();
+        } 
+        catch (SQLException erreur) {
+            System.out.println("L'insertion a échoué " + erreur);
+        }
+        
+    }
+    
+    
  
     
     public static ArrayList<Catalogue> getLesCatalogues() {
@@ -370,22 +398,23 @@ public class Modele {
     	
     	User user;
     	
-    	
+    	int id;
 		String nom, prenom, login, mdp, typeVisiteur ,req = "SELECT * "
-															+ "FROM utilisateur";
+															+ "FROM utilisateur "
+															+ "WHERE typeVisiteur = 'Animateur' "
+															+ "OR typeVisiteur = 'Intervenant' ";
     	
     	try {
     		res = st.executeQuery(req);
     		while (res.next()) {
-    			nom = res.getString(1);
-    			prenom = res.getString(2);
-    			login = res.getString(3);
-    			mdp = res.getString(4);
-    			typeVisiteur = res.getString(5);
+    			id = res.getInt(1);
+    			nom = res.getString(2);
+    			prenom = res.getString(3);
+    			login = res.getString(4);
+    			mdp = res.getString(5);
+    			typeVisiteur = res.getString(6);
 
-    			
-    			
-    			user = new User( nom, prenom, login, mdp, typeVisiteur);
+    			user = new User( id,nom, prenom, login, mdp, typeVisiteur);
     			lesUsers.add(user);
     		}
     		res.close();
@@ -397,7 +426,26 @@ public class Modele {
     	
     	return lesUsers;
 	}
-	
+
+	public static boolean getSupprimerUnUtilisateur(int id) {
+    	connexionBDD();
+    	boolean rep = false;
+    	String req = "DELETE FROM utilisateur "
+    			+ "WHERE id = ?";
+    	
+    	try {
+    		preparedSt = conn.prepareStatement(req);
+			preparedSt.setInt(1, id);
+			
+			preparedSt.executeUpdate();
+			
+			rep = true;
+    		
+    	} catch (SQLException erreur) {
+			System.out.println("La requete a echoue " + erreur);
+		}
+    	return rep;
+    }
 	
 	
 	

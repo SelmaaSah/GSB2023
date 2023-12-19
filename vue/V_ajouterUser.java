@@ -20,9 +20,9 @@ public class V_ajouterUser {
     private JTextField mdptf;
     
     private JComboBox<String> votreComboBox;
-    private JButton btnvld3;
+    private JButton addUserBtn;
 
-    public V_ajouterUser(ArrayList<User>lesUsers) {
+    public V_ajouterUser() {
     	
     	ajoutUserPanel = new JPanel();
     	ajoutUserPanel.setPreferredSize(new Dimension(500, 500));
@@ -37,31 +37,24 @@ public class V_ajouterUser {
     	prenomtf = new JTextField();
     	prenomtf.setPreferredSize(new Dimension(150, 20));
 
-    	loginlbl = new JLabel("Prenom :");
+    	loginlbl = new JLabel("Identifiant :");
     	logintf = new JTextField();
     	logintf.setPreferredSize(new Dimension(150, 20));
     	
-    	mdplbl = new JLabel("Prenom :");
-    	mdptf = new JTextField();
+    	mdplbl = new JLabel("Mdp :");
+    	mdptf = new JTextField("123");
     	mdptf.setPreferredSize(new Dimension(150, 20)); 
     	
-        btnvld3 = new JButton(" Valider ");
+    	addUserBtn = new JButton("Valider");
 
     	
     	
         votreComboBox = new JComboBox<>(); // Vous pouvez ajouter des éléments à votre JComboBox ici
 
         
-        votreComboBox = new JComboBox<>();
-        
-        
-//      Faire une For pour recuperer le nom de l'animateur Requete SQL
-        for (int i = 0; i < lesUsers.size(); i++) {
-            User user = lesUsers.get(i);
-            String typeVisiteur = user.getTypeVisiteur();
-            votreComboBox.addItem(typeVisiteur);
-        }
-        
+        votreComboBox.addItem("Animateur");
+        votreComboBox.addItem("Intervenant");
+
         ajoutUserPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -98,45 +91,23 @@ public class V_ajouterUser {
 
         
         gbc.gridy++;    
-        ajoutUserPanel.add(btnvld3, gbc);  
-        gbc.gridy++;
-        ajoutUserPanel.add(btnvld3, gbc);
+        ajoutUserPanel.add(addUserBtn, gbc);  
     }
 
 	public JPanel getAjoutUserPanel() {
 		return ajoutUserPanel;
 	}
 
-	public JLabel getAjoutUserlbl() {
-		return ajoutUserlbl;
-	}
-
-	public JLabel getNomlbl() {
-		return nomlbl;
-	}
-
 	public JTextField getNomtf() {
 		return nomtf;
-	}
-
-	public JLabel getPrenomlbl() {
-		return prenomlbl;
 	}
 
 	public JTextField getPrenomtf() {
 		return prenomtf;
 	}
 
-	public JLabel getLoginlbl() {
-		return loginlbl;
-	}
-
 	public JTextField getLogintf() {
 		return logintf;
-	}
-
-	public JLabel getMdplbl() {
-		return mdplbl;
 	}
 
 	public JTextField getMdptf() {
@@ -147,8 +118,8 @@ public class V_ajouterUser {
 		return votreComboBox;
 	}
 
-	public JButton getBtnvld3() {
-		return btnvld3;
+	public JButton getAddUserBtn() {
+		return addUserBtn;
 	}
 
 

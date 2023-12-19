@@ -20,11 +20,9 @@ public class Controleur implements  ActionListener{
 	private V_annulerConference v_annulerConference;
 	private V_afficherCatalogue v_afficherCatalogue;
 	private V_ajouterUser v_ajouterUser;
+	private V_afficherUser v_afficherUser;
+	private V_supprimerUser v_supprimerUser;
 
-
-	
-
-	
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
@@ -40,15 +38,16 @@ public class Controleur implements  ActionListener{
 	private String annulerConferences = "AnnulerConferences";
 	
 	private String inscrireUser = "InscrireUser";
+	private String afficherUser = "AfficherLesUtilisateurs";
+	private String supprimerUtilisateur = "SupprimerUser";
 
 
-	
-	
 //	Pour notre Button
 	private String action_valider = "AjouterUneConference";
 	private String action_annulerConferences = "AnnulerUneConference";
 	private String action_ajouterCatalogue = "AjouterUnCatalogue";
 	private String action_inscrire = "InscrireUnUser";
+	private String action_supprimer_utilisateur = "SupprimerUnUtilisateur";
 
 	
 	
@@ -139,7 +138,15 @@ public class Controleur implements  ActionListener{
 		                
 		                this.v_menuSecretaire.getAnnuler().setActionCommand(annulerConferences);
 		                this.v_menuSecretaire.getAnnuler().addActionListener(this);
-		                	                		                
+		                
+		                this.v_menuSecretaire.getAjouterUtilisateur().setActionCommand(inscrireUser);
+		                this.v_menuSecretaire.getAjouterUtilisateur().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getAfficherUtilisateur().setActionCommand(afficherUser);
+		                this.v_menuSecretaire.getAfficherUtilisateur().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getSupprimerUtilisateur().setActionCommand(supprimerUtilisateur);
+		                this.v_menuSecretaire.getSupprimerUtilisateur().addActionListener(this);
 		                
 		                this.v_principal.getMainPanel().revalidate();
 		                this.v_principal.getMainPanel().repaint();
@@ -284,53 +291,86 @@ public class Controleur implements  ActionListener{
 	        this.v_principal.getMainPanel().repaint();	
 	        
 	        
-	        
+	    	break;
 	        
 			
 		case "InscrireUser":
-			
-			this.v_ajouterUser = new V_ajouterUser(Modele.getLesUsers());
+			this.v_ajouterUser = new V_ajouterUser();
 			
 
 	        this.v_principal.getSecondPanel().removeAll();
 	        this.v_principal.getSecondPanel().add(this.v_ajouterUser.getAjoutUserPanel());
 	        
-	        this.v_ajouterUser.getBtnvld3().setActionCommand(action_inscrire);
-	        this.v_ajouterUser.getBtnvld3().addActionListener(this);
-			
+	        this.v_ajouterUser.getAddUserBtn().setActionCommand(action_inscrire);
+	        this.v_ajouterUser.getAddUserBtn().addActionListener(this);
+	        
+	       			
 	        this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();		
+	        
+			break;
+			
+		case "InscrireUnUser":
+			String nom, prenom, login, mdpUtilisateur, typeUtilisateur;
+				
+			nom = this.v_ajouterUser.getNomtf().getText();
+			prenom = this.v_ajouterUser.getPrenomtf().getText();
+			login = this.v_ajouterUser.getLogintf().getText();
+			mdpUtilisateur = this.v_ajouterUser.getMdptf().getText();
+			typeUtilisateur = (String) this.v_ajouterUser.getVotreComboBox().getSelectedItem();
+			
+			Modele.insertNvUtilisateur(nom, prenom, login, mdpUtilisateur, typeUtilisateur);
+			
+			this.v_afficherUser = new V_afficherUser(Modele.getLesUsers());
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_afficherUser.getAfficherUserPanel());
+		
+			this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();		
+			
+			
+			break;
+			
+		case "AfficherLesUtilisateurs":
+		
+			this.v_afficherUser = new V_afficherUser(Modele.getLesUsers());
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_afficherUser.getAfficherUserPanel());
+		
+			this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();		
+			
+			break;
+			
+		case "SupprimerUser":
+			
+			this.v_supprimerUser = new V_supprimerUser();
+			this.v_afficherUser = new V_afficherUser(Modele.getLesUsers());
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_supprimerUser.getSupprimerUserPanel());
+			this.v_principal.getSecondPanel().add(this.v_afficherUser.getAfficherUserPanel());
+			
+			this.v_supprimerUser.getSupprimerButton().setActionCommand(action_supprimer_utilisateur);
+			this.v_supprimerUser.getSupprimerButton().addActionListener(this);
+			
+			
+			this.v_principal.getMainPanel().revalidate();
 	        this.v_principal.getMainPanel().repaint();		
 			break;
 			
+		case "SupprimerUnUtilisateur":
 			
+			String idUser = this.v_supprimerUser.getSupprimerTextField().getText();
+			int idUsers = Integer.parseInt(idUser);
 			
-		case "InscrireUnUser":
+			Modele.getSupprimerUnUtilisateur(idUsers);
 			
-			//a continuer
-		
-	        
-	        
-	        
+			break;
+
+			
 		}
-		
-
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 }
