@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,13 +22,10 @@ public class Modele {
 	public static String connexionBDD() {
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
-<<<<<<< HEAD
+
 	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
-	//            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
-=======
-//	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
-	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
->>>>>>> branch 'master' of https://github.com/SelmaaSah/GSB2023.git
+//	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
+
 	            st = conn.createStatement();
 	         
 	            resultat = "Connexion reussie � la BDD";
@@ -266,11 +264,13 @@ public class Modele {
         connexionBDD();
 
         ArrayList<Catalogue> lesCatalogues = new ArrayList<Catalogue>();
-        int id, dateP, dureePrevue, sallenum, animateurid;
+        int id,dureePrevue, sallenum;
+        Date dateP;
+        
 
         Catalogue catalogue;
 
-        String req = "SELECT id, dateP, dureePrevue, sallenum,  U.nom "
+        String animateurNom, req = "SELECT P.id, dateP, dureePrevue, sallenum,  U.nom "
         		+ "FROM presentation P,animateur A,utilisateur U "
         		+ "WHERE A.id = P.animateurid "
         		+ "AND U.id = A.userid "
@@ -281,14 +281,14 @@ public class Modele {
             while (res.next()) {
 
             	id = res.getInt(1);
-            	dateP = res.getInt(2);
+            	dateP = res.getDate(2);
             	dureePrevue = res.getInt(3);
             	sallenum = res.getInt(4);
-            	animateurid = res.getInt(5);
+            	animateurNom = res.getString(5);
 
             	
 
-            	catalogue = new Catalogue(id, dateP, dureePrevue, sallenum, animateurid);
+            	catalogue = new Catalogue(id, dateP, dureePrevue, sallenum, animateurNom);
             	lesCatalogues.add(catalogue);
                 
             }

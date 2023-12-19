@@ -22,7 +22,7 @@ public class V_afficherCatalogue extends JPanel {
             data[i][1] = catalogue.getDureePrevue();
             data[i][2] = catalogue.getSallenum();
             data[i][3] = catalogue.getHeure();
-            data[i][4] = catalogue.getAnimateurid();
+            data[i][4] = catalogue.getAnimateurNom();
         }
 
         // Création d'une instance de JTable avec les données et noms de colonnes

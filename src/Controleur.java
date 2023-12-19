@@ -31,11 +31,12 @@ public class Controleur implements  ActionListener{
 //	Pour notre Menu 
 	private String consulterStat = "ResponsableStat";
 	private String creerCatalogue = "SecretaireCreerCatalogue";
+	private String afficherCatalogue = "AfficherCatalogue";
 
 	private String ajouterConferences = "AjouterConferences";
 	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
-	private String afficherCatalogue = "AfficherCatalogue";
+	
 
 	
 	
@@ -118,6 +119,9 @@ public class Controleur implements  ActionListener{
 //		                Lire notre ActionListenner
 		                this.v_menuSecretaire.getCreerCatalogue().setActionCommand(creerCatalogue);
 		                this.v_menuSecretaire.getCreerCatalogue().addActionListener(this);
+		                
+		                this.v_menuSecretaire.getAfficherCatalogue().setActionCommand(afficherCatalogue);
+		                this.v_menuSecretaire.getAfficherCatalogue().addActionListener(this);
 
 		                
 		                this.v_menuSecretaire.getAjouter().setActionCommand(ajouterConferences);
@@ -182,7 +186,7 @@ public class Controleur implements  ActionListener{
             this.v_principal.getMainPanel().repaint();	
 			break;
 				
-//<<<<<<< HEAD
+
 			
 		case "AfficherCatalogue":
 			this.v_afficherCatalogue = new V_afficherCatalogue(Modele.getLesCatalogues());
@@ -196,8 +200,6 @@ public class Controleur implements  ActionListener{
 				
 			
 			
-//=======
-//>>>>>>> branch 'master' of https://github.com/SelmaaSah/GSB2023.git
 		case "AjouterConferences":
 			
 			this.v_ajouterConferences = new V_ajouterConferences(Modele.getLesAnimateur());

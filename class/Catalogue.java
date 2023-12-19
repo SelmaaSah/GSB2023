@@ -1,68 +1,56 @@
+import java.sql.Date;
 
 public class Catalogue {
 
 	//Les attributs 
-	
-	private int dateP;
+	private int idCatalogue;
+	private Date dateP;
 	private int dureePrevue;
 	private int sallenum;
 	private int heure;
-	private int animateurid;
+	private String animateurNom;
 	
 	public Catalogue() {
 		
 	}
 
-	public int getDateP() {
+	public Catalogue(int lIdCattalogue,Date dateP, int dureePrevue, int sallenum,  String leNomAnimateur) {
+		this.idCatalogue = lIdCattalogue;
+		this.dateP = dateP;
+		this.dureePrevue = dureePrevue;
+		this.sallenum = sallenum;
+		this.animateurNom = leNomAnimateur;
+	}
+	
+	
+	public Date getDateP() {
 		return dateP;
 	}
 
-	public void setDateP(int dateP) {
-		this.dateP = dateP;
+	public int getIdCatalogue() {
+		return idCatalogue;
 	}
 
 	public int getDureePrevue() {
 		return dureePrevue;
 	}
 
-	public void setDureePrevue(int dureePrevue) {
-		this.dureePrevue = dureePrevue;
-	}
+	
 
 	public int getSallenum() {
 		return sallenum;
 	}
 
-	public void setSallenum(int sallenum) {
-		this.sallenum = sallenum;
-	}
 
 	public int getHeure() {
 		return heure;
 	}
 
-	public void setHeure(int heure) {
-		this.heure = heure;
+
+	public String getAnimateurNom() {
+		return animateurNom;
 	}
 
-	public int getAnimateurid() {
-		return animateurid;
-	}
-
-	public void setAnimateurid(int animateurid) {
-		this.animateurid = animateurid;
-	}
-
-	public Catalogue(int dateP, int dureePrevue, int sallenum, int heure, int animateurid) {
-		super();
-		this.dateP = dateP;
-		this.dureePrevue = dureePrevue;
-		this.sallenum = sallenum;
-		this.heure = heure;
-		this.animateurid = animateurid;
-	}
-	
-	
 	
 	
 }

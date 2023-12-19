@@ -6,9 +6,7 @@ public class V_menuSecretaire extends JMenuBar {
 	
     private JMenu catalogue;
     private JMenuItem creercatalogue;
-    private JMenuItem ajtcatalogue;
-
-    
+    private JMenuItem afficherCatalogue;
 
     
     private JMenu gerer2;
@@ -18,7 +16,6 @@ public class V_menuSecretaire extends JMenuBar {
     
     private JMenu gererInterventant;
     private JMenuItem ajouterInterventant;
-    private JMenuItem modifierInterventant;
     private JMenuItem afficherInterventant;
     private JMenuItem supprimerInterventant;  
 
@@ -27,7 +24,7 @@ public class V_menuSecretaire extends JMenuBar {
         // Instanciation des menus et sous-menus
         catalogue = new JMenu("Catalogue");
         creercatalogue = new JMenuItem("Créer un catalogue");
-        ajtcatalogue = new JMenuItem("Afficher un catalogue");
+        afficherCatalogue = new JMenuItem("Afficher un catalogue");
 
         
 
@@ -50,9 +47,7 @@ public class V_menuSecretaire extends JMenuBar {
 
         // Ajout des sous-menus aux menus
         catalogue.add(creercatalogue);
-        catalogue.add(ajtcatalogue);
-
-        
+        catalogue.add(afficherCatalogue);
 
         
         gerer2.add(ajouter);
@@ -67,6 +62,10 @@ public class V_menuSecretaire extends JMenuBar {
 
     public JMenuBar getMenuSecretaire() {
         return this;  
+    }
+    
+    public JMenuItem getAfficherCatalogue() {
+    	return this.afficherCatalogue;
     }
     
     public JMenuItem getCreerCatalogue() {
