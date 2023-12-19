@@ -14,10 +14,17 @@ public class V_annulerConference extends JFrame{
 	
 	public V_annulerConference() {
 		
-		annulerConferencePanel = new JPanel();
+		annulerConferencePanel = new RoundedPanel(20);
+		annulerConferencePanel.setBackground(Color.white);
+
 		
-		titreLabel = new JLabel("Annuler une Conference");
-		annulerLabel = new JLabel("Choissisez l'id pour annuler la conference :");
+		titreLabel = new JLabel("ANNULER UNE CONFERENCE");
+		titreLabel.setForeground(new Color(128,162,205));
+
+		
+		annulerLabel = new JLabel("Choissisez l'ID pour annuler la conference :");
+		annulerLabel.setForeground(new Color(128,162,205));
+
 		annulerTextField = new JTextField();
 		annulerTextField.setPreferredSize(new Dimension(120, 20));
 		

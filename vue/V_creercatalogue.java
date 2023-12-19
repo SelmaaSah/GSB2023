@@ -41,7 +41,9 @@ public class V_creercatalogue extends JFrame {
     	ImageIcon resizedIcon = new ImageIcon(newImage);
     	img = new JLabel(resizedIcon);
 
-        panelcatalogue = new JPanel();
+        panelcatalogue = new RoundedPanel(20);
+        panelcatalogue.setBackground(Color.white);
+
         labelcatalogue = new JLabel("CATALOGUE DES CONFERENCES : ");
         panelcatalogue.setPreferredSize(new Dimension (500,500));
         labelcatalogue.setForeground(new Color(128,162,205));

@@ -359,6 +359,46 @@ public class Modele {
 	}
 	
 	
+	/**
+	 * Cette finction nous permet de recuperer les Salles
+	 * @return la liste des Salles avec le nom et l'id
+	 */
+	public static ArrayList<User> getLesUsers() {
+		connexionBDD();
+    	
+    	ArrayList<User> lesUsers = new ArrayList<User>();
+    	
+    	User user;
+    	
+    	
+		String nom, prenom, login, mdp, typeVisiteur ,req = "SELECT * "
+															+ "FROM utilisateur";
+    	
+    	try {
+    		res = st.executeQuery(req);
+    		while (res.next()) {
+    			nom = res.getString(1);
+    			prenom = res.getString(2);
+    			login = res.getString(3);
+    			mdp = res.getString(4);
+    			typeVisiteur = res.getString(5);
+
+    			
+    			
+    			user = new User( nom, prenom, login, mdp, typeVisiteur);
+    			lesUsers.add(user);
+    		}
+    		res.close();
+            deconnexionBDD();
+    	}
+    	catch (SQLException erreur) {
+    		System.out.println("La requête à échoue" + erreur);
+    	}
+    	
+    	return lesUsers;
+	}
+	
+	
 	
 	
 	

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,10 @@ public class V_afficherConference extends JPanel {
 
     public V_afficherConference(ArrayList<Conference> lesConferences) {
 
-    	panelconference = new JPanel();
+    	panelconference = new RoundedPanel(20);
+        panelconference.setBackground(Color.white);
+
+    	
         String[] nomColonnes = {"Id de la conférence", "Theme", "Date de deroulement ", "Animateur "};
 
         // Création d'un tableau pour stocker les données

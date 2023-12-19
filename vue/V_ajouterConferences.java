@@ -13,10 +13,17 @@ public class V_ajouterConferences {
     private JComboBox<String> votreComboBox;
     private JButton btnvld2;
 
+
     public V_ajouterConferences(ArrayList<Animateur>lesAnimateurs) {
     	
-        ajouterConferencePanel = new JPanel();
+        ajouterConferencePanel = new RoundedPanel(20);
         ajouterConferencePanel.setPreferredSize(new Dimension(500, 500));
+        
+        ajouterConferencePanel.setBackground(Color.white);
+        
+
+        
+        
 
         themeLabel = new JLabel("Le thème de la conférence : ");
         themeTextField = new JTextField();
@@ -28,11 +35,23 @@ public class V_ajouterConferences {
 
         votreComboBox = new JComboBox<>(); // Vous pouvez ajouter des éléments à votre JComboBox ici
 
-        titreLabel = new JLabel("Gerer les Conférences");
+        titreLabel = new JLabel("GERER LES CONFERENCES");
+        titreLabel.setForeground(new Color(128,162,205));
+
         
         votreComboBox = new JComboBox<>();
         
         btnvld2 = new JButton("Valider");
+        
+        
+        Font police = new Font("Courier New", Font.BOLD, 14);
+        titreLabel.setFont(police);
+        themeLabel.setFont(police);
+        dateDeroulementLabel.setFont(police);
+        btnvld2.setFont(police);
+
+        
+        
 
         
 //      Faire une For pour recuperer le nom de l'animateur Requete SQL
@@ -41,6 +60,8 @@ public class V_ajouterConferences {
             String representation = animateur.getIdAnimateur() + " - " + animateur.getNomAnimateur();
             votreComboBox.addItem(representation);
         }
+        
+
         
         ajouterConferencePanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

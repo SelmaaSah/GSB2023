@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +11,12 @@ public class V_afficherCatalogue extends JPanel {
     private JTable table;
 
     public V_afficherCatalogue(ArrayList<Catalogue> lesCatalogues) {
-        panelconference = new JPanel();
+        panelconference = new RoundedPanel(20);
         String[] nomColonnes = {"Date ", "Duree prevue", "Numéro de la salle ", "Heure ", "Animateur"};
 
+        panelconference.setBackground(Color.white);
+
+        
         // Correction de la taille du tableau data
         Object[][] data = new Object[lesCatalogues.size()][5];
 

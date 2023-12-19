@@ -19,6 +19,8 @@ public class Controleur implements  ActionListener{
 	private V_afficherConference v_afficherConference;
 	private V_annulerConference v_annulerConference;
 	private V_afficherCatalogue v_afficherCatalogue;
+	private V_ajouterUser v_ajouterUser;
+
 
 	
 
@@ -37,6 +39,8 @@ public class Controleur implements  ActionListener{
 	private String afficherConference = "AfficherConferences";
 	private String annulerConferences = "AnnulerConferences";
 	
+	private String inscrireUser = "InscrireUser";
+
 
 	
 	
@@ -44,6 +48,9 @@ public class Controleur implements  ActionListener{
 	private String action_valider = "AjouterUneConference";
 	private String action_annulerConferences = "AnnulerUneConference";
 	private String action_ajouterCatalogue = "AjouterUnCatalogue";
+	private String action_inscrire = "InscrireUnUser";
+
+	
 	
 	public Controleur() {
 		
@@ -276,7 +283,53 @@ public class Controleur implements  ActionListener{
 			this.v_principal.getMainPanel().revalidate();
 	        this.v_principal.getMainPanel().repaint();	
 	        
+	        
+	        
+	        
+			
+		case "InscrireUser":
+			
+			this.v_ajouterUser = new V_ajouterUser(Modele.getLesUsers());
+			
+
+	        this.v_principal.getSecondPanel().removeAll();
+	        this.v_principal.getSecondPanel().add(this.v_ajouterUser.getAjoutUserPanel());
+	        
+	        this.v_ajouterUser.getBtnvld3().setActionCommand(action_inscrire);
+	        this.v_ajouterUser.getBtnvld3().addActionListener(this);
+			
+	        this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();		
+			break;
+			
+			
+			
+		case "InscrireUnUser":
+			
+			//a continuer
+		
+	        
+	        
+	        
 		}
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 	}

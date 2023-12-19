@@ -34,7 +34,7 @@ public class V_menuSecretaire extends JMenuBar {
         afficher = new JMenuItem("Afficher les conferences");
         annuler = new JMenuItem("Annuler une conference");
         
-        gererInterventant = new JMenu("Intervenant");
+        gererInterventant = new JMenu("Utilisateur");
         ajouterInterventant = new JMenuItem("Inscrire un utilisateur");
         afficherInterventant = new JMenuItem("Afficher un utilisateur");
         supprimerInterventant = new JMenuItem("Supprimer un utilisateur");
