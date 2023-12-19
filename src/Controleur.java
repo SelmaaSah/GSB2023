@@ -22,6 +22,9 @@ public class Controleur implements  ActionListener{
 	private V_ajouterUser v_ajouterUser;
 	private V_afficherUser v_afficherUser;
 	private V_supprimerUser v_supprimerUser;
+	
+//	Responsable
+	private V_statPresentationChoix v_statPresentationChoix;
 
 	
 //	On l'utilise pour nos case
@@ -29,7 +32,7 @@ public class Controleur implements  ActionListener{
 
 	
 //	Pour notre Menu 
-	private String consulterStat = "ResponsableStat";
+	private String consulterStat = "StatPresentation";
 	private String creerCatalogue = "SecretaireCreerCatalogue";
 	private String afficherCatalogue = "AfficherCatalogue";
 
@@ -169,10 +172,19 @@ public class Controleur implements  ActionListener{
 		    
 		    break;
 		
-		case "ResponsableStat":
-			System.out.println("Consulter les Stat");
+//=====================Responsable=====================================		   
+		case "StatPresentation":
+			this.v_statPresentationChoix = new V_statPresentationChoix(Modele.getDatePresentation());
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_statPresentationChoix.getStatPresentationChoixPanel());
+			
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
 			break;
 			
+//=====================Secretaire======================================
 		case "SecretaireCreerCatalogue":
 			this.v_creercatalogue = new V_creercatalogue(Modele.getLesAnimateur(),Modele.getLesSalles());
 

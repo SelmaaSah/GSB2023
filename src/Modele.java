@@ -447,6 +447,37 @@ public class Modele {
     	return rep;
     }
 	
+	public static ArrayList<Presentation> getDatePresentation() {
+		connexionBDD();
+    	
+		ArrayList<Presentation> datePresentation = new ArrayList<Presentation>();
+    	
+		Presentation presentation;
+    	
+//    	Date dateP;
+		String dateP, nomP, req = "SELECT DISTINCT MONTH(dateP) AS mois, MONTHNAME(dateP) AS nom_mois "
+				+ "FROM presentation "
+				+ "ORDER BY dateP;";
+    	
+    	try {
+    		res = st.executeQuery(req);
+    		while (res.next()) {
+    			
+    			dateP = res.getString(1);
+    			nomP = res.getString(2);
+    			
+    			presentation = new Presentation(dateP,nomP);
+    			datePresentation.add(presentation);
+    		}
+    		res.close();
+            deconnexionBDD();
+    	}
+    	catch (SQLException erreur) {
+    		System.out.println("La requête à échoue" + erreur);
+    	}
+    	
+    	return datePresentation;
+	}
 	
 	
 	

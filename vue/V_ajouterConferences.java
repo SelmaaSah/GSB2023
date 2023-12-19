@@ -21,10 +21,6 @@ public class V_ajouterConferences {
         
         ajouterConferencePanel.setBackground(Color.white);
         
-
-        
-        
-
         themeLabel = new JLabel("Le thème de la conférence : ");
         themeTextField = new JTextField();
         themeTextField.setPreferredSize(new Dimension(150, 20));

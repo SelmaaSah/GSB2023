@@ -22,8 +22,8 @@ public class V_menuResp extends JMenuBar {
         menu = new JMenuBar();
 
         // Instanciation des menus et sous-menus
-        stats = new JMenu("FILM");
-        consulterStats = new JMenuItem("Consulter les statistiques");
+        stats = new JMenu("Statistiques");
+        consulterStats = new JMenuItem("Statistiques Presentation");
 
 
         // Ajout des menus � la barre de menus
