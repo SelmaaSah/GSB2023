@@ -182,6 +182,7 @@ public class Controleur implements  ActionListener{
             this.v_principal.getMainPanel().repaint();	
 			break;
 				
+//<<<<<<< HEAD
 			
 		case "AfficherCatalogue":
 			this.v_afficherCatalogue = new V_afficherCatalogue(Modele.getLesCatalogues());
@@ -195,6 +196,8 @@ public class Controleur implements  ActionListener{
 				
 			
 			
+//=======
+//>>>>>>> branch 'master' of https://github.com/SelmaaSah/GSB2023.git
 		case "AjouterConferences":
 			
 			this.v_ajouterConferences = new V_ajouterConferences(Modele.getLesAnimateur());
