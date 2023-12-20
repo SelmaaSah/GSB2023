@@ -12,12 +12,12 @@ public class Conference {
 	public Conference() {
 	}
 
-	public Conference(int idC, String theme, String nomAnimateur, String dateDeroulement) {
+	public Conference(int idC, String theme, String dateDeroulement, String nomAnimateur) {
 		super();
 		this.idC = idC;
 		this.theme = theme;
-		this.nomAnimateur = nomAnimateur;
 		this.dateDeroulement = dateDeroulement;
+		this.nomAnimateur = nomAnimateur;
 	}
 
 	public int getIdC() {
