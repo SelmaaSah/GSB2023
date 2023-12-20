@@ -61,7 +61,7 @@ public class V_statConferenceChoix extends JPanel{
 		return dateComboBox;
 	}
 	
-	public JButton getStatPressentatonBtn() {
+	public JButton getStatConferenceBtn() {
 		return this.statConferencetnBtn;
 	}
 }

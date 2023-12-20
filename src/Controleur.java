@@ -29,6 +29,7 @@ public class Controleur implements  ActionListener{
 	private V_ajoutSecretaire v_ajoutSecretaire;
 	private V_consulterPresentation v_consulterPresentation;
 	private V_statConferenceChoix v_statConferenceChoix;
+	private V_consulterConference v_consulterConference;
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
@@ -58,6 +59,7 @@ public class Controleur implements  ActionListener{
 	private String action_inscrire = "InscrireUnUser";
 	private String action_supprimer_utilisateur = "SupprimerUnUtilisateur";
 	private String action__stat_Presentation = "StatistiquesPresentation";
+	private String action_stat_Conference = "StatistiquesConference";
 
 	
 	
@@ -225,11 +227,22 @@ public class Controleur implements  ActionListener{
 			
 			this.v_statConferenceChoix = new V_statConferenceChoix(Modele.getDateConference());
 			
+			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_statConferenceChoix.getStatPresentationChoixPanel());
+			
+			this.v_statConferenceChoix.getStatConferenceBtn().setActionCommand(action_stat_Conference);
+			this.v_statConferenceChoix.getStatConferenceBtn().addActionListener(this);
 			
 			this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();
             
+			break;
+			
+		case "StatistiquesConference":
+			String moisConference = ((String) this.v_statConferenceChoix.getDateComboBox().getSelectedItem()).split(" - ")[0];
+			
+//			this.v_consulterConference = new V_consulterConference(Modele.getDateConference(moisConference));
+			
 			break;
 		
 		case "AjouterUnSecretaire":

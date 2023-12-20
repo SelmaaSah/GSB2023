@@ -555,5 +555,50 @@ public class Modele {
     	
     	return dateConference;
 	}
-	    
+	
+	public static ArrayList<Conference> getConferenceAvecDate(String date) {
+		connexionBDD();
+    	
+		ArrayList<Conference> lesConference = new ArrayList<Conference>();
+    	
+		Conference conference;
+
+		int id,dureePresentation,salleNum,heure;
+		String dateP, animateurPresentation, req = "SELECT P.id,dateP, dureePrevue,sallenum,heure,U.nom "
+				+ "FROM presentation P,animateur A, utilisateur U "
+				+ "WHERE A.id = P.animateurid "
+				+ "AND U.id = A.userid "
+				+ "AND MONTH(dateP)= ? "
+				+ "ORDER BY dateP;";
+    	
+		try {
+		    preparedSt = conn.prepareStatement(req);
+		    preparedSt.setString(1, date);
+		    
+		    res = preparedSt.executeQuery();  // Utiliser la déclaration préparée, pas st.executeQuery(req)
+		    
+		    while (res.next()) {
+		        // Traitement des résultats ici
+		        id = res.getInt(1);
+		        dateP = res.getString(2);
+		        dureePresentation = res.getInt(3);
+		        salleNum = res.getInt(4);
+		        heure = res.getInt(5);
+		        animateurPresentation = res.getString(6);
+
+		        conference = new Conference(id, dateP, dureePresentation, salleNum, heure, animateurPresentation);
+		        lesConference.add(conference);
+		    }
+
+		    res.close();
+		    deconnexionBDD();
+		    
+		} catch (SQLException erreur) {
+		    System.out.println("La requête a échoué" + erreur);
+		}
+
+    	
+    	return lesConference;
+	}
+	
 }
