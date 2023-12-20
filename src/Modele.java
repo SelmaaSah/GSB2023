@@ -599,4 +599,39 @@ public class Modele {
     	return lesConference;
 	}
 	
+	
+    public static void insertNvSecretaire(String nomS, String prenomS, String loginS, String mdpS) {
+    	connexionBDD();
+    	
+        try {
+            // Requête d'insertion
+            String req = "INSERT INTO utilisateur (nom, prenom, login, mdp, typeVisiteur) VALUES (?, ?, ?,?, 'Secretaire')";
+            preparedSt = conn.prepareStatement(req);
+            preparedSt.setString(1, nomS);
+            preparedSt.setString(2, prenomS);
+            preparedSt.setString(3, loginS);
+            preparedSt.setString(4, mdpS);
+
+            // Exécuter la requête d'insertion
+            preparedSt.executeUpdate();
+
+            // Fermer le statement
+            preparedSt.close();
+            deconnexionBDD();
+        } 
+        catch (SQLException erreur) {
+            System.out.println("L'insertion a échoué " + erreur);
+        }
+        
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

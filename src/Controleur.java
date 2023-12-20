@@ -39,6 +39,8 @@ public class Controleur implements  ActionListener{
 	private String consulterStat = "StatPresentation";
 	private String consulterConference = "StatConference";
 	private String ajouterSecretaire ="AjouterUnSecretaire";
+	private String ajouterSecretaire2 ="AjouterSecretaire";
+
 	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
 	private String afficherCatalogue = "AfficherCatalogue";
@@ -60,6 +62,8 @@ public class Controleur implements  ActionListener{
 	private String action_supprimer_utilisateur = "SupprimerUnUtilisateur";
 	private String action__stat_Presentation = "StatistiquesPresentation";
 	private String action_stat_Conference = "StatistiquesConference";
+	private String action_secretaire = "AjouterSecretaire";
+
 
 	
 	
@@ -258,10 +262,25 @@ public class Controleur implements  ActionListener{
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_ajoutSecretaire.getAjoutSecrPanel());
 			
+			this.v_ajoutSecretaire.getAddUserBtn().setActionCommand(action_secretaire);
+			this.v_ajoutSecretaire.getAddUserBtn().addActionListener(this);
 			
 			this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();
 				
+			break;
+			
+		case "AjouterSecretaire":
+			
+			String nomS = this.v_ajoutSecretaire.getNomtf().getText();
+			String prenomS = this.v_ajoutSecretaire.getPrenomtf().getText();
+			String loginS = this.v_ajoutSecretaire.getLogintf().getText();
+			String mdpS = this.v_ajoutSecretaire.getMdptf().getText();
+			
+			Modele.insertNvSecretaire(nomS, prenomS, loginS, mdpS);
+			
+            this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();	
 			break;
 		
 //=====================Secretaire======================================
