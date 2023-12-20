@@ -241,8 +241,14 @@ public class Controleur implements  ActionListener{
 		case "StatistiquesConference":
 			String moisConference = ((String) this.v_statConferenceChoix.getDateComboBox().getSelectedItem()).split(" - ")[0];
 			
-//			this.v_consulterConference = new V_consulterConference(Modele.getDateConference(moisConference));
+			this.v_consulterConference = new V_consulterConference(Modele.getConferenceAvecDate(moisConference));
 			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_consulterConference.getPanelconference());
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+            
 			break;
 		
 		case "AjouterUnSecretaire":
