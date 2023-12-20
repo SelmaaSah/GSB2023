@@ -28,6 +28,7 @@ public class V_ajoutSecretaire {
     	ajoutSecrPanel.setPreferredSize(new Dimension(500, 500));
     	
     	ajoutSecrlbl = new JLabel("Ajouter un/ une secretaire");
+    	ajoutSecrlbl.setForeground(new Color(128,162,205));
 
     	nomlbl = new JLabel("Nom : ");
     	nomtf = new JTextField();

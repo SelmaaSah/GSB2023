@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,10 +20,17 @@ public class V_statPresentationChoix extends JPanel{
 	
 	public V_statPresentationChoix(ArrayList<Presentation> lesDatePresentation) {
 		
-		statPresentationChoixPanel = new JPanel();
-		titreLabel = new JLabel("Les statistiques de Presentation : ");
-		choixLabel = new JLabel("Choississez le mois pour les statistiques ");
+		statPresentationChoixPanel = new RoundedPanel(20);
+		statPresentationChoixPanel.setBackground(Color.white);
+		titreLabel = new JLabel("Les statistiques de presentation : ");
+		choixLabel = new JLabel("Choisissez un mois pour visualiser les statistiques ");
 		statPressentatonBtn = new JButton("Afficher");
+		
+		Font police = new Font("Courier New", Font.BOLD, 12);
+		titreLabel.setFont(police);
+		choixLabel.setFont(police);
+		statPressentatonBtn.setFont(police);
+
 		
 		dateComboBox = new JComboBox<>();
 		for (int i = 0; i < lesDatePresentation.size(); i++) {
