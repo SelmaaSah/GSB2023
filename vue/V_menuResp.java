@@ -12,6 +12,10 @@ public class V_menuResp extends JMenuBar {
     private JMenu stats;
     private JMenuItem consulterStats;
     
+    private JMenu secr;
+    private JMenuItem ajtSecretaire;
+    
+    
     private JMenuItem deconnexion;
 
 
@@ -25,13 +29,19 @@ public class V_menuResp extends JMenuBar {
 
         // Instanciation des menus et sous-menus
         stats = new JMenu("Statistiques");
-        consulterStats = new JMenuItem("Statistiques Presentation");
+        consulterStats = new JMenuItem("Consulter les statistiques");
+
+        secr = new JMenu("Secretaire");
+        ajtSecretaire = new JMenuItem("Inscrire un(e) secretaire");
         deconnexion = new JMenuItem("Deconnexion");
 
         // Ajout des menus � la barre de menus
         add(menu);
         menu.add(stats);
         stats.add(consulterStats);
+        menu.add(secr);
+        secr.add(ajtSecretaire);
+        
         menu.add(deconnexion);
         menu.setVisible(true);
     }
