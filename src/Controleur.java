@@ -53,6 +53,7 @@ public class Controleur implements  ActionListener{
 	private String action_ajouterCatalogue = "AjouterUnCatalogue";
 	private String action_inscrire = "InscrireUnUser";
 	private String action_supprimer_utilisateur = "SupprimerUnUtilisateur";
+	private String action__stat_Presentation = "StatistiquesPresentation";
 
 	
 	
@@ -179,6 +180,10 @@ public class Controleur implements  ActionListener{
 		    }
 		    
 		    break;
+		    
+		case "Deconnexion":
+			System.out.println("Deconnecion");
+			break;
 		
 //=====================Responsable=====================================		   
 		case "StatPresentation":
@@ -187,14 +192,25 @@ public class Controleur implements  ActionListener{
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_statPresentationChoix.getStatPresentationChoixPanel());
 			
+			this.v_statPresentationChoix.getStatPressentatonBtn().setActionCommand(action__stat_Presentation);
+			this.v_statPresentationChoix.getStatPressentatonBtn().addActionListener(this);
+			
 			
 			this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();
 			break;
 			
-		case "Deconnexion":
-			System.out.println("Deconnecion");
+		case "StatistiquesPresentation":
+			
+			String mois = ((String) this.v_statPresentationChoix.getDateComboBox().getSelectedItem()).split(" - ")[0];
+
+			
+
+			System.out.println(Modele.getPresentationAvecDate(mois));
+
+						
 			break;
+		
 //=====================Secretaire======================================
 		case "SecretaireCreerCatalogue":
 			this.v_creercatalogue = new V_creercatalogue(Modele.getLesAnimateur(),Modele.getLesSalles());

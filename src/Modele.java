@@ -265,7 +265,7 @@ public class Modele {
         try {
             // Requête d'insertion
             String req = "INSERT INTO utilisateur (nom, prenom, login, mdp, typeVisiteur) VALUES (?, ?, ?, ?, ?)";
-            preparedSt = Modele.conn.prepareStatement(req);
+            preparedSt = conn.prepareStatement(req);
             preparedSt.setString(1, nom);
             preparedSt.setString(2, prenom);
             preparedSt.setString(3, login);
@@ -479,7 +479,46 @@ public class Modele {
     	return datePresentation;
 	}
 	
-	
+	public static ArrayList<Presentation> getPresentationAvecDate(String date) {
+		connexionBDD();
+    	
+		ArrayList<Presentation> lesPresentation = new ArrayList<Presentation>();
+    	
+		Presentation presentation;
+
+		int id,dureePresentation,salleNum,heure;
+		String dateP, animateurPresentation, req = "SELECT * "
+				+ "FROM presentation "
+				+ "WHERE MONTH(dateP)= ?;";
+    	
+		try {
+		    preparedSt = conn.prepareStatement(req);
+		    preparedSt.setString(1, date);
+		    
+		    res = preparedSt.executeQuery();  // Utiliser la déclaration préparée, pas st.executeQuery(req)
+		    
+		    while (res.next()) {
+		        // Traitement des résultats ici
+		        id = res.getInt(1);
+		        dateP = res.getString(2);
+		        dureePresentation = res.getInt(3);
+		        salleNum = res.getInt(4);
+		        heure = res.getInt(5);
+		        animateurPresentation = res.getString(6);
+
+		        presentation = new Presentation(id, dateP, dureePresentation, salleNum, heure, animateurPresentation);
+		        lesPresentation.add(presentation);
+		    }
+
+		    res.close();
+		    deconnexionBDD();
+		} catch (SQLException erreur) {
+		    System.out.println("La requête a échoué" + erreur);
+		}
+
+    	
+    	return lesPresentation;
+	}
 	
 	
 	    
