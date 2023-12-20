@@ -11,6 +11,11 @@ public class Conference {
 	
 	public Conference() {
 	}
+	
+	public Conference(String laDate, String leNomAnimateur) {
+		this.dateDeroulement = laDate;
+		this.nomAnimateur = leNomAnimateur;
+	}
 
 	public Conference(int idC, String theme, String dateDeroulement, String nomAnimateur) {
 		super();

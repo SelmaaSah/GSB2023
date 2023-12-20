@@ -487,9 +487,12 @@ public class Modele {
 		Presentation presentation;
 
 		int id,dureePresentation,salleNum,heure;
-		String dateP, animateurPresentation, req = "SELECT * "
-				+ "FROM presentation "
-				+ "WHERE MONTH(dateP)= ?;";
+		String dateP, animateurPresentation, req = "SELECT P.id,dateP, dureePrevue,sallenum,heure,U.nom "
+				+ "FROM presentation P,animateur A, utilisateur U "
+				+ "WHERE A.id = P.animateurid "
+				+ "AND U.id = A.userid "
+				+ "AND MONTH(dateP)= ? "
+				+ "ORDER BY dateP;";
     	
 		try {
 		    preparedSt = conn.prepareStatement(req);
@@ -521,6 +524,36 @@ public class Modele {
     	return lesPresentation;
 	}
 	
-	
+	public static ArrayList<Conference> getDateConference() {
+		connexionBDD();
+    	
+		ArrayList<Conference> dateConference = new ArrayList<Conference>();
+    	
+		Conference conference;
+    	
+//    	Date dateP;
+		String dateP, nomP, req = "SELECT DISTINCT MONTH(daterouler) AS mois, MONTHNAME(daterouler) AS nom_mois  "
+				+ "FROM conference "
+				+ "ORDER BY daterouler;";
+    	
+    	try {
+    		res = st.executeQuery(req);
+    		while (res.next()) {
+    			
+    			dateP = res.getString(1);
+    			nomP = res.getString(2);
+    			
+    			conference = new Conference(dateP,nomP);
+    			dateConference.add(conference);
+    		}
+    		res.close();
+            deconnexionBDD();
+    	}
+    	catch (SQLException erreur) {
+    		System.out.println("La requête à échoue" + erreur);
+    	}
+    	
+    	return dateConference;
+	}
 	    
 }

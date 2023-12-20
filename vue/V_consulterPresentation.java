@@ -10,7 +10,7 @@ public class V_consulterPresentation extends JPanel {
     private JPanel panelPresentation;
     private JTable table;
 
-    public V_consulterPresentation(ArrayList<Catalogue> lesCatalogues) {
+    public V_consulterPresentation(ArrayList<Presentation> lesPresentation) {
     	panelPresentation = new RoundedPanel(20);
         String[] nomColonnes = {"ID", "Date ", "Duree prevue", "Numéro de la salle ", "Heure ", "Animateur"};
 
@@ -18,16 +18,16 @@ public class V_consulterPresentation extends JPanel {
 
         
         // Correction de la taille du tableau data
-        Object[][] data = new Object[lesCatalogues.size()][6];
+        Object[][] data = new Object[lesPresentation.size()][6];
 
-        for (int i = 0; i < lesCatalogues.size(); i++) {
-            Catalogue catalogue = lesCatalogues.get(i);
-            data[i][0] = catalogue.getIdCatalogue();
-            data[i][1] = catalogue.getDateP();
-            data[i][2] = catalogue.getDureePrevue();
-            data[i][3] = catalogue.getSallenum();
-            data[i][4] = catalogue.getHeure();
-            data[i][5] = catalogue.getAnimateurNom();
+        for (int i = 0; i < lesPresentation.size(); i++) {
+        	Presentation presentation = lesPresentation.get(i);
+            data[i][0] = presentation.getIdPresentation();
+            data[i][1] = presentation.getDatePresentation();
+            data[i][2] = presentation.getDureePresentation();
+            data[i][3] = presentation.getSallePresentation();
+            data[i][4] = presentation.getHeurePresentation();
+            data[i][5] = presentation.getAnimateur();
         }
 
         // Création d'une instance de JTable avec les données et noms de colonnes
@@ -37,6 +37,7 @@ public class V_consulterPresentation extends JPanel {
         JScrollPane scrollPane = new JScrollPane(table);
 
         panelPresentation.add(scrollPane);
+        
     }
 
     public JPanel getPanelPresentation() {

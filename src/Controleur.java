@@ -22,11 +22,13 @@ public class Controleur implements  ActionListener{
 	private V_ajouterUser v_ajouterUser;
 	private V_afficherUser v_afficherUser;
 	private V_supprimerUser v_supprimerUser;
-	private V_ajoutSecretaire v_ajoutSecretaire;
+	
 	
 //	Responsable
 	private V_statPresentationChoix v_statPresentationChoix;
-
+	private V_ajoutSecretaire v_ajoutSecretaire;
+	private V_consulterPresentation v_consulterPresentation;
+	private V_statConferenceChoix v_statConferenceChoix;
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
@@ -34,6 +36,7 @@ public class Controleur implements  ActionListener{
 	
 //	Pour notre Menu 
 	private String consulterStat = "StatPresentation";
+	private String consulterConference = "StatConference";
 	private String ajouterSecretaire ="AjouterUnSecretaire";
 	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
@@ -107,6 +110,9 @@ public class Controleur implements  ActionListener{
 
 		            	this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
 		            	this.v_menuResp.getConsulterStats().addActionListener(this);
+		            	
+		            	this.v_menuResp.getStatConference().setActionCommand(consulterConference);
+		            	this.v_menuResp.getStatConference().addActionListener(this);
 		            	
 		            	this.v_menuResp.getMenuDeconnexion().setActionCommand(deco);
 		            	this.v_menuResp.getMenuDeconnexion().addActionListener(this);
@@ -205,9 +211,25 @@ public class Controleur implements  ActionListener{
 		case "StatistiquesPresentation":
 			
 			String mois = ((String) this.v_statPresentationChoix.getDateComboBox().getSelectedItem()).split(" - ")[0];
-
-			System.out.println(Modele.getPresentationAvecDate(mois));
-
+			
+			this.v_consulterPresentation = new V_consulterPresentation(Modele.getPresentationAvecDate(mois));
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_consulterPresentation.getPanelPresentation());
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+			break;
+			
+		case "StatConference":
+			
+			this.v_statConferenceChoix = new V_statConferenceChoix(Modele.getDateConference());
+			
+			this.v_principal.getSecondPanel().add(this.v_statConferenceChoix.getStatPresentationChoixPanel());
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+            
 			break;
 		
 		case "AjouterUnSecretaire":

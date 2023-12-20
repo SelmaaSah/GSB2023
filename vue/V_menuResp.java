@@ -11,6 +11,7 @@ public class V_menuResp extends JMenuBar {
 
     private JMenu stats;
     private JMenuItem consulterStats;
+    private JMenuItem statConference;
     
     private JMenu secr;
     private JMenuItem ajtSecretaire;
@@ -29,7 +30,8 @@ public class V_menuResp extends JMenuBar {
 
         // Instanciation des menus et sous-menus
         stats = new JMenu("Statistiques");
-        consulterStats = new JMenuItem("Consulter les statistiques");
+        consulterStats = new JMenuItem("Statistiques Presentation");
+        statConference = new JMenuItem("Statistiques Conferences");
 
         secr = new JMenu("Secretaire");
         ajtSecretaire = new JMenuItem("Inscrire un(e) secretaire");
@@ -39,6 +41,8 @@ public class V_menuResp extends JMenuBar {
         add(menu);
         menu.add(stats);
         stats.add(consulterStats);
+        stats.add(statConference);
+        
         menu.add(secr);
         secr.add(ajtSecretaire);
         
@@ -58,6 +62,10 @@ public class V_menuResp extends JMenuBar {
 
     public JMenuItem getConsulterStats() {
         return consulterStats;
+    }
+    
+    public JMenuItem getStatConference() {
+        return statConference;
     }
     
     public JMenuItem getAjtSecretaire() {
