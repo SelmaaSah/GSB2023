@@ -6,8 +6,9 @@ public class Conference {
 	
 	private int idC;
 	private String theme;
-	private String nomAnimateur;
 	private String dateDeroulement;
+	private String nomAnimateur;
+	
 	
 	public Conference() {
 	}
@@ -18,7 +19,6 @@ public class Conference {
 	}
 
 	public Conference(int idC, String theme, String dateDeroulement, String nomAnimateur) {
-		super();
 		this.idC = idC;
 		this.theme = theme;
 		this.dateDeroulement = dateDeroulement;

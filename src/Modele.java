@@ -563,13 +563,13 @@ public class Modele {
     	
 		Conference conference;
 
-		int id,dureePresentation,salleNum,heure;
-		String dateP, animateurPresentation, req = "SELECT P.id,dateP, dureePrevue,sallenum,heure,U.nom "
-				+ "FROM presentation P,animateur A, utilisateur U "
-				+ "WHERE A.id = P.animateurid "
+		int id;
+		String theme, dateDerouler,nom, req = "SELECT C.id, C.theme, C.daterouler, U.nom "
+				+ "FROM conference C, animateur A, utilisateur U "
+				+ "WHERE A.id = C.animateurid "
 				+ "AND U.id = A.userid "
-				+ "AND MONTH(dateP)= ? "
-				+ "ORDER BY dateP;";
+				+ "AND MONTH(daterouler)= ? "
+				+ "ORDER BY daterouler;";
     	
 		try {
 		    preparedSt = conn.prepareStatement(req);
@@ -580,13 +580,11 @@ public class Modele {
 		    while (res.next()) {
 		        // Traitement des résultats ici
 		        id = res.getInt(1);
-		        dateP = res.getString(2);
-		        dureePresentation = res.getInt(3);
-		        salleNum = res.getInt(4);
-		        heure = res.getInt(5);
-		        animateurPresentation = res.getString(6);
+		        theme = res.getString(2);
+		        dateDerouler = res.getString(3);
+		        nom = res.getString(4);
 
-		        conference = new Conference(id, dateP, dureePresentation, salleNum, heure, animateurPresentation);
+		        conference = new Conference(id, theme, dateDerouler, nom);
 		        lesConference.add(conference);
 		    }
 
