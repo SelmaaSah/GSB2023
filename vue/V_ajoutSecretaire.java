@@ -96,7 +96,7 @@ public class V_ajoutSecretaire {
         ajoutSecrPanel.add(addUserBtn, gbc);  
     }
 
-	public JPanel ajoutSecrPanel() {
+	public JPanel getAjoutSecrPanel() {
 		return ajoutSecrPanel;
 	}
 

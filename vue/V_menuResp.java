@@ -59,5 +59,10 @@ public class V_menuResp extends JMenuBar {
     public JMenuItem getConsulterStats() {
         return consulterStats;
     }
+    
+    public JMenuItem getAjtSecretaire() {
+        return ajtSecretaire;
+    }
+
 
 }

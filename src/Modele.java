@@ -512,6 +512,7 @@ public class Modele {
 
 		    res.close();
 		    deconnexionBDD();
+		    
 		} catch (SQLException erreur) {
 		    System.out.println("La requête a échoué" + erreur);
 		}

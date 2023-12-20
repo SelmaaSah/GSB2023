@@ -22,6 +22,7 @@ public class Controleur implements  ActionListener{
 	private V_ajouterUser v_ajouterUser;
 	private V_afficherUser v_afficherUser;
 	private V_supprimerUser v_supprimerUser;
+	private V_ajoutSecretaire v_ajoutSecretaire;
 	
 //	Responsable
 	private V_statPresentationChoix v_statPresentationChoix;
@@ -29,11 +30,11 @@ public class Controleur implements  ActionListener{
 	
 //	On l'utilise pour nos case
 	private String action_connexion = "CONNEXION";
-
+	private String deco = "Deconnexion";
 	
 //	Pour notre Menu 
 	private String consulterStat = "StatPresentation";
-	private String deco = "Deconnexion";
+	private String ajouterSecretaire ="AjouterUnSecretaire";
 	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
 	private String afficherCatalogue = "AfficherCatalogue";
@@ -106,11 +107,12 @@ public class Controleur implements  ActionListener{
 
 		            	this.v_menuResp.getConsulterStats().setActionCommand(consulterStat);
 		            	this.v_menuResp.getConsulterStats().addActionListener(this);
+		            	
 		            	this.v_menuResp.getMenuDeconnexion().setActionCommand(deco);
 		            	this.v_menuResp.getMenuDeconnexion().addActionListener(this);
 
-		            	// Ajout de la vue d'accueil au centre de v_principal.getMainPanel() avec GridBagLayout
-//		            	this.v_principal.getMainPanel().add(this.v_accueil.getAccueilPanel(), BorderLayout.SOUTH);
+		            	this.v_menuResp.getAjtSecretaire().setActionCommand(ajouterSecretaire);
+		            	this.v_menuResp.getAjtSecretaire().addActionListener(this);
 
 		            	// Forcez la mise en page
 		            	this.v_principal.getMainPanel().revalidate();
@@ -204,11 +206,21 @@ public class Controleur implements  ActionListener{
 			
 			String mois = ((String) this.v_statPresentationChoix.getDateComboBox().getSelectedItem()).split(" - ")[0];
 
-			
-
 			System.out.println(Modele.getPresentationAvecDate(mois));
 
-						
+			break;
+		
+		case "AjouterUnSecretaire":
+			
+			this.v_ajoutSecretaire = new V_ajoutSecretaire();
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_ajoutSecretaire.getAjoutSecrPanel());
+			
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+				
 			break;
 		
 //=====================Secretaire======================================
