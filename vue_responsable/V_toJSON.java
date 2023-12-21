@@ -4,14 +4,34 @@ import java.awt.*;
 public class V_toJSON {
 
 	private JPanel toJSONPanel;
-	private JEditorPane editorPane;
+	
+	private JLabel animateurLabel;
+	private JLabel catalogueLabel;
+	private JLabel conferenceLabel;
+	
+	private JEditorPane editorPaneAnimateur;
+	private JEditorPane editorPaneCatalogue;
+	private JEditorPane editorPaneConference;
 
 	public V_toJSON(String JSONStringAnimateur,String JSONStringCatalogue,String JSONStringConference) {
 		
 		toJSONPanel = new JPanel();
-		editorPane = new JEditorPane("text/html",JSONStringAnimateur);
 		
-		toJSONPanel.add(editorPane);
+		animateurLabel = new JLabel("Animateur :");
+		editorPaneAnimateur = new JEditorPane("text/html",JSONStringAnimateur);
+		
+		catalogueLabel = new JLabel("Catalogue :");
+		editorPaneCatalogue = new JEditorPane("text/html",JSONStringCatalogue);
+		
+		conferenceLabel = new JLabel("Conference :");
+		editorPaneConference = new JEditorPane("text/html",JSONStringConference);
+		
+		toJSONPanel.add(animateurLabel);
+		toJSONPanel.add(editorPaneAnimateur);
+		toJSONPanel.add(catalogueLabel);
+		toJSONPanel.add(editorPaneCatalogue);
+		toJSONPanel.add(conferenceLabel);
+		toJSONPanel.add(editorPaneConference);
 		
 	}
 	
