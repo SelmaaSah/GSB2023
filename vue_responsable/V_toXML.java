@@ -7,10 +7,10 @@ public class V_toXML {
 	
 	private JEditorPane editorPane;
 	
-	public V_toXML(String XMLString) {
+	public V_toXML(String XMLStringAnimateur,String XMLStringCatalogue,String XMLStringConference ) {
 		
 		toXMLPanel = new JPanel();
-		editorPane = new JEditorPane("text/html",XMLString);
+		editorPane = new JEditorPane("text/html",XMLStringAnimateur);
 		
 		toXMLPanel.add(editorPane);
 	}

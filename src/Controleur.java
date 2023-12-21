@@ -347,9 +347,11 @@ public class Controleur implements  ActionListener{
 			break;
 						
 		case "choixToXML":
-			String XMLString = animateur.toXMLString();
+			String XMLStringAnimateur = animateur.toXMLString();
+			String XMLStringCatalogue = catalogue.toXMlString();
+			String XMLStringConference = conference.toXMlString();
 			
-			this.v_toXML = new V_toXML(XMLString);
+			this.v_toXML = new V_toXML(XMLStringAnimateur, XMLStringCatalogue,XMLStringConference);
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toXML.getToXMLPanel());
@@ -361,8 +363,11 @@ public class Controleur implements  ActionListener{
 			
 		case "choixToJSON":
 			
-			String JSONString = animateur.toJSONString();
-			this.v_toJSON = new V_toJSON(JSONString);
+			String JSONStringAnimateur = animateur.toJSONString();
+			String JSONStringCatalogue = catalogue.toJSONString();
+			String JSONStringConference = conference.toJSONString();
+			
+			this.v_toJSON = new V_toJSON(JSONStringAnimateur, JSONStringCatalogue,JSONStringConference );
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toJSON.getToJSONPanel());

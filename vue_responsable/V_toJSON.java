@@ -6,10 +6,10 @@ public class V_toJSON {
 	private JPanel toJSONPanel;
 	private JEditorPane editorPane;
 
-	public V_toJSON(String JSONString) {
+	public V_toJSON(String JSONStringAnimateur,String JSONStringCatalogue,String JSONStringConference) {
 		
 		toJSONPanel = new JPanel();
-		editorPane = new JEditorPane("text/html",JSONString);
+		editorPane = new JEditorPane("text/html",JSONStringAnimateur);
 		
 		toJSONPanel.add(editorPane);
 		
