@@ -26,6 +26,8 @@ public class Controleur implements  ActionListener{
 	private V_toCSV v_toCSV;
 	private V_toXML v_toXML;
 	private V_toJSON v_toJSON;
+	private V_afficherSecretaire v_afficherSecretaire;
+
 	
 	
 //	Responsable
@@ -47,6 +49,9 @@ public class Controleur implements  ActionListener{
 	private String choixTtoXML = "choixToXML";
 	private String choixTtoJSON = "choixToJSON";
 	private String ajouterSecretaire2 ="AjouterSecretaire";
+	private String afficherSecretaire ="AfficherSecretaire";
+
+	
 
 	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
@@ -70,6 +75,7 @@ public class Controleur implements  ActionListener{
 	private String action__stat_Presentation = "StatistiquesPresentation";
 	private String action_stat_Conference = "StatistiquesConference";
 	private String action_secretaire = "AjouterSecretaire";
+	
 
 
 	
@@ -296,9 +302,28 @@ public class Controleur implements  ActionListener{
 			
 			Modele.insertNvSecretaire(nomS, prenomS, loginS, mdpS);
 			
+			this.v_afficherSecretaire = new V_afficherSecretaire(Modele.getLesUsers2());
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_afficherSecretaire.getPanelSecretaire());
+			
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();	
 			break;
+			
+			
+		case "AfficherSecretaire":
+			
+			this.v_afficherSecretaire = new V_afficherSecretaire(Modele.getLesUsers2());
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_afficherSecretaire.getPanelSecretaire());
+		
+			this.v_principal.getMainPanel().revalidate();
+	        this.v_principal.getMainPanel().repaint();		
+			
+			break;	
+			
 			
 		case "choixToCSV":
 

@@ -426,6 +426,45 @@ public class Modele {
     	
     	return lesUsers;
 	}
+	
+	
+	
+	public static ArrayList<User> getLesUsers2() {
+		connexionBDD();
+    	
+    	ArrayList<User> lesUsers = new ArrayList<User>();
+    	
+    	User user;
+    	
+    	int id;
+		String nom, prenom, login, mdp, typeVisiteur ,req = "SELECT * "
+															+ "FROM utilisateur "
+															+ "WHERE typeVisiteur = 'Secretaire' ";
+															
+    	
+    	try {
+    		res = st.executeQuery(req);
+    		while (res.next()) {
+    			id = res.getInt(1);
+    			nom = res.getString(2);
+    			prenom = res.getString(3);
+    			login = res.getString(4);
+    			mdp = res.getString(5);
+    			typeVisiteur = res.getString(6);
+
+    			user = new User( id,nom, prenom, login, mdp, typeVisiteur);
+    			lesUsers.add(user);
+    		}
+    		res.close();
+            deconnexionBDD();
+    	}
+    	catch (SQLException erreur) {
+    		System.out.println("La requête à échoue" + erreur);
+    	}
+    	
+    	return lesUsers;
+	}
+
 
 	public static boolean getSupprimerUnUtilisateur(int id) {
     	connexionBDD();
@@ -624,6 +663,10 @@ public class Modele {
         }
         
     }
+    
+    
+    
+    
 	
 	
 	
