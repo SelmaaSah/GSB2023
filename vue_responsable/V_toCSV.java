@@ -6,7 +6,7 @@ public class V_toCSV extends JPanel {
 	private JLabel animateurLabel;
 	private JEditorPane editorPaneAnimateur;
 	
-	public V_toCSV(String csvStringAnimateur) {
+	public V_toCSV(String csvStringAnimateur, String csvStringCatalogue, String csvStringConference) {
 		
 		toCSVPanel = new JPanel();
 		

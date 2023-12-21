@@ -9,6 +9,7 @@ public class Controleur implements  ActionListener{
 
 	private Animateur animateur;
 	private Catalogue catalogue;
+	private Conference conference;
 //	Les Attributs 
 	private V_principale v_principal;
 	private V_connexion v_connexion;
@@ -86,11 +87,9 @@ public class Controleur implements  ActionListener{
 	public Controleur() {
 		
 		this.animateur = new Animateur("123","KArim","sa");
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		Date dateP = sdf.parse("2023-12-12");
-//
-//        // Utilisez cette instance pour créer un objet Catalogue
-//        this.catalogue = new Catalogue(1, dateP, 18, 2, "Selma");
+        this.catalogue = new Catalogue(1, "2023-12-12", 18, 2, "Selma");
+        this.conference = new Conference(1, "Salut", "2023-12-12","Rookie");
+        
 		this.v_principal = new V_principale();
 		this.v_connexion = new V_connexion();
 		
@@ -334,9 +333,11 @@ public class Controleur implements  ActionListener{
 			
 		case "choixToCSV":
 
-			String csvString = animateur.toCSVString();
+			String csvStringAnimateur = animateur.toCSVString();
+			String csvStringCatalogue = catalogue.toCSVString();
+			String csvStringConference = conference.toCSVString();
 			
-			this.v_toCSV = new V_toCSV(csvString);
+			this.v_toCSV = new V_toCSV(csvStringAnimateur, csvStringCatalogue, csvStringConference );
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toCSV.getToCSVPanel()); 
