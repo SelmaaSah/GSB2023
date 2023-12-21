@@ -3,15 +3,20 @@ import javax.swing.*;
 public class V_toCSV extends JPanel {
 
 	private JPanel toCSVPanel;
-	private JLabel textArea;
+	private JLabel animateurLabel;
+	private JEditorPane editorPaneAnimateur;
 	
-	public V_toCSV(String csvString) {
+	public V_toCSV(String csvStringAnimateur) {
 		
 		toCSVPanel = new JPanel();
 		
-		textArea = new JLabel(csvString);
+		animateurLabel  = new JLabel("Animateur :");
+		editorPaneAnimateur = new JEditorPane("text/html",csvStringAnimateur);
 		
-		toCSVPanel.add(textArea);
+		
+		toCSVPanel.add(animateurLabel);
+		toCSVPanel.add(editorPaneAnimateur);
+		
 	}
 	
 	public JPanel getToCSVPanel() {

@@ -38,9 +38,10 @@ public class Animateur {
     }
     
     public String toCSVString() {
-    	String res = this.idAnimateur + " ; " +  this.nomAnimateur + " ; " + this.prenomAnimateur;
-    	return res;
+        String res = this.idAnimateur + " ; " +  this.nomAnimateur + " ; " + this.prenomAnimateur + "<br>";
+        return res;
     }
+
     
     public String toXMLString() {
     	String res = "&nbsp; &lt id> " + this.idAnimateur + "&lt /id> <br>"

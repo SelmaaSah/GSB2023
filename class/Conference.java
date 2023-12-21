@@ -53,9 +53,30 @@ public class Conference {
 		return dateDeroulement;
 	}
 	
-	public void setDateDeroulement(String dateDeroulement) {
-		this.dateDeroulement = dateDeroulement;
+	public String toCSVString() {
+		String res = this.idC + " ; " +  this.theme + " ; " + this.nomAnimateur + " ; " + this.dateDeroulement ;
+    	return res;
 	}
+	
+	public String toXMlString() {
+		String res = "&nbsp; &lt id> " + this.idC + "&lt /id> <br>"
+    			+ "&nbsp; &lt Theme>" + this.theme + "&lt /Theme> <br>"
+    			+ "&nbsp; &lt Nom Animateur>" + this.nomAnimateur + "&lt /Nom Animateur> <br>"
+    			+ "&nbsp; &lt Date du deroulement>" + this.dateDeroulement + "&lt /Date du deroulement> <br>"
+    			;
+    	return res;
+	}
+	
+	public String toJSONString() {
+    	String res = "{<br>"
+    			+ "&nbsp; \"id \": " + this.idC + ",<br>"
+    			+ "&nbsp; \"Theme \": " + this.theme + "\",<br>"
+    			+ "&nbsp; \"Nom Animateur\": " + this.nomAnimateur + "\",<br>"
+    			+ "&nbsp; \"Date du deroulement\": " + this.dateDeroulement + "\",<br>"
+    			+ "}"
+    			;
+    	return res;
+    }
 	
 	
 }

@@ -1,11 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Controleur implements  ActionListener{
 
 	private Animateur animateur;
+	private Catalogue catalogue;
 //	Les Attributs 
 	private V_principale v_principal;
 	private V_connexion v_connexion;
@@ -83,7 +86,11 @@ public class Controleur implements  ActionListener{
 	public Controleur() {
 		
 		this.animateur = new Animateur("123","KArim","sa");
-		
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date dateP = sdf.parse("2023-12-12");
+//
+//        // Utilisez cette instance pour créer un objet Catalogue
+//        this.catalogue = new Catalogue(1, dateP, 18, 2, "Selma");
 		this.v_principal = new V_principale();
 		this.v_connexion = new V_connexion();
 		

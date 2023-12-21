@@ -4,7 +4,7 @@ public class Catalogue {
 
 	//Les attributs 
 	private int idCatalogue;
-	private Date dateP;
+	private String dateP;
 	private int dureePrevue;
 	private int sallenum;
 	private int heure;
@@ -14,7 +14,7 @@ public class Catalogue {
 		
 	}
 
-	public Catalogue(int lIdCattalogue,Date dateP, int dureePrevue, int sallenum,  String leNomAnimateur) {
+	public Catalogue(int lIdCattalogue,String dateP, int dureePrevue, int sallenum,  String leNomAnimateur) {
 		this.idCatalogue = lIdCattalogue;
 		this.dateP = dateP;
 		this.dureePrevue = dureePrevue;
@@ -22,10 +22,7 @@ public class Catalogue {
 		this.animateurNom = leNomAnimateur;
 	}
 	
-	
-
-
-	public Date getDateP() {
+	public String getDateP() {
 		return dateP;
 	}
 
@@ -48,11 +45,35 @@ public class Catalogue {
 		return heure;
 	}
 
-
 	public String getAnimateurNom() {
 		return animateurNom;
 	}
-
 	
+	public String toCSVString() {
+		String res = this.idCatalogue + " ; " +  this.dateP + " ; " + this.dureePrevue + " ; " + this.sallenum + " ; " +  this.animateurNom;
+    	return res;
+	}
+	
+	public String toXMlString() {
+		String res = "&nbsp; &lt id> " + this.idCatalogue + "&lt /id> <br>"
+    			+ "&nbsp; &lt Date>" + this.dateP + "&lt /Date> <br>"
+    			+ "&nbsp; &lt Duree Prevue>" + this.dureePrevue + "&lt /Duree Prevue> <br>"
+    			+ "&nbsp; &lt Numero Salle>" + this.sallenum + "&lt /Numero Salle> <br>"
+    			+ "&nbsp; &lt Nom Animateur>" + this.animateurNom + "&lt /Nom Animateur> <br>"
+    			;
+    	return res;
+	}
+	
+	public String toJSONString() {
+    	String res = "{<br>"
+    			+ "&nbsp; \"id \": " + this.idCatalogue + ",<br>"
+    			+ "&nbsp; \"Date \": " + this.dateP + "\",<br>"
+    			+ "&nbsp; \"Duree Prevue\": " + this.dureePrevue + "\",<br>"
+    			+ "&nbsp; \"Numero Salle\": " + this.sallenum + "\",<br>"
+    			+ "&nbsp; \"Numero Salle\": " + this.animateurNom + "\",<br>"
+    			+ "}"
+    			;
+    	return res;
+    }
 	
 }

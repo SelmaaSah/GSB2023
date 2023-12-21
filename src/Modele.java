@@ -314,12 +314,12 @@ public class Modele {
 
         ArrayList<Catalogue> lesCatalogues = new ArrayList<Catalogue>();
         int id,dureePrevue, sallenum;
-        Date dateP;
+       
         
 
         Catalogue catalogue;
 
-        String animateurNom, req = "SELECT P.id, dateP, dureePrevue, sallenum,  U.nom "
+        String animateurNom, dateP,req = "SELECT P.id, dateP, dureePrevue, sallenum,  U.nom "
         		+ "FROM presentation P,animateur A,utilisateur U "
         		+ "WHERE A.id = P.animateurid "
         		+ "AND U.id = A.userid "
@@ -330,7 +330,7 @@ public class Modele {
             while (res.next()) {
 
             	id = res.getInt(1);
-            	dateP = res.getDate(2);
+            	dateP = res.getString(2);
             	dureePrevue = res.getInt(3);
             	sallenum = res.getInt(4);
             	animateurNom = res.getString(5);
