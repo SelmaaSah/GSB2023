@@ -197,7 +197,7 @@ public class Controleur implements  ActionListener{
 		                this.v_menuSecretaire.getSupprimerUtilisateur().addActionListener(this);
 		                
 
-		            	this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(action_connexion);
+		            	this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(deco);
 		            	this.v_menuSecretaire.getMenuDeconnexion().addActionListener(this);
 		                
 		                this.v_principal.getMainPanel().revalidate();
@@ -218,12 +218,41 @@ public class Controleur implements  ActionListener{
 		            this.v_principal.getMainPanel().repaint();
 		        }
 		    }
-		    
+ 		     
 		    break;
-		    
-		case "Deconnexion":
-			System.out.println("Deconnecion");
-			break;
+//		    			
+//		case "Deconnexion":
+//		    // Supprime tous les composants du MainPanel et du SecondPanel
+//		    this.v_principal.getMainPanel().removeAll();
+//		    this.v_principal.getSecondPanel().removeAll();
+//
+//		    // Ajoute la vue de connexion au SecondPanel
+//		    this.v_principal.getSecondPanel().add(this.v_connexion.getConnexionPanel());
+//
+//		    // Met à jour le MainPanel
+//		    this.v_principal.getMainPanel().revalidate();
+//		    this.v_principal.getMainPanel().repaint();
+//
+//		    // Affiche la vue connexion en retirant l'utilisateur actuel
+//		    this.utilisateur = null;
+//
+//		    // Assurez-vous que l'actionCommand correct est défini pour le bouton de connexion
+//		    if (this.utilisateur != null) {
+//		        if (this.utilisateur.getTypeVisiteur().equals("Responsable")) {
+//		            this.v_menuResp.getMenuDeconnexion().setActionCommand(action_connexion);
+//		            this.v_menuResp.getMenuDeconnexion().addActionListener(this);
+//		        } else if (this.utilisateur.getTypeVisiteur().equals("Secretaire")) {
+//		            this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(action_connexion);
+//		            this.v_menuSecretaire.getMenuDeconnexion().addActionListener(this);
+//		        }
+//		    }
+//
+//		    break;
+
+
+
+
+
 		
 //=====================Responsable=====================================		   
 		case "StatPresentation":
