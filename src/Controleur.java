@@ -54,9 +54,6 @@ public class Controleur implements  ActionListener{
 	private String choixTtoJSON = "choixToJSON";
 	private String afficherSecretaire ="AfficherSecretaire";
 
-	
-
-	
 	private String creerCatalogue = "SecretaireCreerCatalogue";
 	private String afficherCatalogue = "AfficherCatalogue";
 
@@ -80,9 +77,6 @@ public class Controleur implements  ActionListener{
 	private String action_secretaire = "AjouterSecretaire";
 	
 
-
-	
-	
 	public Controleur() {
 		
 		this.animateur = new Animateur("123","KArim","sa");
@@ -336,11 +330,13 @@ public class Controleur implements  ActionListener{
 			
 		case "choixToCSV":
 
-			String csvStringAnimateur = animateur.toCSVString();
-			String csvStringCatalogue = catalogue.toCSVString();
-			String csvStringConference = conference.toCSVString();
+			String csvStringAnimateur = this.animateur.toCSVString();
+			String csvStringCatalogue = this.catalogue.toCSVString();
+			String csvStringConference = this.conference.toCSVString();
 			
-			this.v_toCSV = new V_toCSV(csvStringAnimateur, csvStringCatalogue, csvStringConference );
+			
+			
+			this.v_toCSV = new V_toCSV(csvStringAnimateur, csvStringCatalogue, csvStringConference);
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toCSV.getToCSVPanel()); 

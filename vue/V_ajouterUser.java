@@ -69,7 +69,7 @@ public class V_ajouterUser {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.insets = new Insets(10, 10, 10, 10);
         ajoutUserPanel.add(ajoutUserlbl, gbc);
         
         
