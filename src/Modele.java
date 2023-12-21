@@ -475,7 +475,7 @@ public class Modele {
 	
 	
 	
-	public static ArrayList<User> getLesUsers2() {
+	public static ArrayList<User> getLesSecretaires() {
 		connexionBDD();
     	
     	ArrayList<User> lesUsers = new ArrayList<User>();
@@ -730,7 +730,7 @@ public class Modele {
     
     
 	
-	
+
 	
 	
 	

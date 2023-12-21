@@ -308,7 +308,7 @@ public class Controleur implements  ActionListener{
 			
 			Modele.insertNvSecretaire(nomS, prenomS, loginS, mdpS);
 			
-			this.v_afficherSecretaire = new V_afficherSecretaire(Modele.getLesUsers2());
+			this.v_afficherSecretaire = new V_afficherSecretaire(Modele.getLesSecretaires());
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_afficherSecretaire.getPanelSecretaire());
@@ -320,7 +320,7 @@ public class Controleur implements  ActionListener{
 			
 		case "AfficherSecretaire":
 			
-			this.v_afficherSecretaire = new V_afficherSecretaire(Modele.getLesUsers2());
+			this.v_afficherSecretaire = new V_afficherSecretaire(Modele.getLesSecretaires());
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_afficherSecretaire.getPanelSecretaire());
