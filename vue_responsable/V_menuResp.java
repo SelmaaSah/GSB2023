@@ -16,6 +16,11 @@ public class V_menuResp extends JMenuBar {
     private JMenu secr;
     private JMenuItem ajtSecretaire;
     
+    private JMenu type;
+    private JMenuItem toJSON;
+    private JMenuItem toXML;
+    private JMenuItem toCSV;
+    
     
     private JMenuItem deconnexion;
 
@@ -36,6 +41,11 @@ public class V_menuResp extends JMenuBar {
         secr = new JMenu("Secretaire");
         ajtSecretaire = new JMenuItem("Inscrire un(e) secretaire");
         deconnexion = new JMenuItem("Deconnexion");
+        
+        type = new JMenu("type");
+        toJSON = new JMenuItem("JSON");
+        toXML = new JMenuItem("XML");
+        toCSV = new JMenuItem("CSV");
 
         // Ajout des menus � la barre de menus
         add(menu);
@@ -45,6 +55,14 @@ public class V_menuResp extends JMenuBar {
         
         menu.add(secr);
         secr.add(ajtSecretaire);
+        
+        menu.add(type);
+        type.add(toCSV);
+        type.add(toXML);
+        type.add(toJSON);
+        
+        
+        
         
         menu.add(deconnexion);
         menu.setVisible(true);
@@ -68,9 +86,19 @@ public class V_menuResp extends JMenuBar {
         return statConference;
     }
     
+    public JMenuItem getToJSON() {
+        return toJSON;
+    }
+
+    public JMenuItem getToCSV() {
+        return toCSV;
+    }
+    public JMenuItem getToXML() {
+        return toXML;
+    }
     public JMenuItem getAjtSecretaire() {
         return ajtSecretaire;
     }
-
+    
 
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Controleur implements  ActionListener{
 
+	private Animateur animateur;
 //	Les Attributs 
 	private V_principale v_principal;
 	private V_connexion v_connexion;
@@ -22,6 +23,9 @@ public class Controleur implements  ActionListener{
 	private V_ajouterUser v_ajouterUser;
 	private V_afficherUser v_afficherUser;
 	private V_supprimerUser v_supprimerUser;
+	private V_toCSV v_toCSV;
+	private V_toXML v_toXML;
+	private V_toJSON v_toJSON;
 	
 	
 //	Responsable
@@ -39,6 +43,9 @@ public class Controleur implements  ActionListener{
 	private String consulterStat = "StatPresentation";
 	private String consulterConference = "StatConference";
 	private String ajouterSecretaire ="AjouterUnSecretaire";
+	private String choixToCSV = "choixToCSV";
+	private String choixTtoXML = "choixToXML";
+	private String choixTtoJSON = "choixToJSON";
 	private String ajouterSecretaire2 ="AjouterSecretaire";
 
 	
@@ -69,8 +76,9 @@ public class Controleur implements  ActionListener{
 	
 	public Controleur() {
 		
-		this.v_principal = new V_principale();
+		this.animateur = new Animateur("123","KArim","sa");
 		
+		this.v_principal = new V_principale();
 		this.v_connexion = new V_connexion();
 		
 		
@@ -120,11 +128,20 @@ public class Controleur implements  ActionListener{
 		            	this.v_menuResp.getStatConference().setActionCommand(consulterConference);
 		            	this.v_menuResp.getStatConference().addActionListener(this);
 		            	
-		            	this.v_menuResp.getMenuDeconnexion().setActionCommand(deco);
-		            	this.v_menuResp.getMenuDeconnexion().addActionListener(this);
-
 		            	this.v_menuResp.getAjtSecretaire().setActionCommand(ajouterSecretaire);
 		            	this.v_menuResp.getAjtSecretaire().addActionListener(this);
+		            	
+		            	this.v_menuResp.getToCSV().setActionCommand(choixToCSV);
+		            	this.v_menuResp.getToCSV().addActionListener(this);
+		            	
+		            	this.v_menuResp.getToXML().setActionCommand(choixTtoXML);
+		            	this.v_menuResp.getToXML().addActionListener(this);
+		            	
+		            	this.v_menuResp.getToJSON().setActionCommand(choixTtoJSON);
+		            	this.v_menuResp.getToJSON().addActionListener(this);
+		            	
+		            	this.v_menuResp.getMenuDeconnexion().setActionCommand(deco);
+		            	this.v_menuResp.getMenuDeconnexion().addActionListener(this);
 
 		            	// Forcez la mise en page
 		            	this.v_principal.getMainPanel().revalidate();
@@ -171,7 +188,7 @@ public class Controleur implements  ActionListener{
 		                this.v_menuSecretaire.getSupprimerUtilisateur().addActionListener(this);
 		                
 
-		            	this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(deco);
+		            	this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(action_connexion);
 		            	this.v_menuSecretaire.getMenuDeconnexion().addActionListener(this);
 		                
 		                this.v_principal.getMainPanel().revalidate();
@@ -282,6 +299,46 @@ public class Controleur implements  ActionListener{
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();	
 			break;
+			
+		case "choixToCSV":
+
+			String csvString = animateur.toCSVString();
+			
+			this.v_toCSV = new V_toCSV(csvString);
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_toCSV.getToCSVPanel()); 
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+			
+			break;
+						
+		case "choixToXML":
+			String XMLString = animateur.toXMLString();
+			
+			this.v_toXML = new V_toXML(XMLString);
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_toXML.getToXMLPanel());
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+			
+			break;
+			
+		case "choixToJSON":
+			
+			String JSONString = animateur.toJSONString();
+			this.v_toJSON = new V_toJSON(JSONString);
+			
+			this.v_principal.getSecondPanel().removeAll();
+			this.v_principal.getSecondPanel().add(this.v_toJSON.getToJSONPanel());
+			
+			this.v_principal.getMainPanel().revalidate();
+            this.v_principal.getMainPanel().repaint();
+            
+			break;
 		
 //=====================Secretaire======================================
 		case "SecretaireCreerCatalogue":
@@ -370,6 +427,8 @@ public class Controleur implements  ActionListener{
             
             this.v_principal.getMainPanel().revalidate();
             this.v_principal.getMainPanel().repaint();		
+            this.animateur = new Animateur();
+          
 			break;
 			
 		case "AnnulerConferences":
