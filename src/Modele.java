@@ -63,6 +63,8 @@ public class Modele {
 		connexionBDD();
 		Utilisateur utilisateur = null;
 
+		
+		//requete sql 
 		String req = "SELECT COUNT(*),id,nom,prenom,typeVisiteur "
 				+ "FROM utilisateur "
 				+ "WHERE login = ? "
@@ -156,6 +158,8 @@ public class Modele {
         try {
             // Requête d'insertion
             String req = "INSERT INTO presentation (dateP, dureePrevue, sallenum,heure,animateurid) VALUES (?, ?, ?, ?, ?)";
+            // Préparer la requête SQL avec les paramètres
+
             preparedSt = Modele.conn.prepareStatement(req);
             preparedSt.setString(1, datePrevue);
             preparedSt.setInt(2, dureePrevue);
@@ -171,6 +175,8 @@ public class Modele {
             deconnexionBDD();
         } 
         catch (SQLException erreur) {
+            // Gérer les erreurs liées à l'insertion
+
             System.out.println("L'insertion a échoué " + erreur);
         }
     }
@@ -253,7 +259,15 @@ public class Modele {
     }
 	
     
-    
+    /**
+     * Insère une nouvelle conférence dans la base de données avec les informations fournies.
+     *
+     * @param dateP La date de la conférence.
+     * @param dureePrevue La durée prévue de la conférence en minutes.
+     * @param sallenum Le numéro de la salle où se tiendra la conférence.
+     * @param heure L'heure de début de la conférence.
+     * @param animateurid L'identifiant de l'animateur associé à la conférence.
+     */
     public static void insertnvCatalogue(String dateP, int dureePrevue, int sallenum, int heure, int animateurid ) {
     	connexionBDD();
     	
@@ -307,7 +321,11 @@ public class Modele {
     }
     
     
- 
+    /**
+     * Récupère la liste des catalogues de présentations depuis la base de données.
+     *
+     * @return Une ArrayList d'objets Catalogue représentant les catalogues de présentations disponibles.
+     */
     
     public static ArrayList<Catalogue> getLesCatalogues() {
         connexionBDD();
@@ -351,7 +369,12 @@ public class Modele {
     
     
     
-    
+    /**
+     * Supprime une conférence en utilisant son identifiant.
+     *
+     * @param id L'identifiant de la conférence à supprimer.
+     * @return true si la suppression a réussi, false sinon.
+     */
     
     public static boolean getSupprimerUneConference(int id) {
     	connexionBDD();
@@ -489,6 +512,7 @@ public class Modele {
 	}
 
 
+
 	public static boolean getSupprimerUnUtilisateur(int id) {
     	connexionBDD();
     	boolean rep = false;
@@ -586,6 +610,13 @@ public class Modele {
     	return lesPresentation;
 	}
 	
+	/**
+	 * Récupère le mois 
+	 * depuis la base de données.
+	 *
+	 * @return Une ArrayList d'objets User
+	 */
+	
 	public static ArrayList<Conference> getDateConference() {
 		connexionBDD();
     	
@@ -662,6 +693,14 @@ public class Modele {
 	}
 	
 	
+	/**
+	 * Insère un nouveau secrétaire dans la bdd via le formulaire avec les informations fournies.
+	 *
+	 * @param nomS Le nom du nouveau secrétaire.
+	 * @param prenomS Le prénom du nouveau secrétaire.
+	 * @param loginS Le nom d'utilisateur (login) du nouveau secrétaire.
+	 * @param mdpS Le mot de passe du nouveau secrétaire.
+	 */
     public static void insertNvSecretaire(String nomS, String prenomS, String loginS, String mdpS) {
     	connexionBDD();
     	
