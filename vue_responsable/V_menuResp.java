@@ -107,5 +107,8 @@ public class V_menuResp extends JMenuBar {
         return ajtSecretaire;
     }
     
+    public JMenuItem getAfhSecretaire() {
+        return afhSecretaire;
+    }
 
 }

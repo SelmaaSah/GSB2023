@@ -52,7 +52,6 @@ public class Controleur implements  ActionListener{
 	private String choixToCSV = "choixToCSV";
 	private String choixTtoXML = "choixToXML";
 	private String choixTtoJSON = "choixToJSON";
-	private String ajouterSecretaire2 ="AjouterSecretaire";
 	private String afficherSecretaire ="AfficherSecretaire";
 
 	
@@ -142,6 +141,10 @@ public class Controleur implements  ActionListener{
 		            	
 		            	this.v_menuResp.getAjtSecretaire().setActionCommand(ajouterSecretaire);
 		            	this.v_menuResp.getAjtSecretaire().addActionListener(this);
+		            	
+		            	this.v_menuResp.getAfhSecretaire().setActionCommand(afficherSecretaire);
+		            	this.v_menuResp.getAfhSecretaire().addActionListener(this);
+		            	
 		            	
 		            	this.v_menuResp.getToCSV().setActionCommand(choixToCSV);
 		            	this.v_menuResp.getToCSV().addActionListener(this);

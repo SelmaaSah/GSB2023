@@ -499,6 +499,7 @@ public class Modele {
     			typeVisiteur = res.getString(6);
 
     			user = new User( id,nom, prenom, login, mdp, typeVisiteur);
+    			
     			lesUsers.add(user);
     		}
     		res.close();
