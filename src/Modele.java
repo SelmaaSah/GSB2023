@@ -18,16 +18,27 @@ public class Modele {
 		
 	}
 	
+	
+	/**
+	 * Établit une connexion à la base de données.
+	 * @return Un message indiquant le résultat de la tentative de connexion :
+	 *         - "Connexion réussie à la BDD" en cas de succès.
+	 *         - "Driver non chargé !" avec la description de l'erreur en cas d'échec du chargement du pilote.
+	 *         - "La connexion à la base de données a échoué" suivi de la description de l'erreur en cas d'échec de la connexion.
+	 */
 //	La connexion avec la BDD 
 	public static String connexionBDD() {
 	        try {
+	        	 // Charger le pilote JDBC MySQL
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 
+	            // Établir la connexion à la base de données avec les informations de connexion
 	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
 //	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
 
 	            st = conn.createStatement();
 	         
+	         // Message de succès
 	            resultat = "Connexion reussie � la BDD";
 	        } catch (ClassNotFoundException erreur) {
 	            resultat = "Driver non charge !" + erreur;
@@ -37,6 +48,16 @@ public class Modele {
 	        return resultat;
 	 }
 	 
+	
+	/**
+	 * Vérifie l'existence d'un utilisateur dans la bdd en utilisant
+	 * l'identifiant (login) et le mot de passe fournis.
+	 *
+	 * @param identifiant Identifiant (login) de l'utilisateur à vérifier.
+	 * @param mdp Mot de passe de l'utilisateur à vérifier.
+	 * @return Un objet Utilisateur représentant l'utilisateur s'il existe dans la base de données,
+	 *         sinon retourne null.
+	 */
 	// M�thode pour v�rifier l'existence de l'utilisateur dans la base de donn�es
 	public static Utilisateur existeUser(String identifiant, String mdp) {
 		connexionBDD();
@@ -388,8 +409,10 @@ public class Modele {
 	
 	
 	/**
-	 * Cette finction nous permet de recuperer les Salles
-	 * @return la liste des Salles avec le nom et l'id
+	 * Récupère la liste des utilisateurs ayant le rôle "Animateur" ou "Intervenant"
+	 * depuis la base de données.
+	 *
+	 * @return Une ArrayList d'objets User
 	 */
 	public static ArrayList<User> getLesUsers() {
 		connexionBDD();
