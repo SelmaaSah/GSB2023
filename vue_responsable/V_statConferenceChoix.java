@@ -21,7 +21,7 @@ public class V_statConferenceChoix extends JPanel{
 		
 		statConferenceChoixPanel = new RoundedPanel(20);
 		statConferenceChoixPanel.setBackground(Color.white);
-		titreLabel = new JLabel("Les statistiques de presentation : ");
+		titreLabel = new JLabel("Les statistiques de Conference : ");
 		choixLabel = new JLabel("Choisissez un mois pour visualiser les statistiques ");
 		statConferencetnBtn = new JButton("Afficher");
 		

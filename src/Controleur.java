@@ -1,15 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Controleur implements  ActionListener{
 
-	private Animateur animateur;
-	private Catalogue catalogue;
-	private Conference conference;
 //	Les Attributs 
 	private V_principale v_principal;
 	private V_connexion v_connexion;
@@ -79,10 +77,6 @@ public class Controleur implements  ActionListener{
 
 	public Controleur() {
 		
-		this.animateur = new Animateur("123","KArim","sa");
-        this.catalogue = new Catalogue(1, "2023-12-12", 18, 2, "Selma");
-        this.conference = new Conference(1, "Salut", "2023-12-12","Rookie");
-        
 		this.v_principal = new V_principale();
 		this.v_connexion = new V_connexion();
 		
@@ -107,9 +101,12 @@ public class Controleur implements  ActionListener{
 		
 //		Notre Vue de connexion
 		case "CONNEXION" :
+//			Recuperqtion des identifiant et Mot de passe
 		    String identifiant = this.v_connexion.getIdentifiantTextField().getText();
 		    String mdp = this.v_connexion.getMdpTextField().getText();
+		    
 		    this.v_principal.getMainPanel().setLayout(new BorderLayout());
+		    
 		    if (Modele.existeUser(identifiant, mdp) != null) {
 //		    	On ajoute la fonction dans un attributs pour ensuite recupere le nom, typeVisiteur etc..action 
 		        this.utilisateur = Modele.existeUser(identifiant, mdp);
@@ -220,38 +217,11 @@ public class Controleur implements  ActionListener{
 		    }
  		     
 		    break;
-//		    			
-//		case "Deconnexion":
-//		    // Supprime tous les composants du MainPanel et du SecondPanel
-//		    this.v_principal.getMainPanel().removeAll();
-//		    this.v_principal.getSecondPanel().removeAll();
-//
-//		    // Ajoute la vue de connexion au SecondPanel
-//		    this.v_principal.getSecondPanel().add(this.v_connexion.getConnexionPanel());
-//
-//		    // Met à jour le MainPanel
-//		    this.v_principal.getMainPanel().revalidate();
-//		    this.v_principal.getMainPanel().repaint();
-//
-//		    // Affiche la vue connexion en retirant l'utilisateur actuel
-//		    this.utilisateur = null;
-//
-//		    // Assurez-vous que l'actionCommand correct est défini pour le bouton de connexion
-//		    if (this.utilisateur != null) {
-//		        if (this.utilisateur.getTypeVisiteur().equals("Responsable")) {
-//		            this.v_menuResp.getMenuDeconnexion().setActionCommand(action_connexion);
-//		            this.v_menuResp.getMenuDeconnexion().addActionListener(this);
-//		        } else if (this.utilisateur.getTypeVisiteur().equals("Secretaire")) {
-//		            this.v_menuSecretaire.getMenuDeconnexion().setActionCommand(action_connexion);
-//		            this.v_menuSecretaire.getMenuDeconnexion().addActionListener(this);
-//		        }
-//		    }
-//
-//		    break;
-
-
-
-
+		    			
+		case "Deconnexion":
+		    // Supprime tous les composants du MainPanel et du SecondPanel
+			restartApplication();
+		    break;
 
 		
 //=====================Responsable=====================================		   
@@ -298,6 +268,7 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "StatistiquesConference":
+//			Recuperation uniquement de l'id
 			String moisConference = ((String) this.v_statConferenceChoix.getDateComboBox().getSelectedItem()).split(" - ")[0];
 			
 			this.v_consulterConference = new V_consulterConference(Modele.getConferenceAvecDate(moisConference));
@@ -359,13 +330,8 @@ public class Controleur implements  ActionListener{
 			
 		case "choixToCSV":
 
-			String csvStringAnimateur = this.animateur.toCSVString();
-			String csvStringCatalogue = this.catalogue.toCSVString();
-			String csvStringConference = this.conference.toCSVString();
 			
-			
-			
-			this.v_toCSV = new V_toCSV(csvStringAnimateur, csvStringCatalogue, csvStringConference);
+			this.v_toCSV = new V_toCSV(Modele.getLesAnimateur(), Modele.getLesCatalogues(), Modele.getLesConferences());
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toCSV.getToCSVPanel()); 
@@ -376,11 +342,8 @@ public class Controleur implements  ActionListener{
 			break;
 						
 		case "choixToXML":
-			String XMLStringAnimateur = animateur.toXMLString();
-			String XMLStringCatalogue = catalogue.toXMlString();
-			String XMLStringConference = conference.toXMlString();
 			
-			this.v_toXML = new V_toXML(XMLStringAnimateur, XMLStringCatalogue,XMLStringConference);
+			this.v_toXML = new V_toXML(Modele.getLesAnimateur(), Modele.getLesCatalogues(), Modele.getLesConferences());
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toXML.getToXMLPanel());
@@ -391,12 +354,8 @@ public class Controleur implements  ActionListener{
 			break;
 			
 		case "choixToJSON":
-			
-			String JSONStringAnimateur = animateur.toJSONString();
-			String JSONStringCatalogue = catalogue.toJSONString();
-			String JSONStringConference = conference.toJSONString();
-			
-			this.v_toJSON = new V_toJSON(JSONStringAnimateur, JSONStringCatalogue,JSONStringConference );
+						
+			this.v_toJSON = new V_toJSON(Modele.getLesAnimateur(), Modele.getLesCatalogues(), Modele.getLesConferences());
 			
 			this.v_principal.getSecondPanel().removeAll();
 			this.v_principal.getSecondPanel().add(this.v_toJSON.getToJSONPanel());
@@ -492,8 +451,7 @@ public class Controleur implements  ActionListener{
             this.v_principal.getSecondPanel().add(this.v_afficherConference.getPanelconference());
             
             this.v_principal.getMainPanel().revalidate();
-            this.v_principal.getMainPanel().repaint();		
-            this.animateur = new Animateur();
+            this.v_principal.getMainPanel().repaint();	
           
 			break;
 			
@@ -609,4 +567,26 @@ public class Controleur implements  ActionListener{
 			
 		}
 	}
+	private void restartApplication() {
+	    try {
+	        // Obtenez le chemin du fichier JAR actuel
+	        String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+	        File currentJar = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+
+	        // Si nous sommes dans un fichier JAR, relancez l'application en utilisant ProcessBuilder
+	        if (currentJar.getName().endsWith(".jar")) {
+	            ProcessBuilder builder = new ProcessBuilder(javaBin, "-jar", currentJar.getPath());
+	            builder.start();
+	        } else {
+	            // Si nous ne sommes pas dans un fichier JAR, nous ne pouvons pas redémarrer automatiquement
+	            System.out.println("Impossible de redémarrer automatiquement en dehors d'un fichier JAR");
+	        }
+
+	        // Termine l'application actuelle
+	        System.exit(0);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

@@ -50,7 +50,7 @@ public class Catalogue {
 	}
 	
 	public String toCSVString() {
-		String res = this.idCatalogue + " ; " +  this.dateP + " ; " + this.dureePrevue + " ; " + this.sallenum + " ; " +  this.animateurNom;
+		String res = this.idCatalogue + " ; " +  this.dateP + " ; " + this.dureePrevue + " ; " + this.sallenum + " ; " +  this.animateurNom + "<br>";
     	return res;
 	}
 	

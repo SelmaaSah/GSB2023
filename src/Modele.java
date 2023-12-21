@@ -33,8 +33,8 @@ public class Modele {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 
 	            // Établir la connexion à la base de données avec les informations de connexion
-	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
-//	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
+//	            conn = DriverManager.getConnection("jdbc:mysql://172.16.203.201/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "sio", "slam");
+	            conn = DriverManager.getConnection("jdbc:mysql://localhost/GSB2?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "");
 
 	            st = conn.createStatement();
 	         
@@ -234,7 +234,7 @@ public class Modele {
     	Animateur animateur;
     	
     	String id;
-		String nom,req = "SELECT animateur.id,nom "
+		String nom,prenom,req = "SELECT animateur.id,nom,prenom "
 				+ "FROM utilisateur, animateur "
 				+ "WHERE utilisateur.id = animateur.userid "
 				+ "AND typeVisiteur = 'Animateur'; ";
@@ -244,8 +244,9 @@ public class Modele {
     		while (res.next()) {
     			id = res.getString(1);
     			nom = res.getString(2);
+    			prenom = res.getString(3);
     			
-    			animateur = new Animateur(id, nom);
+    			animateur = new Animateur(id, nom,prenom);
     			lesAnimateurs.add(animateur);
     		}
     		res.close();

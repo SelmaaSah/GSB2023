@@ -54,7 +54,7 @@ public class Conference {
 	}
 	
 	public String toCSVString() {
-		String res = this.idC + " ; " +  this.theme + " ; " + this.nomAnimateur + " ; " + this.dateDeroulement ;
+		String res = this.idC + " ; " +  this.theme + " ; " + this.nomAnimateur + " ; " + this.dateDeroulement+ "<br>" ;
     	return res;
 	}
 	
